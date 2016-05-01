@@ -20,11 +20,6 @@ export default class App extends Component {
     const route = {
       component: InTheaters,
       title: 'Í sýningu',
-      rightButtonTitle: 'Stillingar',
-      onRightButtonPress: () => this.refs.navigator.push({
-        title: 'Stillingar',
-        component: Settings,
-      }),
     };
 
     return (

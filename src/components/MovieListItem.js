@@ -8,6 +8,7 @@ import React, {
   StyleSheet,
   PropTypes
 } from 'react-native';
+
 import _uniq from 'lodash/uniq';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -19,13 +20,13 @@ export default class MovieListItem extends Component {
     title: PropTypes.string,
     year: PropTypes.number,
     runtime: PropTypes.number,
-    rating: PropTypes.number,
+    ratings: PropTypes.object,
     votes: PropTypes.number,
     showtimes: PropTypes.array,
   };
 
   runtime(num) {
-    let ori = num;
+    let ori = Number(num);
     const hours = Math.floor(num / 60);
     const minutes = ori - (hours * 60);
     return `${hours} klst ${minutes} mín`;
@@ -36,13 +37,13 @@ export default class MovieListItem extends Component {
     .map(s => s.hour.split(':').map(Number).reduce((a,b) => (a * 60) + b))
     .filter((val, i, self) => {
       var nearest = self.filter(d => d < val).sort((a,b) => a-b).pop();
-      return (val-nearest) > 15;
+      return (self.length === 1) || (val-nearest) > 15;
     })
-    .sort()
+    .sort((a,b) => a-b)
     .map(n => {
       var h = Math.floor(n / 60);
       var m = n - (h * 60);
-      return [h, m].map(d=> d<10 ? '0'+d : d).join(':');
+      return [h, m].map(d=> d < 10 ? '0'+d : d).join(':');
     }));
   }
 
@@ -52,24 +53,26 @@ export default class MovieListItem extends Component {
    */
   render () {
     const {
-      image,
+      posterUrl,
       title,
       year,
       runtime,
-      rating,
+      ratings,
       votes,
       showtimes,
     } = this.props;
 
+    const imdbRating = (ratings ? ratings.imdbRating : '?');
+
     return (
       <View style={s.item}>
-        <Image style={s.poster} source={{ uri: image }} />
+        <Image style={s.poster} source={{ uri: `http://image.tmdb.org/t/p/w500${posterUrl}` }} />
         <View style={s.detail}>
           <Text style={s.title}>{title}</Text>
           <View style={[s.vertical, { flex: 1 }]}>
             <Text style={s.runtime}>{this.runtime(runtime)}</Text>
             <Icon name="star" size={14} color="#FAD600" />
-            <Text style={s.rating}>{rating}/10</Text>
+            <Text style={s.rating}>{imdbRating}/10</Text>
           </View>
           <View style={s.showtimes}>
             {this.asHours(showtimes).map((hour, i) => (
@@ -103,6 +106,7 @@ const s = StyleSheet.create({
 
   vertical: {
     flexDirection: 'row',
+    paddingBottom: 5,
   },
 
   title: {

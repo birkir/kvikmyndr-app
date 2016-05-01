@@ -6,8 +6,10 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "event-emitter": "^0.3.4",
+    "dotenv": "^2.0.0",
+    "firebase": "^2.4.2",
     "lodash": "^4.11.1",
+    "re-base": "^1.5.1",
     "react": "^0.14.8",
     "react-native": "^0.24.1",
     "react-native-linear-gradient": "^1.5.4",

@@ -9,10 +9,47 @@ import React, {
   TouchableHighlight
 } from 'react-native';
 
+import Rebase from 're-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class SceneMovieDetails extends Component {
+
+  constructor(...args) {
+    super(...args);
+
+    this.base = Rebase.createClass('https://kvikmyndr.firebaseio.com');
+
+    this.state = {
+      movie: this.props.movie,
+    };
+  }
+
+  /**
+   * Fired when component was mounted
+   *
+   * @return void
+   */
+  componentDidMount () {
+    this.ref = this.base.listenTo(`in-show/${this.props.date}/${this.props.movie.ids.imdb}`, {
+      context: this,
+      asArray: false,
+      then (movie) {
+        this.setState({
+          movie,
+        });
+      }
+    });
+  }
+
+  /**
+   * Fired when component will unmount
+   * @return void
+   */
+  componentWillUnmount () {
+    // Remove firebase binding to ref
+    this.base.removeBinding(this.ref);
+  }
 
   runtime(num) {
     let ori = num;
@@ -47,19 +84,22 @@ export default class SceneMovieDetails extends Component {
       year,
       genres,
       runtime,
-      rating,
-      metascore,
+      ratings,
       synoptis,
       directors,
       actors,
-      backdrop,
+      backdropUrl,
+      posterUrl,
       showtimes,
-    } = this.props;
+    } = this.state.movie;
+
+    const imdbRating = (ratings ? ratings.imdbRating : '?');
+    const metascore = ratings && ratings.metascore ? ratings.metascore : null;
 
     return (
       <View style={s.container}>
         <ScrollView style={{ flex: 1 }}>
-          <Image style={s.cover} resizeMode="cover" source={{ uri: backdrop }}>
+          <Image style={s.cover} resizeMode="cover" source={{ uri: `http://image.tmdb.org/t/p/w1000${backdropUrl || posterUrl}` }}>
             <LinearGradient
               start={[0.0, 0.0]}
               end={[0.0, 1.0]}
@@ -77,18 +117,18 @@ export default class SceneMovieDetails extends Component {
           </Image>
           <View style={s.detail}>
             <View style={s.bar}>
-              <Text style={s.genres}>{genres.join(' | ')}</Text>
+              {genres ? <Text style={s.genres}>{genres.join(' | ')}</Text> : null}
               <View style={s.row}>
                 <Icon name="star" size={14} color="#FAD600" style={{marginTop: 1}}/>
-                <Text style={s.rating}>{rating}/10</Text>
-                <Text style={s.metascore}>{metascore}</Text>
-                <Text style={s.runtime}>Metascore</Text>
+                <Text style={s.rating}>{imdbRating}/10</Text>
+                {metascore ? <Text style={s.metascore}>{metascore}</Text> : null}
+                {metascore ? <Text style={s.runtime}>Metascore</Text> : null}
               </View>
             </View>
-            <Text style={s.label}>Söguþráður</Text>
-            <Text style={s.synoptis}>{synoptis}</Text>
-            <Text><Text style={s.bold}>Leikstjórn: </Text> {directors.join(', ')}</Text>
-            <Text><Text style={s.bold}>Leikarar: </Text> {actors.join(', ')}</Text>
+            {synoptis ? <Text style={s.label}>Söguþráður</Text> : null}
+            {synoptis ? <Text style={s.synoptis}>{synoptis}</Text> : null }
+            {directors && directors.length > 0 ? (<Text style={s.directors}><Text style={s.bold}>Leikstjórn: </Text> {directors.join(', ')}</Text>) : null}
+            {actors && actors.length > 0 ? (<Text style={s.actors}><Text style={s.bold}>Leikarar: </Text> {actors.join(', ')}</Text>) : null}
           </View>
           <View style={s.showtimes}>
             {this.groupByCinema(showtimes).map((cinema, ci) => (
@@ -103,13 +143,13 @@ export default class SceneMovieDetails extends Component {
                       <View style={s.showtimeItem}>
                         <Text style={s.showtimeHour}>{showtime.hour}</Text>
                         <Text style={s.showtimeHall}>{showtime.hall}</Text>
-                        {showtime.flags.map((flag, fi) => (
+                        {showtime.flags ? showtime.flags.map((flag, fi) => (
                           <Text
                             key={`flag_${fi}`}
                             style={[s.showtimeFlag, s[`showtimeFlag_${flag}`]]}>
                             {flag}
                           </Text>
-                        ))}
+                        )) : null}
                       </View>
                     </TouchableHighlight>
                   ))}
@@ -224,6 +264,14 @@ const s = StyleSheet.create({
     padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+  },
+
+  actors: {
+    paddingBottom: 5,
+  },
+
+  directors: {
+    paddingBottom: 5,
   },
 
   showtimes: {
