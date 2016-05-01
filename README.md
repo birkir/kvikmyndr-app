@@ -1,8 +1,24 @@
 Kvikmyndr
 ====
 
-iOS and Android app about getting latest info about cinema showtimes.
+iOS and Android app about getting latest cinema showtimes.
 
+This was a weekend project so don't expect it to work or be beautiful.
+
+ - [Download for Android](https://github.com/birkir/kvikmyndr-app/releases/download/0.0.1/app-release.apk)
+ - [Download for iOS](https://github.com/birkir/kvikmyndr-app/releases/download/0.0.1/Kvikmyndr.app.zip)
+
+TODO
+----------
+ - Add views for today, tomorrow, etc.
+ - Add coming soon.
+ - ... and "Notify me when movie will be available."
+ - Add eslint, airbnb spec
+ - Split into components
+ - Bump to major version releases
+ - Add tests!
+ - Design a logo, branding.
+ - Design the app?
 
 Quick Start
 ----------
