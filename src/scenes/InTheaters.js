@@ -1,10 +1,13 @@
 import React, {
   Component,
+  Platform,
   View,
   ScrollView,
   Text,
   StyleSheet,
   TouchableHighlight,
+  ActivityIndicatorIOS,
+  ProgressBarAndroid,
   ListView
 } from 'react-native';
 
@@ -45,6 +48,7 @@ export default class SceneInTheaters extends Component {
       then (data) {
         data.reverse();
         this.setState({
+          loading: false,
           movies: this.state.movies.cloneWithRows(data)
         });
       }
@@ -72,6 +76,7 @@ export default class SceneInTheaters extends Component {
 
   onPress(movie) {
     this.props.navigator.push({
+      name: 'MovieDetails',
       title: movie.title,
       component: MovieDetails,
       passProps: {
@@ -81,18 +86,30 @@ export default class SceneInTheaters extends Component {
     });
   }
 
+  loading() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {(Platform.OS === 'ios') ? <ActivityIndicatorIOS style={{ height: 40 }} /> : null}
+        {(Platform.OS === 'android') ? <ProgressBarAndroid indeterminate={true} styleAttr="Large" /> : null}
+      </View>
+    );
+  }
+
   /**
    * Render method
    * @return {Component}
    */
   render () {
+    const { loading } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <ListView
-          dataSource={this.state.movies}
-          renderRow={this.renderRow.bind(this)}
-          styles={{ flex: 1 }}
-        />
+        {loading ? this.loading() : (
+          <ListView
+            dataSource={this.state.movies}
+            renderRow={this.renderRow.bind(this)}
+            styles={{ flex: 1 }}
+          />
+        )}
       </View>
     );
   }

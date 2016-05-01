@@ -126,9 +126,9 @@ export default class SceneMovieDetails extends Component {
               </View>
             </View>
             {synoptis ? <Text style={s.label}>Söguþráður</Text> : null}
-            {synoptis ? <Text style={s.synoptis}>{synoptis}</Text> : null }
+            {synoptis ? <Text style={s.synoptis}>{synoptis.replace(/\n/g, ' ')}</Text> : null }
             {directors && directors.length > 0 ? (<Text style={s.directors}><Text style={s.bold}>Leikstjórn: </Text> {directors.join(', ')}</Text>) : null}
-            {actors && actors.length > 0 ? (<Text style={s.actors}><Text style={s.bold}>Leikarar: </Text> {actors.join(', ')}</Text>) : null}
+            {actors && actors.length > 0 ? (<Text style={s.actors}><Text style={s.bold}>Leikarar: </Text> {actors.slice(0, 5).join(', ')}</Text>) : null}
           </View>
           <View style={s.showtimes}>
             {this.groupByCinema(showtimes).map((cinema, ci) => (
@@ -169,6 +169,7 @@ export default class SceneMovieDetails extends Component {
 const s = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 
   cover: {
