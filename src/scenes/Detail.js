@@ -6,20 +6,39 @@ import React, {
   Text,
   Linking,
   StyleSheet,
-  TouchableHighlight
+  PropTypes,
+  TouchableHighlight,
 } from 'react-native';
 
 import Rebase from 're-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
+let s = {};
 
-export default class SceneMovieDetails extends Component {
+/**
+ * Movie Detail Scene
+ */
+export default class Detail extends Component {
 
+  /**
+   * PropTypes
+   * @return {object}
+   */
+  static propTypes = {
+    movie: PropTypes.object.isRequired,
+  };
+
+  /**
+   * Constructor proxy, default state, superbinds.
+   * @return {void}
+   */
   constructor(...args) {
     super(...args);
 
+    // Create re-base class from Firebase URL
     this.base = Rebase.createClass('https://kvikmyndr.firebaseio.com');
 
+    // Default state
     this.state = {
       movie: this.props.movie,
     };
@@ -27,18 +46,18 @@ export default class SceneMovieDetails extends Component {
 
   /**
    * Fired when component was mounted
-   *
-   * @return void
+   * @return {void}
    */
-  componentDidMount () {
-    this.ref = this.base.listenTo(`in-show/${this.props.date}/${this.props.movie.ids.imdb}`, {
+  componentDidMount() {
+    // Create ref point
+    this.ref = this.base.listenTo(`in-show/${this.props.movie.date}/${this.props.movie.ids.imdb}`, {
       context: this,
       asArray: false,
-      then (movie) {
+      then(movie) {
         this.setState({
           movie,
         });
-      }
+      },
     });
   }
 
@@ -46,39 +65,42 @@ export default class SceneMovieDetails extends Component {
    * Fired when component will unmount
    * @return void
    */
-  componentWillUnmount () {
+  componentWillUnmount() {
     // Remove firebase binding to ref
     this.base.removeBinding(this.ref);
   }
 
+  /**
+   * Convert minutes to HH:MM
+   * @param {number} Runtime in minutes
+   * @return {string} HH:MM runtime
+   */
   runtime(num) {
-    let ori = num;
     const hours = Math.floor(num / 60);
-    const minutes = ori - (hours * 60);
+    const minutes = num - (hours * 60);
     return `${hours} klst ${minutes} mín`;
   }
 
+  /**
+   * Group showtimes by cinema
+   * @param {array} Array of showtimes
+   * @return {array} Array of cinemas of showtimes.
+   */
   groupByCinema(arr) {
-    var cinemas = [];
+    const cinemas = [];
     arr.map(d => d.cinema)
-    .filter((v, i, self) => {
-      return self.indexOf(v) === i;
-    }).forEach(name => {
+    .filter((v, i, self) => self.indexOf(v) === i)
+    .forEach(name => {
       cinemas.push(arr.filter(d => d.cinema === name));
     });
     return cinemas;
-  }
-
-  openUrl(url) {
-    return Linking.openURL(url)
-    .catch(err => console.error('An error occurred', err));
   }
 
   /**
    * Render method
    * @return {Component}
    */
-  render () {
+  render() {
     const {
       title,
       year,
@@ -105,7 +127,7 @@ export default class SceneMovieDetails extends Component {
               end={[0.0, 1.0]}
               locations={[0, 0.5, 1.0]}
               colors={['transparent', 'transparent', '#000']}
-              style={{ flex: 1, opacity: 0.9 }}
+              style={{ flex: 1, opacity: 1 }}
             />
             <View style={s.coverContent}>
               <Text style={s.title}>
@@ -119,16 +141,25 @@ export default class SceneMovieDetails extends Component {
             <View style={s.bar}>
               {genres ? <Text style={s.genres}>{genres.join(' | ')}</Text> : null}
               <View style={s.row}>
-                <Icon name="star" size={14} color="#FAD600" style={{marginTop: 1}}/>
+                <Icon name="star" size={14} color="#FAD600" style={{ marginTop: 1 }} />
                 <Text style={s.rating}>{imdbRating}/10</Text>
                 {metascore ? <Text style={s.metascore}>{metascore}</Text> : null}
                 {metascore ? <Text style={s.runtime}>Metascore</Text> : null}
               </View>
             </View>
             {synoptis ? <Text style={s.label}>Söguþráður</Text> : null}
-            {synoptis ? <Text style={s.synoptis}>{synoptis.replace(/\n/g, ' ')}</Text> : null }
-            {directors && directors.length > 0 ? (<Text style={s.directors}><Text style={s.bold}>Leikstjórn: </Text> {directors.join(', ')}</Text>) : null}
-            {actors && actors.length > 0 ? (<Text style={s.actors}><Text style={s.bold}>Leikarar: </Text> {actors.slice(0, 5).join(', ')}</Text>) : null}
+            {synoptis ? <Text style={s.synoptis}>{synoptis.replace(/\n/g, ' ')}</Text> : null}
+            {directors && directors.length > 0 ? (
+              <Text style={s.directors}>
+                <Text style={s.bold}>Leikstjórn: </Text>
+              {directors.join(', ')}</Text>
+            ) : null}
+            {actors && actors.length > 0 ? (
+              <Text style={s.actors}>
+                <Text style={s.bold}>Leikarar: </Text>
+                {actors.slice(0, 5).join(', ')}
+              </Text>
+            ) : null}
           </View>
           <View style={s.showtimes}>
             {this.groupByCinema(showtimes).map((cinema, ci) => (
@@ -139,14 +170,16 @@ export default class SceneMovieDetails extends Component {
                     <TouchableHighlight
                       key={`showtime_${si}`}
                       underlayColor="#f8f8ee"
-                      onPress={() => this.openUrl(showtime.ticketUrl)}>
+                      onPress={() => Linking.openURL(showtime.ticketUrl)}
+                    >
                       <View style={s.showtimeItem}>
                         <Text style={s.showtimeHour}>{showtime.hour}</Text>
                         <Text style={s.showtimeHall}>{showtime.hall}</Text>
                         {showtime.flags ? showtime.flags.map((flag, fi) => (
                           <Text
                             key={`flag_${fi}`}
-                            style={[s.showtimeFlag, s[`showtimeFlag_${flag}`]]}>
+                            style={[s.showtimeFlag, s[`showtimeFlag_${flag}`]]}
+                          >
                             {flag}
                           </Text>
                         )) : null}
@@ -166,7 +199,7 @@ export default class SceneMovieDetails extends Component {
 /**
  * @const {StyleSheet} Component styles
  */
-const s = StyleSheet.create({
+s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -318,6 +351,5 @@ const s = StyleSheet.create({
 
   showtimeFlag: {
     paddingLeft: 4,
-  }
-
+  },
 });

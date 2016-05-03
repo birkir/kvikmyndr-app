@@ -1,7 +1,6 @@
 import React, {
   Component,
   View,
-  Text,
   Navigator,
   NavigatorIOS,
   StatusBar,
@@ -10,50 +9,77 @@ import React, {
   BackAndroid,
 } from 'react-native';
 
-import InTheaters from './scenes/InTheaters';
-import MovieDetails from './scenes/MovieDetails';
+import SceneMain from './scenes/Main';
+import SceneDetail from './scenes/Detail';
+import NavigationBar from './components/NavigationBar';
+let s = {};
 
+/**
+ * App container component
+ * @return {Component}
+ */
 export default class App extends Component {
 
+  /**
+   * Constructor proxy, default state, superbinds.
+   * @return {void}
+   */
   constructor(...args) {
     super(...args);
     this.state = {};
+
+    // Superbind methods
     this.renderScene = this.renderScene.bind(this);
     this.navigationBar = this.navigationBar.bind(this);
   }
 
+  /**
+   * Fired when component will mount
+   * @return {void}
+   */
   componentDidMount() {
+    // Overtake hardware back presses in android
     BackAndroid.addEventListener('hardwareBackPress', this.hwBackRef = () => {
       if (this.refs.navigator) {
         const routes = this.refs.navigator.getCurrentRoutes();
         if (routes.length > 1) {
+          // Go back one route
           this.refs.navigator.pop();
           return true;
         }
       }
+      // Defaults to exit app
       return false;
     });
   }
 
+  /**
+   * Fired when component will unmount
+   * @return {void}
+   */
   componentWillUnmount() {
+    // Remove hardware back press listener that was set in didMount.
     BackAndroid.removeEventListener('hardwareBackPress', this.hwBackRef);
   }
 
-  navigationBar(navigator, navState) {
-    return (
-      <View style={s.navbar}>
-        <Text style={s.navbarTitle}>Í sýningu</Text>
-      </View>
-    );
-  }
-
+  /**
+   * Render scene method for standard Navigator
+   * @param {object} Route to render
+   * @param {Navigator}
+   * @return {Component}
+   */
   renderScene(route, navigator) {
-    if (route.name === 'InTheaters') {
-      return <InTheaters navigator={navigator} />;
-    }
+    const { id, passProps } = route;
 
-    if (route.name === 'MovieDetails') {
-      return <MovieDetails navigator={navigator} {...route.passProps} />
+    switch (id) {
+
+      // Main scene
+      default:
+        return <SceneMain navigator={navigator} {...passProps} />;
+
+      // Movie details
+      case 'detail':
+        return <SceneDetail navigator={navigator} {...passProps} />;
     }
   }
 
@@ -63,29 +89,29 @@ export default class App extends Component {
    */
   render() {
 
+    // Set default route
     const route = {
-      name: 'InTheaters',
-      component: InTheaters,
+      component: SceneMain,
       title: 'Í sýningu',
     };
 
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor="#000" translucent={true} barStyle="light-content" />
+      <View style={s.flex}>
+        <StatusBar {...s.statusBar} />
         {Platform.OS === 'ios' ? (
           <NavigatorIOS
             barTintColor="#000"
             tintColor="#fff"
             titleTextColor="#fff"
-            style={{ flex: 1 }}
+            style={s.flex}
             initialRoute={route}
           />
         ) : (
-          <View style={{ flex: 1 }}>
-            {this.navigationBar()}
+          <View style={s.flex}>
+            <NavigationBar title="Í sýningu" />
             <Navigator
               ref="navigator"
-              style={{ flex: 1 }}
+              style={s.flex}
               initialRoute={route}
               renderScene={this.renderScene}
             />
@@ -96,18 +122,16 @@ export default class App extends Component {
   }
 }
 
-const s = StyleSheet.create({
-  navbar: {
-    marginTop: 24,
-    height: 50,
-    backgroundColor: '#000',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+s = StyleSheet.create({
+
+  flex: {
+    flex: 1,
   },
-  navbarTitle: {
-    color: '#fff',
-    fontSize: 21,
-    fontWeight: '400',
+
+  statusBar: {
+    backgroundColor: '#000000',
+    translucent: true,
+    barStyle: 'light-content',
   },
+
 });

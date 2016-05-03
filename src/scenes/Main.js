@@ -2,56 +2,61 @@ import React, {
   Component,
   Platform,
   View,
-  ScrollView,
-  Text,
-  StyleSheet,
   TouchableHighlight,
   ActivityIndicatorIOS,
   ProgressBarAndroid,
-  ListView
+  ListView,
+  PropTypes,
 } from 'react-native';
 
 import Rebase from 're-base';
 import MovieListItem from '../components/MovieListItem';
-import MovieDetails from './MovieDetails';
+import SceneDetail from './Detail';
 
 export default class SceneInTheaters extends Component {
+
+  static propTypes = {
+    navigator: PropTypes.object.isRequired,
+  };
 
   constructor(...args) {
     super(...args);
 
+    // Create re-base instance
     this.base = Rebase.createClass('https://kvikmyndr.firebaseio.com');
 
+    // Default state
     this.state = {
       loading: true,
       movies: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => (row1 !== row2)
+        rowHasChanged: (row1, row2) => (row1 !== row2),
       }),
       firebaseKey: (new Date()).toISOString().substr(0, 10),
     };
 
+    // Superbinds
     this.onPress = this.onPress.bind(this);
+    this.renderRow = this.renderRow.bind(this);
   }
 
   /**
    * Fired when component was mounted
-   *
    * @return void
    */
-  componentDidMount () {
+  componentDidMount() {
     this.ref = this.base.listenTo(`in-show/${this.state.firebaseKey}`, {
       context: this,
       asArray: true,
       queries: {
-        orderByChild: 'showtimeCount'
+        orderByChild: 'showtimeCount',
       },
-      then (data) {
+      then(data) {
         data.reverse();
         this.setState({
           loading: false,
-          movies: this.state.movies.cloneWithRows(data)
+          movies: this.state.movies.cloneWithRows(data),
         });
-      }
+      },
     });
   }
 
@@ -59,26 +64,17 @@ export default class SceneInTheaters extends Component {
    * Fired when component will unmount
    * @return void
    */
-  componentWillUnmount () {
+  componentWillUnmount() {
     // Remove firebase binding to ref
     this.base.removeBinding(this.ref);
   }
 
-  renderRow(movie) {
-    return (
-      <TouchableHighlight key={movie.id} underlayColor="#f8f8ee" onPress={() => this.onPress(movie)}>
-        <View>
-          <MovieListItem {...movie} />
-        </View>
-      </TouchableHighlight>
-    );
-  }
 
   onPress(movie) {
     this.props.navigator.push({
-      name: 'MovieDetails',
+      id: 'detail',
       title: movie.title,
-      component: MovieDetails,
+      component: SceneDetail,
       passProps: {
         movie,
         date: this.state.firebaseKey,
@@ -90,8 +86,24 @@ export default class SceneInTheaters extends Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {(Platform.OS === 'ios') ? <ActivityIndicatorIOS style={{ height: 40 }} /> : null}
-        {(Platform.OS === 'android') ? <ProgressBarAndroid indeterminate={true} styleAttr="Large" /> : null}
+        {(Platform.OS === 'android') ? (
+          <ProgressBarAndroid indeterminate="true" styleAttr="Large" />
+        ) : null}
       </View>
+    );
+  }
+
+  renderRow(movie) {
+    return (
+      <TouchableHighlight
+        key={movie.id}
+        underlayColor="#f8f8ee"
+        onPress={() => this.onPress(movie)}
+      >
+        <View>
+          <MovieListItem {...movie} />
+        </View>
+      </TouchableHighlight>
     );
   }
 
@@ -99,14 +111,14 @@ export default class SceneInTheaters extends Component {
    * Render method
    * @return {Component}
    */
-  render () {
+  render() {
     const { loading } = this.state;
     return (
       <View style={{ flex: 1 }}>
         {loading ? this.loading() : (
           <ListView
             dataSource={this.state.movies}
-            renderRow={this.renderRow.bind(this)}
+            renderRow={this.renderRow}
             styles={{ flex: 1 }}
           />
         )}

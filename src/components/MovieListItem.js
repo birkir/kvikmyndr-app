@@ -1,22 +1,21 @@
 import React, {
   Component,
   View,
-  ScrollView,
   Text,
-  Button,
   Image,
   StyleSheet,
-  PropTypes
+  PropTypes,
 } from 'react-native';
-
 import _uniq from 'lodash/uniq';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+let s = {};
+
 export default class MovieListItem extends Component {
 
   static propTypes = {
-    image: PropTypes.string,
+    posterUrl: PropTypes.string,
     title: PropTypes.string,
     year: PropTypes.number,
     runtime: PropTypes.number,
@@ -26,7 +25,7 @@ export default class MovieListItem extends Component {
   };
 
   runtime(num) {
-    let ori = Number(num);
+    const ori = Number(num);
     const hours = Math.floor(num / 60);
     const minutes = ori - (hours * 60);
     return `${hours} klst ${minutes} mín`;
@@ -34,16 +33,16 @@ export default class MovieListItem extends Component {
 
   asHours(arr) {
     return _uniq(arr
-    .map(s => s.hour.split(':').map(Number).reduce((a,b) => (a * 60) + b))
+    .map(i => i.hour.split(':').map(Number).reduce((a, b) => (a * 60) + b))
     .filter((val, i, self) => {
-      var nearest = self.filter(d => d < val).sort((a,b) => a-b).pop();
-      return (self.length === 1) || (val-nearest) > 15;
+      const nearest = self.filter(d => d < val).sort((a, b) => a - b).pop();
+      return (self.length === 1) || (val - nearest) > 15;
     })
-    .sort((a,b) => a-b)
+    .sort((a, b) => a - b)
     .map(n => {
-      var h = Math.floor(n / 60);
-      var m = n - (h * 60);
-      return [h, m].map(d=> d < 10 ? '0'+d : d).join(':');
+      const h = Math.floor(n / 60);
+      const m = n - (h * 60);
+      return [h, m].map(d => d < 10 ? `0${d}` : d).join(':');
     }));
   }
 
@@ -51,14 +50,12 @@ export default class MovieListItem extends Component {
    * Render method
    * @return {Component}
    */
-  render () {
+  render() {
     const {
       posterUrl,
       title,
-      year,
       runtime,
       ratings,
-      votes,
       showtimes,
     } = this.props;
 
@@ -89,7 +86,7 @@ export default class MovieListItem extends Component {
 /**
  * @const {StyleSheet} Component styles
  */
-const s = StyleSheet.create({
+s = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
