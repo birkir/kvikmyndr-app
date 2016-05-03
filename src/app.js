@@ -30,7 +30,6 @@ export default class App extends Component {
 
     // Superbind methods
     this.renderScene = this.renderScene.bind(this);
-    this.navigationBar = this.navigationBar.bind(this);
   }
 
   /**
@@ -97,7 +96,11 @@ export default class App extends Component {
 
     return (
       <View style={s.flex}>
-        <StatusBar {...s.statusBar} />
+        <StatusBar
+          backgroundColor="#000000"
+          translucent
+          barStyle="light-content"
+        />
         {Platform.OS === 'ios' ? (
           <NavigatorIOS
             barTintColor="#000"
@@ -126,12 +129,6 @@ s = StyleSheet.create({
 
   flex: {
     flex: 1,
-  },
-
-  statusBar: {
-    backgroundColor: '#000000',
-    translucent: true,
-    barStyle: 'light-content',
   },
 
 });

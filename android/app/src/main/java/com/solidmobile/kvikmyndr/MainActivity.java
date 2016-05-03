@@ -1,4 +1,4 @@
-package com.kvikmyndr;
+package com.solidmobile.kvikmyndr;
 
 import com.facebook.react.ReactActivity;
 import com.BV.LinearGradient.LinearGradientPackage;

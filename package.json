@@ -5,36 +5,46 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "./node_modules/.bin/eslint ./src ./*.js",
-    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest  --no-cache",
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && NODE_ENV=test jest --no-cache",
     "test:watch": "npm run test -- --watch"
   },
   "jest": {
-    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "scriptPreprocessor": "node_modules/react-native/jestSupport/preprocessor.js",
+    "setupEnvScriptFile": "node_modules/react-native/jestSupport/env.js",
     "testPathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "packager/react-packager/src/Activity/"
     ],
+    "haste": {
+      "defaultPlatform": "ios",
+      "providesModuleNodeModules": [
+        "fbjs",
+        "react",
+        "react-native",
+        "parse",
+        "react-transform-hmr"
+      ],
+      "platforms": ["ios", "android"]
+    },
     "testFileExtensions": [
       "js"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json"
     ],
     "unmockedModulePathPatterns": [
       "react",
       "react-addons-test-utils",
       "promise",
       "source-map",
+      "key-mirror",
+      "immutable",
       "fetch",
+      "redux",
+      "redux-thunk",
       "fbjs"
-    ],
-    "collectCoverage": false,
-    "verbose": true
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb",
-
     "rules": {
       "no-confusing-arrow": 0,
       "padded-blocks": 0,

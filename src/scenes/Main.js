@@ -69,7 +69,11 @@ export default class SceneInTheaters extends Component {
     this.base.removeBinding(this.ref);
   }
 
-
+  /**
+   * Fired when list item is pressed
+   * @param {object} Movie object
+   * @return {void}
+   */
   onPress(movie) {
     this.props.navigator.push({
       id: 'detail',
@@ -78,10 +82,15 @@ export default class SceneInTheaters extends Component {
       passProps: {
         movie,
         date: this.state.firebaseKey,
+        id: movie.ids.imdb,
       },
     });
   }
 
+  /**
+   * Render loading screen
+   * @return {Component}
+   */
   loading() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -93,6 +102,11 @@ export default class SceneInTheaters extends Component {
     );
   }
 
+  /**
+   * Render row method
+   * @param {object} Movie object
+   * @return {Component}
+   */
   renderRow(movie) {
     return (
       <TouchableHighlight
@@ -113,8 +127,15 @@ export default class SceneInTheaters extends Component {
    */
   render() {
     const { loading } = this.state;
+    const styles = { flex: 1 };
+
+    if (Platform.OS === 'ios') {
+      // Weird problem with ios navigator component
+      styles.paddingTop = 60;
+    }
+
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles}>
         {loading ? this.loading() : (
           <ListView
             dataSource={this.state.movies}

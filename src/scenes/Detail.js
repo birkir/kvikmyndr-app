@@ -26,6 +26,8 @@ export default class Detail extends Component {
    */
   static propTypes = {
     movie: PropTypes.object.isRequired,
+    id: PropTypes.string,
+    date: PropTypes.string,
   };
 
   /**
@@ -49,8 +51,14 @@ export default class Detail extends Component {
    * @return {void}
    */
   componentDidMount() {
+    const { date, id } = this.props;
+
+    if (!date || !id) {
+      return;
+    }
+
     // Create ref point
-    this.ref = this.base.listenTo(`in-show/${this.props.movie.date}/${this.props.movie.ids.imdb}`, {
+    this.ref = this.base.listenTo(`in-show/${date}/${id}`, {
       context: this,
       asArray: false,
       then(movie) {

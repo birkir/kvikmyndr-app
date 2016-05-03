@@ -734,7 +734,8 @@
 				INFOPLIST_FILE = kvikmyndr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = Kvikmyndr;
+				PRODUCT_BUNDLE_IDENTIFIER = org.solidmobile.kvikmyndr;
+				PRODUCT_NAME = "Bíóhúsið";
 			};
 			name = Debug;
 		};
@@ -752,7 +753,8 @@
 				INFOPLIST_FILE = kvikmyndr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = Kvikmyndr;
+				PRODUCT_BUNDLE_IDENTIFIER = org.solidmobile.kvikmyndr;
+				PRODUCT_NAME = "Bíóhúsið";
 			};
 			name = Release;
 		};
