@@ -1,6 +1,7 @@
 import React, {
   Component,
   Platform,
+  Animated,
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
@@ -32,6 +33,7 @@ export default class SceneInTheaters extends Component {
         rowHasChanged: (row1, row2) => (row1 !== row2),
       }),
       firebaseKey: (new Date()).toISOString().substr(0, 10),
+      bounceValue: new Animated.Value(0),
     };
 
     // Superbinds
@@ -74,7 +76,8 @@ export default class SceneInTheaters extends Component {
    * @param {object} Movie object
    * @return {void}
    */
-  onPress(movie) {
+  onPress(movie, item) {
+    console.log(item);
     this.props.navigator.push({
       id: 'detail',
       title: movie.title,
@@ -108,11 +111,13 @@ export default class SceneInTheaters extends Component {
    * @return {Component}
    */
   renderRow(movie) {
+    let item;
+    movie.ref = component => (item = component); // eslint-disable-line
     return (
       <TouchableHighlight
         key={movie.id}
         underlayColor="#f8f8ee"
-        onPress={() => this.onPress(movie)}
+        onPress={() => this.onPress(movie, item)}
       >
         <View>
           <MovieListItem {...movie} />
@@ -127,15 +132,8 @@ export default class SceneInTheaters extends Component {
    */
   render() {
     const { loading } = this.state;
-    const styles = { flex: 1 };
-
-    if (Platform.OS === 'ios') {
-      // Weird problem with ios navigator component
-      styles.paddingTop = 60;
-    }
-
     return (
-      <View style={styles}>
+      <View style={{ flex: 1 }}>
         {loading ? this.loading() : (
           <ListView
             dataSource={this.state.movies}

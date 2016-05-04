@@ -63,7 +63,7 @@ export default class MovieListItem extends Component {
 
     return (
       <View style={s.item}>
-        <Image style={s.poster} source={{ uri: `http://image.tmdb.org/t/p/w500${posterUrl}` }} />
+        <Image style={s.poster} ref="image" source={{ uri: `http://image.tmdb.org/t/p/w500${posterUrl}` }} />
         <View style={s.detail}>
           <Text style={s.title}>{title}</Text>
           <View style={[s.vertical, { flex: 1 }]}>

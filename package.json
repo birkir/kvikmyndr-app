@@ -9,29 +9,23 @@
     "test:watch": "npm run test -- --watch"
   },
   "jest": {
-    "scriptPreprocessor": "node_modules/react-native/jestSupport/preprocessor.js",
-    "setupEnvScriptFile": "node_modules/react-native/jestSupport/env.js",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "packager/react-packager/src/Activity/"
+      "/node_modules/"
     ],
-    "haste": {
-      "defaultPlatform": "ios",
-      "providesModuleNodeModules": [
-        "fbjs",
-        "react",
-        "react-native",
-        "parse",
-        "react-transform-hmr"
-      ],
-      "platforms": ["ios", "android"]
-    },
     "testFileExtensions": [
+      "es6",
       "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
     ],
     "unmockedModulePathPatterns": [
       "react",
       "react-addons-test-utils",
+      "react-native-router-flux",
       "promise",
       "source-map",
       "key-mirror",
@@ -40,7 +34,9 @@
       "redux",
       "redux-thunk",
       "fbjs"
-    ]
+    ],
+    "collectCoverage": false,
+    "verbose": true
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -65,9 +61,9 @@
     "firebase": "^2.4.2",
     "lodash": "^4.11.1",
     "re-base": "^1.5.1",
-    "react": "^0.14.8",
     "react-native": "^0.24.1",
     "react-native-linear-gradient": "^1.5.4",
+    "react-native-navbar": "^1.4.2",
     "react-native-vector-icons": "^1.3.4"
   },
   "devDependencies": {
@@ -82,6 +78,7 @@
     "eslint-plugin-react": "^5.0.1",
     "eslint-plugin-react-native": "^1.0.0",
     "jest-cli": "^12.0.2",
+    "react": "^0.14.8",
     "react-addons-test-utils": "^15.0.2"
   }
 }

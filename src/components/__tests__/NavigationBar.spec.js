@@ -1,9 +1,11 @@
-// import utils from 'react-addons-test-utils';
+jest.autoMockOff();
+
+import utils from 'react-addons-test-utils';
 import React, { View } from 'react-native';
 
-var NavigationBar = require('../NavigationBar.js');
-
 jest.dontMock('../NavigationBar');
+
+const NavigationBar = require('../NavigationBar.js').default;
 
 describe('NavigationBar', () => {
 
@@ -27,9 +29,8 @@ describe('NavigationBar', () => {
     });
 
     const { output } = navigationBar;
+
     expect(output.type).toEqual(View);
-    expect(output.props.children[0]).toEqual('Test header title');
   });
 
-  console.log('ok');
 });
