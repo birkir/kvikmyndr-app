@@ -63,6 +63,7 @@
     "lodash": "^4.11.1",
     "re-base": "^1.5.1",
     "react-native": "^0.24.1",
+    "react-native-android-tablayout": "^0.2.0",
     "react-native-gifted-form": "0.0.6",
     "react-native-linear-gradient": "^1.5.4",
     "react-native-navbar": "^1.4.2",

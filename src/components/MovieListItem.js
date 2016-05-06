@@ -164,8 +164,9 @@ const s = StyleSheet.create({
     borderRadius: 3,
     paddingTop: 3,
     paddingBottom: 3,
-    paddingLeft: 5,
     paddingRight: 5,
+    paddingLeft: 5,
+    textAlign: 'center',
   },
 
   chevron: {

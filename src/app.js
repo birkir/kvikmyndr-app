@@ -1,16 +1,18 @@
 import React, {
   Component,
   View,
+  Text,
   Navigator,
   StyleSheet,
   BackAndroid,
   TouchableHighlight,
+  StatusBar,
 } from 'react-native';
 
 import SceneMain from './scenes/Main';
 import NavigationBar from 'react-native-navbar';
 import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Entypo';
 
 /**
  * App container component
@@ -143,13 +145,16 @@ export default class App extends Component {
     let rightButton = undefined;
 
     if (showBack) {
-      leftButton = {
-        title: 'Back',
-        tintColor: '#fff',
-        handler: () => {
-          this.refs.navigator.pop();
-        },
-      };
+      leftButton = (
+        <TouchableHighlight
+          underlayColor="rgba(255,255,255,0.1)"
+          onPress={() => this.refs.navigator.pop()}
+        >
+          <View style={s.leftButton}>
+            <Icon name="chevron-thin-left" size={24} color="#fff" />
+          </View>
+        </TouchableHighlight>
+      );
     }
 
     if (showFilters) {
@@ -159,7 +164,7 @@ export default class App extends Component {
           onPress={this.onRightPress}
         >
           <View style={s.rightButton}>
-            <Icon name="sort" size={24} color="#fff" />
+            <Icon name="cog" size={24} color="#fff" />
           </View>
         </TouchableHighlight>
       );
@@ -174,6 +179,10 @@ export default class App extends Component {
 
     return (
       <View style={s.flex}>
+        <StatusBar
+          backgroundColor="#731C53"
+          barStyle="light-content"
+        />
         <LinearGradient
           start={[0.0, 1.0]}
           end={[1.0, 0.0]}
@@ -208,12 +217,20 @@ const s = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
+  leftButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+
   rightButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
     paddingRight: 10,
     paddingLeft: 10,
   },
+
 });

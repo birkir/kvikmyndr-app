@@ -259,6 +259,7 @@ const s = StyleSheet.create({
     fontWeight: '600',
     color: '#333',
     marginRight: 4,
+    textAlign: 'center',
   },
 
   synoptis: {

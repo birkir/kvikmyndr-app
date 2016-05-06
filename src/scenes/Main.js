@@ -2,6 +2,7 @@ import React, {
   Component,
   Platform,
   View,
+  Text,
   TouchableHighlight,
   ActivityIndicatorIOS,
   SegmentedControlIOS,
@@ -12,6 +13,7 @@ import React, {
 import _pick from 'lodash/pick';
 import _mapValues from 'lodash/mapValues';
 import Rebase from 're-base';
+import { Tab, TabLayout } from 'react-native-android-tablayout';
 import MovieListItem from '../components/MovieListItem';
 import SceneFilters from './Filters';
 import SceneDetail from './Detail';
@@ -128,7 +130,7 @@ export default class SceneMain extends Component {
    * @return {void}
    */
   onTabChange(e) {
-    const selectedTab = e.nativeEvent.selectedSegmentIndex;
+    const selectedTab = e.nativeEvent.selectedSegmentIndex || e.nativeEvent.position;
     const date = this.getDate(selectedTab);
 
     this.setState({
@@ -179,7 +181,7 @@ export default class SceneMain extends Component {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {(Platform.OS === 'ios') ? <ActivityIndicatorIOS style={{ height: 40 }} /> : null}
         {(Platform.OS === 'android') ? (
-          <ProgressBarAndroid indeterminate="true" styleAttr="Large" />
+          <ProgressBarAndroid indeterminate styleAttr="Large" />
         ) : null}
       </View>
     );
@@ -204,6 +206,20 @@ export default class SceneMain extends Component {
     );
   }
 
+  renderTabs(items) {
+    return (
+      <TabLayout
+        selectedTabIndicatorColor="#E8ACC3"
+        onTabSelected={this.onTabChange}
+        selectedTab={this.state.selectedTab}
+      >
+        {items.map((item, i) => (
+          <Tab key={`tab${i}`} name={item} textColor="#fff" />
+        ))}
+      </TabLayout>
+    );
+  }
+
   /**
    * Render method
    * @return {Component}
@@ -217,23 +233,26 @@ export default class SceneMain extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ backgroundColor: 'transparent', padding: 10 }}>
-          <SegmentedControlIOS
+        <View style={{ backgroundColor: 'transparent' }}>
+          {Platform.OS === 'ios' ? (<SegmentedControlIOS
+            style={{ padding: 10 }}
             enabled
             tintColor="#fff"
             values={dates}
             selectedIndex={this.state.selectedTab}
             onChange={this.onTabChange}
-          />
+          />) : this.renderTabs(dates)}
         </View>
-        {loading ? this.loading() : (
-          <ListView
-            enableEmptySections
-            dataSource={this.state.movies}
-            renderRow={this.renderRow}
-            styles={{ flex: 1 }}
-          />
-        )}
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          {loading ? this.loading() : (
+            <ListView
+              enableEmptySections
+              dataSource={this.state.movies}
+              renderRow={this.renderRow}
+              styles={{ flex: 1 }}
+            />
+          )}
+        </View>
       </View>
     );
   }
