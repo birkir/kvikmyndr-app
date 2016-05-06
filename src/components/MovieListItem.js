@@ -10,10 +10,15 @@ import _uniq from 'lodash/uniq';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-let s = {};
-
+/**
+ * Component that renders each row item
+ */
 export default class MovieListItem extends Component {
 
+  /**
+   * PropTypes
+   * @return {object}
+   */
   static propTypes = {
     posterUrl: PropTypes.string,
     title: PropTypes.string,
@@ -24,6 +29,11 @@ export default class MovieListItem extends Component {
     showtimes: PropTypes.array,
   };
 
+  /**
+   * Convert minutes to HH:MM
+   * @param {number} Runtime in minutes
+   * @return {string} HH:MM runtime
+   */
   runtime(num) {
     const ori = Number(num);
     const hours = Math.floor(num / 60);
@@ -31,9 +41,14 @@ export default class MovieListItem extends Component {
     return `${hours} klst ${minutes} mín`;
   }
 
+  /**
+   * Convert array of showtimes to grouped hours
+   * @param {array} Array of showtimes
+   * @return {array} Array of hours
+   */
   asHours(arr) {
     return _uniq(arr
-    .map(i => i.hour.split(':').map(Number).reduce((a, b) => (a * 60) + b))
+    .map(i => i.hour.split(i.hour.match(/\.|:/).pop()).map(Number).reduce((a, b) => (a * 60) + b))
     .filter((val, i, self) => {
       const nearest = self.filter(d => d < val).sort((a, b) => a - b).pop();
       return (self.length === 1) || (val - nearest) > 15;
@@ -59,7 +74,7 @@ export default class MovieListItem extends Component {
       showtimes,
     } = this.props;
 
-    const imdbRating = (ratings ? ratings.imdbRating : '?');
+    const imdbRating = (ratings ? ratings.imdbRating : '--');
 
     return (
       <View style={s.item}>
@@ -86,7 +101,7 @@ export default class MovieListItem extends Component {
 /**
  * @const {StyleSheet} Component styles
  */
-s = StyleSheet.create({
+const s = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',

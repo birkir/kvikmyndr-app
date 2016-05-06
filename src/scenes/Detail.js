@@ -4,16 +4,13 @@ import React, {
   Image,
   ScrollView,
   Text,
-  Linking,
   StyleSheet,
   PropTypes,
-  TouchableHighlight,
 } from 'react-native';
-
 import Rebase from 're-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
-let s = {};
+import Showtimes from '../components/Showtimes';
 
 /**
  * Movie Detail Scene
@@ -90,25 +87,12 @@ export default class Detail extends Component {
   }
 
   /**
-   * Group showtimes by cinema
-   * @param {array} Array of showtimes
-   * @return {array} Array of cinemas of showtimes.
-   */
-  groupByCinema(arr) {
-    const cinemas = [];
-    arr.map(d => d.cinema)
-    .filter((v, i, self) => self.indexOf(v) === i)
-    .forEach(name => {
-      cinemas.push(arr.filter(d => d.cinema === name));
-    });
-    return cinemas;
-  }
-
-  /**
    * Render method
    * @return {Component}
    */
   render() {
+
+    // Deconstruct movie properties
     const {
       title,
       year,
@@ -123,13 +107,19 @@ export default class Detail extends Component {
       showtimes,
     } = this.state.movie;
 
+    // Get IMDb rating and Metascore
     const imdbRating = (ratings ? ratings.imdbRating : '?');
-    const metascore = ratings && ratings.metascore ? ratings.metascore : null;
+    const metascore = ratings && ratings.metascore
+      && ratings.metascore !== 'N/A' ? ratings.metascore : null;
 
     return (
       <View style={s.container}>
         <ScrollView style={{ flex: 1 }}>
-          <Image style={s.cover} resizeMode="cover" source={{ uri: `http://image.tmdb.org/t/p/w1000${backdropUrl || posterUrl}` }}>
+          <Image
+            style={s.cover}
+            resizeMode="cover"
+            source={{ uri: `http://image.tmdb.org/t/p/w1000${backdropUrl || posterUrl}` }}
+          >
             <LinearGradient
               start={[0.0, 0.0]}
               end={[0.0, 1.0]}
@@ -145,6 +135,7 @@ export default class Detail extends Component {
               <Text style={s.trailer}>{this.runtime(runtime)}</Text>
             </View>
           </Image>
+
           <View style={s.detail}>
             <View style={s.bar}>
               {genres ? <Text style={s.genres}>{genres.join(' | ')}</Text> : null}
@@ -169,35 +160,8 @@ export default class Detail extends Component {
               </Text>
             ) : null}
           </View>
-          <View style={s.showtimes}>
-            {this.groupByCinema(showtimes).map((cinema, ci) => (
-              <View key={`cinema_${ci}`} style={s.showtimeGroup}>
-                <Text style={s.showtimeCinema}>{cinema[0].cinema}</Text>
-                <View style={s.showtimeItems}>
-                  {cinema.map((showtime, si) => (
-                    <TouchableHighlight
-                      key={`showtime_${si}`}
-                      underlayColor="#f8f8ee"
-                      onPress={() => Linking.openURL(showtime.ticketUrl)}
-                    >
-                      <View style={s.showtimeItem}>
-                        <Text style={s.showtimeHour}>{showtime.hour}</Text>
-                        <Text style={s.showtimeHall}>{showtime.hall}</Text>
-                        {showtime.flags ? showtime.flags.map((flag, fi) => (
-                          <Text
-                            key={`flag_${fi}`}
-                            style={[s.showtimeFlag, s[`showtimeFlag_${flag}`]]}
-                          >
-                            {flag}
-                          </Text>
-                        )) : null}
-                      </View>
-                    </TouchableHighlight>
-                  ))}
-                </View>
-              </View>
-            ))}
-          </View>
+
+          <Showtimes showtimes={showtimes} />
         </ScrollView>
       </View>
     );
@@ -207,7 +171,7 @@ export default class Detail extends Component {
 /**
  * @const {StyleSheet} Component styles
  */
-s = StyleSheet.create({
+const s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -314,50 +278,5 @@ s = StyleSheet.create({
 
   directors: {
     paddingBottom: 5,
-  },
-
-  showtimes: {
-    padding: 12,
-    borderTopWidth: 12,
-    borderTopColor: '#f8f8f8',
-  },
-
-  showtimeGroup: {
-    flexDirection: 'row',
-    marginBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f8f8f8',
-    paddingBottom: 12,
-  },
-
-  showtimeCinema: {
-    flex: 1,
-    fontWeight: '500',
-  },
-
-  showtimeItems: {
-    flex: 1,
-    marginTop: -3,
-  },
-
-  showtimeItem: {
-    flexDirection: 'row',
-    padding: 3,
-  },
-
-  showtimeHour: {
-    paddingRight: 6,
-    fontSize: 16,
-    fontWeight: '300',
-  },
-
-  showtimeHall: {
-    color: '#666',
-    fontSize: 15,
-    fontWeight: '300',
-  },
-
-  showtimeFlag: {
-    paddingLeft: 4,
   },
 });
