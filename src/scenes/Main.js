@@ -166,7 +166,7 @@ export default class SceneMain extends Component {
         data.sort((...a) => a.map(b => [].concat(b.showtimes).length).reduce((c, d) => d - c));
         this.setState({
           loading: false,
-          movies: this.state.movies.cloneWithRows(data),
+          movies: this.state.movies.cloneWithRows(data.filter(i => i.title)),
         });
       },
     });

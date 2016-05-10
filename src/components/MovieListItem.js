@@ -50,8 +50,8 @@ export default class MovieListItem extends Component {
     return _uniq(arr
     .map(i => i.hour.split(i.hour.match(/\.|:/).pop()).map(Number).reduce((a, b) => (a * 60) + b))
     .filter((val, i, self) => {
-      const nearest = self.filter(d => d < val).sort((a, b) => a - b).pop();
-      return (self.length === 1) || (val - nearest) > 15;
+      const nearest = self.filter(d => d < val).sort((a, b) => a - b);
+      return (nearest.length <= 1) || (val - nearest.pop()) > 15;
     })
     .sort((a, b) => a - b)
     .map(n => {
@@ -78,19 +78,21 @@ export default class MovieListItem extends Component {
 
     return (
       <View style={s.item}>
-        <Image style={s.poster} ref="image" source={{ uri: `http://image.tmdb.org/t/p/w500${posterUrl}` }} />
+        <Image id="poster" style={s.poster} source={{ uri: `http://image.tmdb.org/t/p/w500${posterUrl}` }} />
         <View style={s.detail}>
-          <Text style={s.title}>{title}</Text>
+          <Text id="title" style={s.title}>{title}</Text>
           <View style={[s.vertical, { flex: 1 }]}>
-            <Text style={s.runtime}>{this.runtime(runtime)}</Text>
+            <Text id="runtime" style={s.runtime}>{this.runtime(runtime)}</Text>
             <Icon name="star" size={14} color="#FAD600" />
             <Text style={s.rating}>{imdbRating}/10</Text>
           </View>
-          <View style={s.showtimes}>
-            {this.asHours(showtimes).map((hour, i) => (
-              <Text style={s.showtime} key={`hour_${i}`}>{hour}</Text>
-            ))}
-          </View>
+          {showtimes ? (
+            <View id="showtimes" style={s.showtimes}>
+              {this.asHours(showtimes).map((hour, i) => (
+                <Text style={s.showtime} key={`hour_${i}`}>{hour}</Text>
+              ))}
+            </View>
+          ) : null}
         </View>
         <Entypo style={s.chevron} name="chevron-thin-right" size={18} color="#ddd" />
       </View>
