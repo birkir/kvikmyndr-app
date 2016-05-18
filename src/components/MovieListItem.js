@@ -38,7 +38,14 @@ export default class MovieListItem extends Component {
     const ori = Number(num);
     const hours = Math.floor(num / 60);
     const minutes = ori - (hours * 60);
-    return `${hours} klst ${minutes} mín`;
+
+    let minutesString = '';
+
+    if (minutes > 0) {
+      minutesString = ` ${minutes} mín`;
+    }
+
+    return `${hours} klst${minutesString}`;
   }
 
   /**

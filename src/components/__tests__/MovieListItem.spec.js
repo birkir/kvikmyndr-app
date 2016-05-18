@@ -45,4 +45,14 @@ describe('<MovieListItem />', () => {
     expect(showtimes.children().nodes).deep.equal(['15:00', '21:00', '22:00']);
   });
 
+  it('should not show minutes if only hours', () => {
+    const newProps = props;
+    props.runtime = 120;
+
+    const wrapper = shallow(<MovieListItem {...newProps} />);
+
+    const runtime = wrapper.find('#runtime').get(0);
+    expect(runtime.props.children).to.equal('2 klst');
+  });
+
 });
