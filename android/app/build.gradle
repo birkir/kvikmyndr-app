@@ -55,11 +55,22 @@ import com.android.build.OutputFile
  *   // date; if you have any other folders that you want to ignore for performance reasons (gradle
  *   // indexes the entire tree), add them here. Alternatively, if you have JS files in android/
  *   // for example, you might want to remove it from here.
- *   inputExcludes: ["android/**", "ios/**"]
+ *   inputExcludes: ["android/**", "ios/**"],
+ *
+ *   // override which node gets called and with what additional arguments
+ *   nodeExecutableAndArgs: ["node"]
+ *
+ *   // supply additional arguments to the packager
+ *   extraPackagerArgs: []
  * ]
  */
 
+def keystorePropertiesFile = rootProject.file("keystores/release.keystore.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -84,32 +95,26 @@ android {
         applicationId "com.solidmobile.kvikmyndr"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-    }
-
-    signingConfigs {
-        release {
-            storeFile file(KVIKMYNDR_RELEASE_STORE_FILE)
-            storePassword KVIKMYNDR_RELEASE_STORE_PASSWORD
-            keyAlias KVIKMYNDR_RELEASE_KEY_ALIAS
-            keyPassword KVIKMYNDR_RELEASE_KEY_PASSWORD
-        }
-    }
-
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("../keystores/release.keystore")
+            storePassword keystoreProperties['STORE_PASSWORD']
+            keyAlias keystoreProperties['KEY_ALIAS']
+            keyPassword keystoreProperties['KEY_PASSWORD']
         }
     }
     buildTypes {
@@ -135,17 +140,21 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-linear-gradient')
+    compile project(':react-native-code-push')
+    compile project(':react-native-firestack')
+    compile project(':react-native-oauth')
     compile project(':react-native-vector-icons')
-    compile project(':react-native-android-tablayout')
+    compile project(':react-native-linear-gradient')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
-  from configurations.compile
-  into 'libs'
+    from configurations.compile
+    into 'libs'
 }

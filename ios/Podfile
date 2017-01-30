@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'biohusid' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for biohusid
+
+  target 'biohusidTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+# react-native-oauth
+pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
+
+# react-native-firestack
+pod 'Firebase'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Storage'
+pod 'Firebase/Database'
+pod 'Firebase/RemoteConfig'
+pod 'Firebase/Messaging'

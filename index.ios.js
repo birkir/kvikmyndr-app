@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './src/app';
+import Biohusid from './src';
 
-AppRegistry.registerComponent('kvikmyndr', () => App);
+AppRegistry.registerComponent('biohusid', () => Biohusid);

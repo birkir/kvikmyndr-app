@@ -1,0 +1,6 @@
+framework module Pods_biohusidTests {
+  umbrella header "Pods-biohusidTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

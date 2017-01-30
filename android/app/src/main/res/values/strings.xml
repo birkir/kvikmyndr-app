@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">Mun0UPaqvLD1cZSKuysgsKvIhUTjV1XPCMCUG</string>
     <string name="app_name">Bíóhúsið</string>
 </resources>
