@@ -7,9 +7,9 @@ import 'moment/locale/is';
 export default class UI {
 
   /**
-   * @static List of available languages
+   * @var List of available languages
    */
-  static languages = {
+  languages = {
     en: 'English',
     is: 'Icelandic',
   };
@@ -115,7 +115,7 @@ export default class UI {
    */
   @computed
   get labelLanguage() {
-    return UI.languages[this.language] || 'Unkown language';
+    return this.languages[this.language] || 'Unkown language';
   }
 
   /**
