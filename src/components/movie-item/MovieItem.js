@@ -53,8 +53,8 @@ export default class MovieListItem extends Component {
 
   render() {
     const movie = toJS(this.props.movie);
-    const rating = _get(movie, 'imdb.rating');
-    const metascore = _get(movie, 'metaScore');
+    const rating = _get(movie, 'imdb.rating', null);
+    const metascore = _get(movie, 'metaScore', null);
     const genres = _toArray(_get(movie, 'genres'));
     const stars = _toArray(_get(movie, 'stars'));
     const directors = _toArray(_get(movie, 'directors'));
@@ -78,7 +78,7 @@ export default class MovieListItem extends Component {
             )}
           </View>
           <View style={s.details}>
-            <Text style={s.title}>{movie.title}</Text>
+            <Text style={s.title}>{_get(movie, 'title', null)}</Text>
             <Text
               style={s.subtitle}
               numberOfLines={1}
