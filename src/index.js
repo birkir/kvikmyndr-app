@@ -7,7 +7,6 @@ import routes from 'routes';
 import codePush from 'react-native-code-push';
 import env from 'utils/env';
 
-@codePush(env.codePush)
 @observer
 export default class Biohusid extends Component {
   render() {
@@ -15,15 +14,21 @@ export default class Biohusid extends Component {
       <View style={s.host}>
         <StatusBar backgroundColor="#000" barStyle="light-content" />
         {!store.isLoading && (
-          <Router
-            store={store}
-            dispatch={store.UI.dispatch}
-            sceneStyle={s.scene}
-            navigationBarStyle={s.navigation}
-            titleStyle={s.title}
-          >
-            {routes(store)}
-          </Router>
+          <View style={{ flex: 1 }}>
+            {codePush({
+              ...env.codePush,
+              ...store.user.codePush,
+            })(() => null)}
+            <Router
+              store={store}
+              dispatch={store.UI.dispatch}
+              sceneStyle={s.scene}
+              navigationBarStyle={s.navigation}
+              titleStyle={s.title}
+            >
+              {routes}
+            </Router>
+          </View>
         )}
       </View>
     );

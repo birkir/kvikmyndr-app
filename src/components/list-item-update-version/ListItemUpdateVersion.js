@@ -16,7 +16,9 @@ export default class ListItemUpdateVersion extends Component {
 
   @autobind
   onPress() {
-    CodePush.sync({}, this.codePushStatusDidChange, this.codePushDownloadDidProgress);
+    CodePush.sync({
+      ...store.user.codePush,
+    }, this.codePushStatusDidChange, this.codePushDownloadDidProgress);
   }
 
   async getUpdateMetadata() {

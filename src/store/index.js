@@ -35,6 +35,8 @@ class Store {
     'UI.showSynopsis',
     'movies.inTheatersCache',
     'movies.comingSoon',
+    'user.user',
+    'user.profile',
   ];
 
   @observable

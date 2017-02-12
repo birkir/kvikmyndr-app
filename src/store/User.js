@@ -1,6 +1,8 @@
-import { observable } from 'mobx';
+import { Platform } from 'react-native';
+import { observable, computed } from 'mobx';
 import { autobind } from 'core-decorators';
 import OAuthManager from 'react-native-oauth';
+import _get from 'lodash/get';
 import env from '../utils/env';
 
 export default class User {
@@ -26,8 +28,16 @@ export default class User {
   @autobind
   onAuthStateChanged({ authenticated, user }) {
     this.isAuthenticated = authenticated;
+    const ref = this.firestack.database.ref('users');
+
     if (authenticated) {
       this.user = user;
+      if (!this.profileRef) {
+        this.profileRef = ref.child(user.uid)
+        .on('value', s => (this.profile = s.val()));
+      }
+    } else if (this.profileRef && this.profileRef.off) {
+      this.profileRef.off();
     }
   }
 
@@ -67,10 +77,26 @@ export default class User {
   user = null;
 
   @observable
+  profile = {};
+
+  @observable
   providers = [];
 
   @observable
   notifications = [];
+
+  @computed
+  get codePush() {
+    const conf = {};
+    const keyType = _get(this.profile, 'codePush.type', 'production');
+    const fallbackKey = _get(env, `deployementKeys.${keyType}.${Platform.OS}`);
+    const key = _get(this.profile, `codePush.${Platform.OS}`, fallbackKey);
+    console.log('key is', key);
+    if (key) {
+      conf.deployementKey = key;
+    }
+    return conf;
+  }
 
   toggleNotificationForMovie(id) {
     const index = this.notifications.indexOf(id);

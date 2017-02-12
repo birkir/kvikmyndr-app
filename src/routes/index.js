@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene } from 'react-native-mobx';
 import Drawer from 'components/drawer';
+import store from 'store';
 import InTheaters from './in-theaters';
 import ComingSoon from './coming-soon';
 import Settings, {
@@ -11,7 +12,7 @@ import Settings, {
 } from './settings';
 import Movie from './movie';
 
-export default store => (
+export default (
   <Scene key="ROOT">
     <Scene key="DRAWER" component={Drawer} isDrawerOpen={store.UI.isDrawerOpen}>
       <Scene key="DRAWER_ROOT" hideTabBar>
