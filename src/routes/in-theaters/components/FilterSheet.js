@@ -1,6 +1,6 @@
 /* eslint react/no-array-index-key: 0 */
 import React, { Component } from 'react';
-import { SegmentedControlIOS, Button, Animated, View, Text, Slider, StyleSheet } from 'react-native';
+import { SegmentedControlIOS, Button, Animated, View, Text, Slider, StyleSheet, Platform } from 'react-native';
 import { reaction, observable, autorun } from 'mobx';
 import { Actions } from 'react-native-mobx';
 import { observer } from 'mobx-react/native';
@@ -61,20 +61,26 @@ export default class FilterSheet extends Component {
     const pointerEvents = store.UI.isInTheatersFilterSheetOpen ? 'auto' : 'box-none';
     const orderBy = Object.entries(store.UI.orderBy);
     const filterOrderBy = store.UI.filter.orderBy;
+    const orderByLabel = store.UI.i18n[store.UI.orderBy[store.UI.filter.orderBy]];
 
     return (
       <View style={s.host} pointerEvents={pointerEvents}>
         <Animated.View style={[s.card, { bottom: this.bottom }]}>
           <View style={s.card__inner}>
-            <Item label={store.UI.i18n.ORDER_BY}>
-              <SegmentedControlIOS
+            {Platform.select({
+              android: (<Item
+                label={orderByLabel}
+                value={store.UI.labelOrderBy}
+                onPress={Actions.SETTINGS_ORDER_BY}
+              />),
+              ios: (<SegmentedControlIOS
                 values={orderBy.map(m => store.UI.i18n[m[1]])}
                 selectedIndex={orderBy.findIndex(m => m[0] === filterOrderBy)}
                 onValueChange={this.onOrderByChange}
                 tintColor="#fff"
                 style={s.orderByTabs}
-              />
-            </Item>
+              />),
+            })}
             <Item label="Theaters" value={store.UI.labelTheaters} onPress={Actions.SETTINGS_THEATERS} />
             <Item label={store.UI.i18n.IMDB_RATING}>
               <Slider
