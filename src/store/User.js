@@ -91,7 +91,6 @@ export default class User {
     const keyType = _get(this.profile, 'codePush.type', 'production');
     const fallbackKey = _get(env, `deployementKeys.${keyType}.${Platform.OS}`);
     const key = _get(this.profile, `codePush.${Platform.OS}`, fallbackKey);
-    console.log('key is', key);
     if (key) {
       conf.deployementKey = key;
     }

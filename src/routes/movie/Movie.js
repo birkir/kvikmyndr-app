@@ -87,7 +87,9 @@ export default class Movie extends Component {
 
   @autobind
   onBackPress() {
-    this.poster.reverse();
+    if (this.poster && this.poster.reverse) {
+      this.poster.reverse();
+    }
     return Actions.pop();
   }
 
@@ -188,11 +190,9 @@ export default class Movie extends Component {
         />
         <View style={s.overlay}>
           <View style={s.overlayImage}>
-            <SharedElement name="poster" x={30} ref={ref => (this.poster = ref)}>
-              <Lightbox>
-                <Image resizeMode="cover" source={{ uri: this.posterUrl }} style={s.image} />
-              </Lightbox>
-            </SharedElement>
+            <Lightbox>
+              <Image resizeMode="cover" source={{ uri: this.posterUrl }} style={s.image} />
+            </Lightbox>
           </View>
           <View style={s.overlayContent}>
             <Text style={s.title}>{movie.title}</Text>

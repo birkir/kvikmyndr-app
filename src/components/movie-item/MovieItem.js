@@ -37,7 +37,7 @@ export default class MovieListItem extends Component {
   @autobind
   onPress() {
     const { movie, selectedDate, showNotification } = this.props;
-    if (this.poster) {
+    if (this.poster && this.poster.prepare) {
       this.poster.prepare();
     }
     Actions.MOVIE({ id: movie.id, movie, selectedDate, showNotification });
@@ -68,13 +68,11 @@ export default class MovieListItem extends Component {
                 <Icon name="video" size={48} color="#444" />
               </View>
             ) : (
-              <SharedElement name="poster" ref={ref => (this.poster = ref)}>
-                <Image
-                  source={{ uri: this.posterUrl }}
-                  style={s.poster}
-                  onError={this.onPosterError}
-                />
-              </SharedElement>
+              <Image
+                source={{ uri: this.posterUrl }}
+                style={s.poster}
+                onError={this.onPosterError}
+              />
             )}
           </View>
           <View style={s.details}>
@@ -127,6 +125,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     width: 100,
     height: 160,
+    backgroundColor: '#444',
   },
 
   poster: {
