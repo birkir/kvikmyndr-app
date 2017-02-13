@@ -61,7 +61,6 @@ export default class FilterSheet extends Component {
     const pointerEvents = store.UI.isInTheatersFilterSheetOpen ? 'auto' : 'box-none';
     const orderBy = Object.entries(store.UI.orderBy);
     const filterOrderBy = store.UI.filter.orderBy;
-    const orderByLabel = store.UI.i18n[store.UI.orderBy[store.UI.filter.orderBy]];
 
     return (
       <View style={s.host} pointerEvents={pointerEvents}>
@@ -69,7 +68,7 @@ export default class FilterSheet extends Component {
           <View style={s.card__inner}>
             {Platform.select({
               android: (<Item
-                label={orderByLabel}
+                label={store.UI.i18n.ORDER_BY}
                 value={store.UI.labelOrderBy}
                 onPress={Actions.SETTINGS_ORDER_BY}
               />),
