@@ -5,6 +5,7 @@ import { Item } from 'components/list';
 import { observer } from 'mobx-react/native';
 import { computed, observable } from 'mobx';
 import store from 'store';
+import _get from 'lodash/get';
 
 @CodePush({ checkFrequency: CodePush.CheckFrequency.MANUAL })
 @observer
@@ -63,10 +64,14 @@ export default class ListItemUpdateVersion extends Component {
 
   @computed
   get version() {
+    // Check for type
+    const profile = this.store.user.profile;
+    const type = _get(profile, 'codePush.type', '');
     if (this.metadata && this.metadata.appVersion) {
-      return `${this.metadata.appVersion}-${this.metadata.packageHash.slice(0, 7)}`;
+      const { appVersion, packageHash } = this.metadata;
+      return `${appVersion}-${packageHash.slice(0, 7)}${type ? `-${type}` : ''}`;
     }
-    return '2.0';
+    return '2.0.1';
   }
 
   @autobind
