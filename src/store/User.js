@@ -48,14 +48,17 @@ export default class User {
     const account = accounts.find(() => true);
     if (account) {
       const { provider, response: { credentials: { accessToken, clientSecret } } } = account;
-      this.firestack.auth.signInWithProvider(provider, accessToken, clientSecret);
+      this.firestack.auth.signInWithProvider(provider, accessToken, clientSecret)
+      .catch(err => console.log('Error signing in with provider: ', err));
     }
   }
 
   @autobind
   authorize(provider, opts) {
+    console.log('authorize: ', provider, opts);
     this.manager.authorize(provider, opts)
-    .then(this.savedAccounts);
+    .then(this.savedAccounts)
+    .catch(err => console.log('error authorize: ', err));
   }
 
   @autobind
@@ -89,7 +92,7 @@ export default class User {
   get codePush() {
     const conf = {};
     const keyType = _get(this.profile, 'codePush.type', 'production');
-    const fallbackKey = _get(env, `deployementKeys.${keyType}.${Platform.OS}`);
+    const fallbackKey = _get(env, `deployementKeys.${keyType}`);
     const key = _get(this.profile, `codePush.${Platform.OS}`, fallbackKey);
     if (key) {
       conf.deployementKey = key;

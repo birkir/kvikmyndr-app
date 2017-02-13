@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppState, ActionSheetIOS, View, Text, StyleSheet } from 'react-native';
+import { AppState, Alert, ActionSheetIOS, View, Text, StyleSheet, Platform } from 'react-native';
 import { observer } from 'mobx-react/native';
 import List, { Group, Item } from 'components/list';
 import store from 'store';
@@ -23,16 +23,25 @@ export default class SettingsAccount extends Component {
   onPress(provider) {
     const isAuthorized = store.user.providers.find(item => item.provider === provider);
     if (isAuthorized) {
-      const options = [store.UI.i18n.UNLINK_ACCOUNT, store.UI.i18n.CANCEL];
-      ActionSheetIOS.showActionSheetWithOptions({
-        options,
-        destructiveButtonIndex: 0,
-        cancelButtonIndex: 1,
-      }, (i) => {
-        if (i === 0) {
-          store.user.deauthorize(provider);
-        }
-      });
+      if (Platform.OS === 'ios') {
+        const options = [store.UI.i18n.UNLINK_ACCOUNT, store.UI.i18n.CANCEL];
+        ActionSheetIOS.showActionSheetWithOptions({
+          options,
+          destructiveButtonIndex: 0,
+          cancelButtonIndex: 1,
+        }, i => (i === 0) && store.user.deauthorize(provider));
+      }
+
+      if (Platform.OS === 'android') {
+        Alert.alert(
+          store.UI.i18n.UNLINK_ACCOUNT,
+          store.UI.i18n.UNLINK_ACCOUNT_MSG,
+          [
+            { text: store.UI.i18n.CANCEL, style: 'cancel' },
+            { text: store.UI.i18n.OK, onPress: () => store.user.deauthorize(provider) },
+          ],
+        );
+      }
     } else {
       store.user.authorize(provider);
     }
@@ -69,6 +78,7 @@ export default class SettingsAccount extends Component {
             <Group label={USER_INFORMATION}>
               <Item label={user.displayName} />
               <Item label={user.email} />
+              <Item label={`uid: ${user.uid}`} />
             </Group>
           )}
           <Group label={isAuthenticated ? LINKED_PROVIDERS : SELECT_PROVIDER}>

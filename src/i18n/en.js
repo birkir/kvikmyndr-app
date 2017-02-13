@@ -47,6 +47,7 @@ export default {
   THEATERS: 'Theaters',
   UNKNOWN: 'Unkown',
   UNLINK_ACCOUNT: 'Unlink account',
+  UNLINK_ACCOUNT_MSG: 'Are you sure you want to unlink this account?',
   USER_INFORMATION: 'User information',
   VERSION: 'Version',
 };

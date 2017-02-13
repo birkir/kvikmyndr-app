@@ -5,6 +5,7 @@ import { observer } from 'mobx-react/native';
 import List, { Group, Item } from 'components/list';
 import ListItemUpdateVersion from 'components/list-item-update-version';
 import store from 'store';
+import _get from 'lodash/get';
 
 @observer
 export default class Settings extends Component {
@@ -34,7 +35,7 @@ export default class Settings extends Component {
         <List>
           <Group label={SETTINGS_GROUP_PERSONALIZATION}>
             <Item
-              label={isAuthenticated ? LOGGED_IN_AS(user.displayName) : SIGN_IN}
+              label={isAuthenticated ? LOGGED_IN_AS(_get(user, 'displayName', '')) : SIGN_IN}
               onPress={Actions.SETTINGS_ACCOUNT}
             />
           </Group>

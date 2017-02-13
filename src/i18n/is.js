@@ -47,6 +47,7 @@ export default {
   THEATERS: 'Kvikmyndahús',
   UNKNOWN: 'Óskilgreint',
   UNLINK_ACCOUNT: 'Aftengja aðgang',
+  UNLINK_ACCOUNT_MSG: 'Ertu viss um að þú viljir aftengja þennan aðgang?',
   USER_INFORMATION: 'Notandaupplýsingar',
   VERSION: 'Útgáfa',
 };

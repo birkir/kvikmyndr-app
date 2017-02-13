@@ -18,7 +18,7 @@ export default class Biohusid extends Component {
             {codePush({
               ...env.codePush,
               ...store.user.codePush,
-            })(() => null)}
+            })(View)}
             <Router
               store={store}
               dispatch={store.UI.dispatch}
