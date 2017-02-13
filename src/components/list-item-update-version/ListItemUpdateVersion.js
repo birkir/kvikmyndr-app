@@ -65,7 +65,7 @@ export default class ListItemUpdateVersion extends Component {
   @computed
   get version() {
     // Check for type
-    const profile = this.store.user.profile;
+    const profile = store.user.profile;
     const type = _get(profile, 'codePush.type', '');
     if (this.metadata && this.metadata.appVersion) {
       const { appVersion, packageHash } = this.metadata;
