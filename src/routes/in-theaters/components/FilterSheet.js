@@ -72,13 +72,15 @@ export default class FilterSheet extends Component {
                 value={store.UI.labelOrderBy}
                 onPress={Actions.SETTINGS_ORDER_BY}
               />),
-              ios: (<SegmentedControlIOS
-                values={orderBy.map(m => store.UI.i18n[m[1]])}
-                selectedIndex={orderBy.findIndex(m => m[0] === filterOrderBy)}
-                onValueChange={this.onOrderByChange}
-                tintColor="#fff"
-                style={s.orderByTabs}
-              />),
+              ios: (<Item label={store.UI.i18n.ORDER_BY}>
+                <SegmentedControlIOS
+                  values={orderBy.map(m => store.UI.i18n[m[1]])}
+                  selectedIndex={orderBy.findIndex(m => m[0] === filterOrderBy)}
+                  onValueChange={this.onOrderByChange}
+                  tintColor="#fff"
+                  style={s.orderByTabs}
+                />
+              </Item>),
             })}
             <Item label="Theaters" value={store.UI.labelTheaters} onPress={Actions.SETTINGS_THEATERS} />
             <Item label={store.UI.i18n.IMDB_RATING}>
