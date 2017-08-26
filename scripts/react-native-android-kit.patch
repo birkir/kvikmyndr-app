@@ -1,0 +1,28 @@
+From b0f97b5b4e9cd4824887ef6db056a08fe9e22d18 Mon Sep 17 00:00:00 2001
+From: Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
+Date: Sun, 20 Aug 2017 18:44:13 -0400
+Subject: [PATCH] Remove old override method
+
+---
+ android/src/main/java/fr/aybadb/rnak/RNAKPackage.java | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/android/src/main/java/fr/aybadb/rnak/RNAKPackage.java b/android/src/main/java/fr/aybadb/rnak/RNAKPackage.java
+index 1115d2a..98c6eb7 100644
+--- a/android/src/main/java/fr/aybadb/rnak/RNAKPackage.java
++++ b/android/src/main/java/fr/aybadb/rnak/RNAKPackage.java
+@@ -18,11 +18,6 @@ public class RNAKPackage implements ReactPackage {
+ 	}
+ 
+ 	@Override
+-	public List<Class<? extends JavaScriptModule>> createJSModules() {
+-		return Collections.emptyList();
+-	}
+-
+-	@Override
+ 	public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
+ 		return Arrays.<ViewManager>asList(
+ 			new RCTButton(),
+-- 
+2.6.1
+

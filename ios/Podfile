@@ -1,0 +1,21 @@
+platform :ios, '9.0'
+
+target 'biohusid' do
+
+  pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
+
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'BatchedBridge',
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket',
+    'RCTAnimation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTPushNotification',
+    'DevSupport',
+  ]
+end
