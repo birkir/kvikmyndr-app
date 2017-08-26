@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, Linking } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { computed } from 'mobx';
 import { observer, inject } from 'mobx-react/native';
