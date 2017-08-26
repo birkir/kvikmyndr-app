@@ -2,6 +2,7 @@ import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import Auth0 from 'react-native-auth0';
 import config from 'react-native-config';
+import bugsnag from '../utils/bugsnag';
 
 const auth0 = new Auth0({
   domain: config.AUTH0_DOMAIN,
@@ -20,6 +21,7 @@ export default class Auth {
       this.error = null;
       this.token = token;
     } catch (err) {
+      bugsnag.notify(err);
       this.error = err;
     }
     return !this.error;

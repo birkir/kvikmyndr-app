@@ -1,11 +1,13 @@
 package com.solidmobile.kvikmyndr;
 
 import com.facebook.react.ReactPackage;
+import com.facebook.soloader.SoLoader;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.bugsnag.BugsnagReactNative;
 import fr.aybadb.rnak.RNAKPackage;
 
 import java.util.Arrays;
@@ -23,12 +25,21 @@ public class MainApplication extends NavigationApplication {
           new CustomTabsPackage(),
           new CodePush(BuildConfig.CODE_PUSH_ANDROID, MainApplication.this, BuildConfig.DEBUG),
           new ReactNativeConfigPackage(),
-          new RNAKPackage()
+          new RNAKPackage(),
+          BugsnagReactNative.getPackage()
         );
     }
 
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return getPackages();
+    }
+
+    // MainApplication class
+    @Override
+    public void onCreate() {
+      super.onCreate();
+      BugsnagReactNative.start(this);
+      SoLoader.init(this, false);
     }
 }

@@ -3,6 +3,7 @@ platform :ios, '9.0'
 target 'biohusid' do
 
   pod 'A0Auth0', :path => '../node_modules/react-native-auth0/ios'
+  pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
 
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'

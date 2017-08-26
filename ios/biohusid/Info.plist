@@ -24,6 +24,8 @@
 	<string>4</string>
 	<key>CodePushDeploymentKey</key>
 	<string>__RN_CONFIG_CODE_PUSH_IOS</string>
+	<key>BugsnagAPIKey</key>
+	<string>__RN_CONFIG_BUGSNAG_API_KEY</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
