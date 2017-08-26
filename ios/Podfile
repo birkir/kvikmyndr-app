@@ -2,6 +2,8 @@ platform :ios, '9.0'
 
 target 'biohusid' do
 
+  pod 'A0Auth0', :path => '../node_modules/react-native-auth0/ios'
+
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
@@ -18,4 +20,8 @@ target 'biohusid' do
     'RCTPushNotification',
     'DevSupport',
   ]
+
+  target 'biohusidTests' do
+    inherit! :search_paths
+  end
 end

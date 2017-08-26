@@ -1,0 +1,32 @@
+From ba8c924b9e754f6f99168b7cae729075c6020349 Mon Sep 17 00:00:00 2001
+From: Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
+Date: Sat, 26 Aug 2017 14:58:35 -0400
+Subject: [PATCH] Patched podspec
+
+---
+ ios/A0Auth0.podspec | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ios/A0Auth0.podspec b/ios/A0Auth0.podspec
+index 1d359d6..ff4e129 100644
+--- a/ios/A0Auth0.podspec
++++ b/ios/A0Auth0.podspec
+@@ -6,13 +6,13 @@ Pod::Spec.new do |s|
+   s.description  = <<-DESC
+                   A0Auth0
+                    DESC
+-  s.homepage     = ""
++  s.homepage     = "https://github.com/A0Auth0"
+   s.license      = "MIT"
+   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+   s.author             = { "auth0" => "oss@auth0.com" }
+   s.platform     = :ios, "7.0"
+   s.source       = { :git => "https://github.com/author/A0Auth0.git", :tag => "master" }
+-  s.source_files  = "A0Auth0/**/*.{h,m}"
++  s.source_files  = "*.{h,m}"
+   s.requires_arc = true
+ 
+ 
+-- 
+2.6.1
+

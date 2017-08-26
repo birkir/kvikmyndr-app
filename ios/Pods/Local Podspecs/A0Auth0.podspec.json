@@ -1,0 +1,25 @@
+{
+  "name": "A0Auth0",
+  "version": "1.0.0",
+  "summary": "A0Auth0",
+  "description": "A0Auth0",
+  "homepage": "https://github.com/auth0/react-native-auth0",
+  "license": "MIT",
+  "authors": {
+    "auth0": "oss@auth0.com"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/author/A0Auth0.git",
+    "tag": "master"
+  },
+  "source_files": "*.{h,m}",
+  "requires_arc": true,
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

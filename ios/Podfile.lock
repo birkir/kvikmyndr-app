@@ -1,4 +1,6 @@
 PODS:
+  - A0Auth0 (1.0.0):
+    - React
   - CodePush (5.0.0):
     - CodePush/Core (= 5.0.0)
     - CodePush/SSZipArchive (= 5.0.0)
@@ -40,6 +42,7 @@ PODS:
   - Yoga (0.47.1.React)
 
 DEPENDENCIES:
+  - A0Auth0 (from `../node_modules/react-native-auth0/ios`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - react-native-navigation (from `../node_modules/react-native-navigation`)
   - React/BatchedBridge (from `../node_modules/react-native`)
@@ -55,6 +58,8 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga/Yoga.podspec`)
 
 EXTERNAL SOURCES:
+  A0Auth0:
+    :path: ../node_modules/react-native-auth0/ios
   CodePush:
     :path: ../node_modules/react-native-code-push
   React:
@@ -65,11 +70,12 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
 
 SPEC CHECKSUMS:
+  A0Auth0: fbb1a6a3f01d376968fcd5a801a82ceadb3aff53
   CodePush: 089e3da41b5040ba0ef89aa5d485f720ee4d5862
   React: f705239a901cb3f95445c34468e5b37b6f80a0d4
   react-native-navigation: e85b2d0e9b32fadccbef98e5a0965fc42278a3ff
   Yoga: 13a12502dfabb4c75b914071dcb542af800deed4
 
-PODFILE CHECKSUM: ae2d74739207756e3c0f409c5cdc14d76549ec20
+PODFILE CHECKSUM: 6dee228cdc07ecdcc59f65b3b8215a9a20251f60
 
 COCOAPODS: 1.3.0.beta.2

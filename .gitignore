@@ -55,3 +55,4 @@ fastlane/screenshots
 
 android/keystores/release.*
 .env
+GeneratedDotEnv.m
