@@ -39,12 +39,12 @@ const mapSortBy = (key) => {
 };
 
 export default graphql(query, {
-  options: ({ ui, daysFromNow = 0 }) => ({
+  options: ({ ui: { dateYmd, inTheatersFilter: filter }, daysFromNow = 0 }) => ({
     variables: {
-      orderBy: mapSortBy(ui.inTheatersFilter.sortBy),
-      from: addDays(ui.dateYmd, daysFromNow),
-      to: addDays(ui.dateYmd, daysFromNow + 1),
-      cinemas: ui.inTheatersFilter.cinemas,
+      orderBy: mapSortBy(filter.sortBy),
+      from: addDays(dateYmd, daysFromNow),
+      to: addDays(dateYmd, daysFromNow + 1),
+      cinemas: filter.cinemas.length === 0 ? undefined : filter.cinemas,
       limit,
     },
   }),
