@@ -21,6 +21,7 @@
     "react-apollo": "1.4.14",
     "react-native": "0.47.1",
     "react-native-android-kit": "https://github.com/adbayb/react-native-android-kit.git#2.0",
+    "react-native-auth0": "1.1.1",
     "react-native-code-push": "5.0.0-beta",
     "react-native-config": "0.6.0",
     "react-native-custom-tabs": "0.1.6",
