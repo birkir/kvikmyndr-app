@@ -3,10 +3,6 @@ import { Navigation } from 'react-native-navigation';
 import { Screens, Presets, DRAWER_SCREEN, IN_THEATERS_SCREEN, COMING_SOON_SCREEN, ACCOUNT_SCREEN } from './screens';
 import Store, { StoreProvider } from './store';
 
-// if (__DEV__) { // eslint-disable-line
-//   XMLHttpRequest = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest; // eslint-disable-line
-// }
-
 const store = new Store();
 
 Array.from(Screens.entries())

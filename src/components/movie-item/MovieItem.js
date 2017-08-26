@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Platform, Dimensions, StyleSheet, TouchableWithoutFeedback, View, Text, Animated } from 'react-native';
 import { SharedElementTransition } from 'react-native-navigation';
@@ -8,7 +8,7 @@ import Poster from '../poster';
 import IMDBRating from '../imdb-rating';
 import Metascore from '../metascore';
 
-export default class MovieItem extends Component {
+export default class MovieItem extends PureComponent {
 
   static propTypes = {
     movie: PropTypes.shape({

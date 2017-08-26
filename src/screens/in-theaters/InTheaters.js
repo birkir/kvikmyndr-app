@@ -8,7 +8,7 @@ import { Presets, MOVIE_SCREEN, FILTER_SCREEN } from '../../screens';
 import MovieItem from '../../components/movie-item';
 import withInTheaters from '../../store/queries/withInTheaters';
 
-@inject('ui', 'movies')
+@inject('ui')
 @withInTheaters
 @observer
 export default class InTheaters extends Component {

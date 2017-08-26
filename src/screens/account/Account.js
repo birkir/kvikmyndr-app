@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { observer, inject } from 'mobx-react/native';
-import Auth0 from 'react-native-auth0';
-import config from 'react-native-config';
 import { Group, Item } from '../../components/settings';
 import UI from '../../store/UI';
 
-const auth0 = new Auth0({
-  domain: config.AUTH0_DOMAIN,
-  clientId: config.AUTH0_CLIENT_ID,
-});
-
-@inject('ui')
+@inject('ui', 'auth')
 @observer
 export default class Account extends Component {
 
@@ -21,14 +14,7 @@ export default class Account extends Component {
   }
 
   onAuthPress = () => {
-    auth0
-      .webAuth
-      .authorize({
-        scope: 'openid email',
-        audience: `https://${config.AUTH0_DOMAIN}/userinfo`,
-      })
-      .then(credentials => console.log(credentials))
-      .catch(error => console.log(error));
+    this.props.auth.signin();
   }
 
   render() {
@@ -55,9 +41,9 @@ export default class Account extends Component {
             />
           ))}
         </Group>
-        <TouchableOpacity onPress={this.onAuthPress}>
-          <Text>AUTH!</Text>
-        </TouchableOpacity>
+        {!this.props.auth.isSignedIn && <TouchableOpacity onPress={this.onAuthPress}>
+          <Text style={{ color: '#FFF' }}>Sign in</Text>
+        </TouchableOpacity>}
       </View>
     );
   }
