@@ -1,6 +1,6 @@
 {
   "name": "Yoga",
-  "version": "0.47.1.React",
+  "version": "0.48.4.React",
   "license": {
     "type": "BSD"
   },
@@ -11,7 +11,7 @@
   "authors": "Facebook",
   "source": {
     "git": "https://github.com/facebook/react-native.git",
-    "tag": "v0.47.1"
+    "tag": "v0.48.4"
   },
   "module_name": "yoga",
   "requires_arc": false,
@@ -24,7 +24,8 @@
     "-fPIC"
   ],
   "platforms": {
-    "ios": "8.0"
+    "ios": "8.0",
+    "tvos": "9.2"
   },
   "source_files": "yoga/**/*.{c,h}"
 }

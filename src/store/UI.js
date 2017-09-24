@@ -43,4 +43,9 @@ export default class UI {
     movieCardLayout: Layout.LIST,
   };
 
+  @observable
+  inTheatersHeader = {
+    daysFromNow: 0,
+  };
+
 }

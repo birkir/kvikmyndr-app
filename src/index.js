@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { Screens, Presets, DRAWER_SCREEN, IN_THEATERS_SCREEN, COMING_SOON_SCREEN, ACCOUNT_SCREEN } from './screens';
+import { Screens, Presets, DRAWER_SCREEN, IN_THEATERS_SCREEN, IN_THEATERS_TOOLBAR, COMING_SOON_SCREEN, ACCOUNT_SCREEN } from './screens';
 import Store, { StoreProvider } from './store';
 
 const store = new Store();
@@ -22,13 +22,10 @@ store.setup().then(() => {
   if (Platform.OS === 'ios') {
     const navigatorStyle = {
       navBarButtonColor: '#FFF',
-      navBarBackgroundColor: 'rgba(0, 0, 0, 0.25)',
       navBarTextColor: '#FFF',
       navBarHideOnScroll: false,
-      navBarBlur: true,
-      navBarBlurStyle: 'dark',
-      navBarTransparent: true,
       navBarTranslucent: true,
+      navBarNoBorder: true,
 
       topTabTextColor: '#FFF',
       selectedTopTabIndicatorColor: '#FF2244',
@@ -48,16 +45,14 @@ store.setup().then(() => {
         screen: IN_THEATERS_SCREEN,
         icon: require('./images/icons/movie.png'),
         selectedIcon: require('./images/icons/movie-filled.png'),
-        title: 'Today',
-        navigatorStyle,
+        navigatorStyle: {
+          ...navigatorStyle,
+          navBarCustomView: IN_THEATERS_TOOLBAR,
+        },
         navigatorButtons: {
           rightButtons: [{
             title: 'Filter',
             id: 'filter',
-            icon: require('./images/icons/filter.png'),
-          }],
-          leftButtons: [{
-            id: 'date',
           }],
         },
       }, {
@@ -65,7 +60,10 @@ store.setup().then(() => {
         screen: COMING_SOON_SCREEN,
         icon: require('./images/icons/calendar.png'),
         selectedIcon: require('./images/icons/calendar-filled.png'),
-        navigatorStyle,
+        navigatorStyle: {
+          ...navigatorStyle,
+          navBarHidden: true,
+        },
       }, {
         label: 'Account',
         screen: ACCOUNT_SCREEN,

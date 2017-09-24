@@ -77,7 +77,6 @@ export default class ComingSoon extends Component {
           />
         }
         onEndReached={fetchMore}
-        contentInset={{ top: 64, bottom: 68 }}
       />
     );
   }

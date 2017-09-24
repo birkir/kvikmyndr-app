@@ -4,11 +4,13 @@ import addDays from 'date-fns/add_days';
 import SplashScreen from './splash';
 import DrawerScreen from './drawer';
 import InTheatersScreen from './in-theaters';
+import InTheatersToolbar from './in-theaters/components/toolbar';
 import AccountScreen from './account';
 import ComingSoonScreen from './coming-soon';
 import MovieScreen from './movie';
 import PosterScreen from './poster';
 import FilterScreen from './filter';
+import FilterSortbyScreen from './filter-sortby';
 import { COLOR } from '../theme';
 
 const isIOS = Platform.OS === 'ios';
@@ -19,20 +21,24 @@ export const Presets = new Map();
 export const SPLASH_SCREEN = 'biohusid.SplashScreen';
 export const DRAWER_SCREEN = 'biohusid.DrawerScreen';
 export const IN_THEATERS_SCREEN = 'biohusid.InTheatersScreen';
+export const IN_THEATERS_TOOLBAR = 'biohusid.InTheatersToolbar';
 export const ACCOUNT_SCREEN = 'biohusid.AccountScreen';
 export const COMING_SOON_SCREEN = 'biohusid.ComingSoonScreen';
 export const MOVIE_SCREEN = 'biohusid.MovieScreen';
 export const POSTER_SCREEN = 'biohusid.PosterScreen';
 export const FILTER_SCREEN = 'biohusid.FilterScreen';
+export const FILTER_SORTBY_SCREEN = 'biohusid.FilterSortbyScreen';
 
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(DRAWER_SCREEN, () => DrawerScreen);
 Screens.set(IN_THEATERS_SCREEN, () => InTheatersScreen);
+Screens.set(IN_THEATERS_TOOLBAR, () => InTheatersToolbar);
 Screens.set(ACCOUNT_SCREEN, () => AccountScreen);
 Screens.set(COMING_SOON_SCREEN, () => ComingSoonScreen);
 Screens.set(MOVIE_SCREEN, () => MovieScreen);
 Screens.set(POSTER_SCREEN, () => PosterScreen);
 Screens.set(FILTER_SCREEN, () => FilterScreen);
+Screens.set(FILTER_SORTBY_SCREEN, () => FilterSortbyScreen);
 
 const navigatorButtons = {
   leftButtons: Platform.select({
@@ -73,6 +79,7 @@ Presets.set(IN_THEATERS_SCREEN, {
       icon: require('../images/icons/filter-filled.png'),
     }],
   },
+  navBarCustomView: IN_THEATERS_TOOLBAR,
   screen: IN_THEATERS_SCREEN,
   title: 'In Theaters',
   topTabs: tabs.map((title, daysFromNow) => ({
