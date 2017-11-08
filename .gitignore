@@ -59,3 +59,4 @@ src/config.env.js
 ios/Config/GeneratedDotEnv.m
 ios/Config/GeneratedInfoPlistDotEnv
 jsconfig.json
+.vscode

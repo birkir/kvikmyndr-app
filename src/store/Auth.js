@@ -1,5 +1,4 @@
 import { observable, action, computed } from 'mobx';
-import { persist } from 'mobx-persist';
 
 export default class Auth {
 
@@ -18,7 +17,6 @@ export default class Auth {
     this.token = null;
   }
 
-  @persist('object')
   @observable
   token = null;
 

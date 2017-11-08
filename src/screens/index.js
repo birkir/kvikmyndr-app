@@ -1,7 +1,6 @@
 import { Platform } from 'react-native';
 import format from 'date-fns/format';
 import addDays from 'date-fns/add_days';
-import SplashScreen from './splash';
 import DrawerScreen from './drawer';
 import InTheatersScreen from './in-theaters';
 import InTheatersToolbar from './in-theaters/components/toolbar';
@@ -18,7 +17,6 @@ const isIOS = Platform.OS === 'ios';
 export const Screens = new Map();
 export const Presets = new Map();
 
-export const SPLASH_SCREEN = 'biohusid.SplashScreen';
 export const DRAWER_SCREEN = 'biohusid.DrawerScreen';
 export const IN_THEATERS_SCREEN = 'biohusid.InTheatersScreen';
 export const IN_THEATERS_TOOLBAR = 'biohusid.InTheatersToolbar';
@@ -29,7 +27,6 @@ export const POSTER_SCREEN = 'biohusid.PosterScreen';
 export const FILTER_SCREEN = 'biohusid.FilterScreen';
 export const FILTER_SORTBY_SCREEN = 'biohusid.FilterSortbyScreen';
 
-Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(DRAWER_SCREEN, () => DrawerScreen);
 Screens.set(IN_THEATERS_SCREEN, () => InTheatersScreen);
 Screens.set(IN_THEATERS_TOOLBAR, () => InTheatersToolbar);

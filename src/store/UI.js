@@ -1,5 +1,4 @@
 import { observable, action, computed } from 'mobx';
-import { persist } from 'mobx-persist';
 
 const Layout = {
   LIST: 0,
@@ -28,7 +27,6 @@ export default class UI {
     return this.date.toISOString().substr(0, 10);
   }
 
-  @persist('object')
   @observable
   inTheatersFilter = {
     sortBy: 'popularity',
@@ -37,7 +35,6 @@ export default class UI {
     hours: ['00:00', '00:00'],
   };
 
-  @persist('object')
   @observable
   settings = {
     movieCardLayout: Layout.LIST,

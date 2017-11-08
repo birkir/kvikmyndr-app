@@ -7,6 +7,8 @@ import { autobind } from 'core-decorators';
 import format from 'date-fns/format';
 import addDays from 'date-fns/add_days';
 
+console.ignoredYellowBox = ['RCTBatchedBridge'];
+
 @inject('ui')
 @observer
 export default class Toolbar extends Component {
@@ -42,15 +44,6 @@ export default class Toolbar extends Component {
     this.scrollTo(selected);
   }
 
-  @autobind
-  setOffsetLeft() {
-    const { selectedDay } = this;
-    const toValue = this.layoutDays.entries()
-      .sort((a, b) => a[0] - b[0])
-      .reduce((acc, [index, width]) => (+index < selectedDay ? acc + width : acc), 0);
-    this.scrollTo(toValue);
-  }
-
   @computed
   get days() {
     const { date } = this.props.ui;
@@ -62,6 +55,15 @@ export default class Toolbar extends Component {
   @computed
   get gutterWidth() {
     return (this.layoutDays.values().reduce((a, b) => a + b, 0)) / 2;
+  }
+
+  @autobind
+  setOffsetLeft() {
+    const { selectedDay } = this;
+    const toValue = this.layoutDays.entries()
+      .sort((a, b) => a[0] - b[0])
+      .reduce((acc, [index, width]) => (+index < selectedDay ? acc + width : acc), 0);
+    this.scrollTo(toValue);
   }
 
   @autobind
@@ -83,9 +85,9 @@ export default class Toolbar extends Component {
     let start = 0;
     const animated = this.days.map((_, i) => {
       const width = this.layoutDays.get(i) || 0;
-      const from = start - (width / 2);
+      const from = start - (width / 1.5);
       const active = start;
-      const to = start + (width / 2);
+      const to = start + (width / 1.5);
       start += width;
       return {
         opacity: this.scrollX.interpolate({
@@ -116,7 +118,7 @@ export default class Toolbar extends Component {
           )}
           horizontal
         >
-          <View style={{ width: this.gutterWidth }} />
+          <View style={[styles.gutter, { width: this.gutterWidth + 20 }]} />
           {this.days.map((day, i) => (
             <TouchableOpacity
               key={day}
@@ -131,7 +133,7 @@ export default class Toolbar extends Component {
               </Animated.Text>
             </TouchableOpacity>
           ))}
-          <View style={{ width: this.gutterWidth - 5 }} />
+          <View style={[styles.gutter, { width: this.gutterWidth - 5 }]} />
         </Animated.ScrollView>
       </View>
     );
@@ -148,7 +150,11 @@ const styles = StyleSheet.create({
 
   slider: {
     flexDirection: 'row',
-    width: 250,
+    // backgroundColor: 'red',
+  },
+
+  gutter: {
+    // backgroundColor: 'blue',
   },
 
   item: {

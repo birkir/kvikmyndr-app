@@ -3,18 +3,11 @@ import PropTypes from 'prop-types';
 import ApolloClient from 'apollo-client';
 import Link from 'apollo-link-http';
 import InMemoryCache from 'apollo-cache-inmemory';
-import { AsyncStorage } from 'react-native';
 import { Provider } from 'mobx-react/native';
 import { ApolloProvider } from 'react-apollo';
-import { create, persist } from 'mobx-persist';
 import config from '../config';
 import UI from './UI';
 import Auth from './Auth';
-
-const hydrate = create({
-  storage: AsyncStorage,
-  jsonify: true,
-});
 
 if (__DEV__) { // eslint-disable-line
   const nativeXMLHttpRequest = XMLHttpRequest; // eslint-disable-line
@@ -34,16 +27,12 @@ const client = new ApolloClient({
 
 
 export default class Store {
-
-  @persist('object', UI)
+  client = client;
   ui = new UI();
-
-  @persist('object', Auth)
   auth = new Auth();
-
+  
   async setup() {
-    this.client = client;
-    return hydrate('storage', this);
+    return true;
   }
 }
 

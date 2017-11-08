@@ -22,7 +22,19 @@ export default class Filter extends Component {
   static navigatorButtons = {
     rightButtons: [{
       title: 'Done',
+      id: 'done',
     }],
+  }
+
+  componentWillMount() {
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+  }
+
+  @autobind
+  onNavigatorEvent(e) {
+    if (e.type === 'NavBarButtonPress' && e.id === 'done') {
+      this.props.navigator.pop();
+    }
   }
 
   @autobind
