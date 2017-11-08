@@ -57,6 +57,6 @@ android/keystores/release.*
 .env
 src/config.env.js
 ios/Config/GeneratedDotEnv.m
-ios/Config/GeneratedInfoPlistDotEnv
+ios/Config/GeneratedInfoPlistDotEnv.h
 jsconfig.json
 .vscode
