@@ -29,5 +29,6 @@
   },
   "globals": {
     "fetch": true,
+    "__DEV__": true
   }
 }

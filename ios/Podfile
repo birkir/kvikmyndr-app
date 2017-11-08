@@ -5,6 +5,7 @@ target 'biohusid' do
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
   pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 
   pod 'React', :path => '../node_modules/react-native', :subspecs => [

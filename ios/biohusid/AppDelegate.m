@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "RCCManager.h"
 #import "RNFIRMessaging.h"
+#import "RNSentry.h"
 
 #import <React/RCTLinkingManager.h>
 #import <React/RCTBundleURLProvider.h>
@@ -22,6 +23,7 @@
 {
   [FIRApp configure];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+  [RNSentry installWithBridge:[[RCCManager sharedInstance] getBridge]];
 
   NSURL *jsCodeLocation;
 

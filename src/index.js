@@ -1,7 +1,9 @@
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+import { Sentry } from 'react-native-sentry';
 import { Screens, Presets, DRAWER_SCREEN, IN_THEATERS_SCREEN, IN_THEATERS_TOOLBAR, COMING_SOON_SCREEN, ACCOUNT_SCREEN } from './screens';
+import config from './config';
 import Store, { StoreProvider } from './store';
 
 const store = new Store();
@@ -37,9 +39,15 @@ FCM.on(FCMEvent.Notification, async (notif) => {
   }
 });
 
+// On Refresh token
 FCM.on(FCMEvent.RefreshToken, (token) => {
   console.log('Token is', token);
 });
+
+// Setup logging
+if (!__DEV__) {
+  Sentry.config(config.SENTRY_DSN).install();
+}
 
 store.setup().then(() => {
 
