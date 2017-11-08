@@ -3,6 +3,7 @@ platform :ios, '9.0'
 target 'biohusid' do
 
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
+  pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 

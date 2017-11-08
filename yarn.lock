@@ -4340,6 +4340,10 @@ react-native-custom-tabs@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/react-native-custom-tabs/-/react-native-custom-tabs-0.1.7.tgz#2dfb4028b0a443610d94792b2019810f68dde525"
 
+react-native-fcm@10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-fcm/-/react-native-fcm-10.0.3.tgz#1dc538ed889f90b7a5bc1d0530cc516e69b09e8c"
+
 react-native-navigation@1.1.261:
   version "1.1.261"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.261.tgz#bd0c366e746d626be4453efb060907097ba22eaf"

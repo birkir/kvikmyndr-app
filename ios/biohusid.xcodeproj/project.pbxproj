@@ -14,6 +14,7 @@
 		E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3267BD71F44A806002770F8 /* LaunchScreen.xib */; };
 		E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */; };
 		E32F7A251FB291000020FAC9 /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */; };
+		E3C3A57F1FB36EFC0085D0D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		E32F7A211FB291000020FAC9 /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeConfig.h; sourceTree = "<group>"; };
 		E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeConfig.m; sourceTree = "<group>"; };
 		E361644C1FB2A1A5002D4C83 /* biohusid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = biohusid.entitlements; path = biohusid/biohusid.entitlements; sourceTree = "<group>"; };
+		E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "biohusid/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				E3267BD71F44A806002770F8 /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */,
 			);
 			name = biohusid;
 			sourceTree = "<group>";
@@ -177,6 +180,9 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 5PD7JU2FJC;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 0;
 							};
@@ -217,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */,
+				E3C3A57F1FB36EFC0085D0D0 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */,
 			);

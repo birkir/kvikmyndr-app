@@ -1,13 +1,45 @@
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import { Screens, Presets, DRAWER_SCREEN, IN_THEATERS_SCREEN, IN_THEATERS_TOOLBAR, COMING_SOON_SCREEN, ACCOUNT_SCREEN } from './screens';
 import Store, { StoreProvider } from './store';
 
 const store = new Store();
 
+// Setup screens
 Array.from(Screens.entries())
   .forEach(([screenConst, screenModule]) =>
     Navigation.registerComponent(screenConst, screenModule, store, StoreProvider));
+
+// Setup notifications
+FCM.on(FCMEvent.Notification, async (notif) => {
+  if (notif.local_notification) {
+    console.log('Local notification');
+  }
+
+  if (notif.opened_from_tray) {
+    console.log('Opened from tray');
+  }
+
+  if (Platform.OS === 'ios') {
+    switch (notif._notificationType) { // eslint-disable-line no-underscore-dangle
+      case NotificationType.Remote:
+        notif.finish(RemoteNotificationResult.NewData);
+        break;
+      case NotificationType.NotificationResponse:
+        notif.finish();
+        break;
+      case NotificationType.WillPresent:
+        notif.finish(WillPresentNotificationResult.All);
+        break;
+      default:
+    }
+  }
+});
+
+FCM.on(FCMEvent.RefreshToken, (token) => {
+  console.log('Token is', token);
+});
 
 store.setup().then(() => {
 

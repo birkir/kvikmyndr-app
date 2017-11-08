@@ -1,0 +1,51 @@
+fastlane_version "2.46.0"
+
+platform :ios do
+  desc "Build the app and upload to appetize"
+  lane :build do
+    gym(
+        scheme: "FreshApp",
+        workspace: "ios/FreshApp.xcworkspace",
+        output_directory: "ios/build",
+        export_method: "ad-hoc",
+        configuration: "Release"
+    )
+  end
+end
+
+platform :android do
+  desc "Build android apk release"
+  lane :build do
+    gradle(
+      task: "assemble",
+      build_type: "Release",
+      project_dir: "android"
+    )
+  end
+end
+
+def increment_version_code(gradle_build)
+  sh %Q{cd ../ && echo "$(awk '{sub(/versionCode [[:digit:]]+$/,"versionCode "$2+1)}1' #{gradle_build})" > #{gradle_build} && cd -}
+end
+
+lane :bump do
+  xcodeproj = "ios/biohusid.xcodeproj"
+  gradlefile = "android/app/build.gradle"
+  sure = prompt(
+    text: "Are you sure? ",
+    boolean: true,
+  )
+  if sure == false
+    UI.user_error!("No problem")
+  end
+  ensure_git_branch(branch: "master")
+  ensure_git_status_clean
+  increment_build_number(xcodeproj: xcodeproj)
+  increment_version_code(gradle_build: gradlefile)
+  version = get_version_number(xcodeproj: xcodeproj)
+  build = get_build_number(xcodeproj: xcodeproj)
+  git_commit(
+    path: '.',
+    message: "Version #{version}.#{build} [BUILD]"
+  )
+end

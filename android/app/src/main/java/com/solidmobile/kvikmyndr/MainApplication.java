@@ -7,8 +7,8 @@ import com.reactnativenavigation.NavigationApplication;
 import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.bugsnag.BugsnagReactNative;
 import fr.aybadb.rnak.RNAKPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ public class MainApplication extends NavigationApplication {
           new CodePush(BuildConfig.CODE_PUSH_ANDROID, MainApplication.this, BuildConfig.DEBUG),
           new ReactNativeConfigPackage(),
           new RNAKPackage(),
-          BugsnagReactNative.getPackage()
+          new FIRMessagingPackage()
         );
     }
 
@@ -39,7 +39,6 @@ public class MainApplication extends NavigationApplication {
     @Override
     public void onCreate() {
       super.onCreate();
-      BugsnagReactNative.start(this);
       SoLoader.init(this, false);
     }
 }
