@@ -57,3 +57,4 @@ android/keystores/release.*
 .env
 src/config.env.js
 GeneratedDotEnv.m
+jsconfig.json
