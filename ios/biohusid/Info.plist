@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>2</string>
 	<key>CodePushDeploymentKey</key>
 	<string>__RN_CONFIG_CODE_PUSH_IOS</string>
 	<key>LSRequiresIPhoneOS</key>

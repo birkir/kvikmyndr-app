@@ -24,13 +24,19 @@ platform :android do
   end
 end
 
-def increment_version_code(gradle_build)
-  sh %Q{cd ../ && echo "$(awk '{sub(/versionCode [[:digit:]]+$/,"versionCode "$2+1)}1' #{gradle_build})" > #{gradle_build} && cd -}
+def increment_version_code(path: '')
+  re = /versionCode\s+(\d+)/
+  s = File.read(path)
+  versionCode = s[re, 1].to_i
+  s[re, 1] = (versionCode + 1).to_s
+  f = File.new(path, 'w')
+  f.write(s)
+  f.close
 end
 
 lane :bump do
   xcodeproj = "ios/biohusid.xcodeproj"
-  gradlefile = "android/app/build.gradle"
+  gradlefile = "../android/app/build.gradle"
   sure = prompt(
     text: "Are you sure? ",
     boolean: true,
@@ -41,7 +47,7 @@ lane :bump do
   ensure_git_branch(branch: "development")
   ensure_git_status_clean
   increment_build_number(xcodeproj: xcodeproj)
-  increment_version_code(gradle_build: gradlefile)
+  increment_version_code(path: gradlefile)
   version = get_version_number(xcodeproj: xcodeproj)
   build = get_build_number(xcodeproj: xcodeproj)
   git_commit(

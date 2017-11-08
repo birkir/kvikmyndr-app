@@ -103,7 +103,7 @@ android {
         applicationId "com.solidmobile.kvikmyndr"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 3
+        versionCode 4
         versionName "3.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
