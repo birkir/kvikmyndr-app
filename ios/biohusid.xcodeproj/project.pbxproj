@@ -7,31 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* biohusidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* biohusidTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2631E2F881AFFEB45A4E228F /* libPods-biohusid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 171B0D676C29F893E53D08FC /* libPods-biohusid.a */; };
-		2C122BF5B05699E8C333D0FC /* libPods-biohusidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C6FF9D2D56B5D6511703BA /* libPods-biohusidTests.a */; };
 		E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3267BD71F44A806002770F8 /* LaunchScreen.xib */; };
-		E3ACEDDE1F51F5580059C800 /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E3ACEDDB1F51F5580059C800 /* BuildDotenvConfig.ruby */; };
-		E3ACEDDF1F51F5580059C800 /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ACEDDD1F51F5580059C800 /* ReactNativeConfig.m */; };
+		E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */; };
+		E32F7A251FB291000020FAC9 /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = biohusid;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* biohusidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = biohusidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* biohusidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = biohusidTests.m; sourceTree = "<group>"; };
 		022C04980EF01FE8BD62AFAE /* Pods-biohusidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusidTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-biohusidTests/Pods-biohusidTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* biohusid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biohusid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = biohusid/AppDelegate.h; sourceTree = "<group>"; };
@@ -46,20 +31,12 @@
 		B5C6FF9D2D56B5D6511703BA /* libPods-biohusidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-biohusidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C675E352C207742F70339205 /* Pods-biohusid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusid.release.xcconfig"; path = "Pods/Target Support Files/Pods-biohusid/Pods-biohusid.release.xcconfig"; sourceTree = "<group>"; };
 		E3267BD71F44A806002770F8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		E3ACEDDB1F51F5580059C800 /* BuildDotenvConfig.ruby */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BuildDotenvConfig.ruby; path = ../../Config/BuildDotenvConfig.ruby; sourceTree = "<group>"; };
-		E3ACEDDC1F51F5580059C800 /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReactNativeConfig.h; path = ../../Config/ReactNativeConfig.h; sourceTree = "<group>"; };
-		E3ACEDDD1F51F5580059C800 /* ReactNativeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactNativeConfig.m; path = ../../Config/ReactNativeConfig.m; sourceTree = "<group>"; };
+		E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BuildDotenvConfig.ruby; sourceTree = "<group>"; };
+		E32F7A211FB291000020FAC9 /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeConfig.h; sourceTree = "<group>"; };
+		E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C122BF5B05699E8C333D0FC /* libPods-biohusidTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,23 +48,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* biohusidTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* biohusidTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = biohusidTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* biohusid */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +82,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E3ACEDDA1F51F5580059C800 /* Config */,
+				E32F7A1D1FB291000020FAC9 /* Config */,
 				13B07FAE1A68108700A75B9A /* biohusid */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* biohusidTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				70FE976726AF0046CDC8F518 /* Pods */,
 				F1A493DF866821592B1560C9 /* Frameworks */,
@@ -139,20 +98,18 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* biohusid.app */,
-				00E356EE1AD99517003FC87E /* biohusidTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E3ACEDDA1F51F5580059C800 /* Config */ = {
+		E32F7A1D1FB291000020FAC9 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				E3ACEDDB1F51F5580059C800 /* BuildDotenvConfig.ruby */,
-				E3ACEDDC1F51F5580059C800 /* ReactNativeConfig.h */,
-				E3ACEDDD1F51F5580059C800 /* ReactNativeConfig.m */,
+				E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */,
+				E32F7A211FB291000020FAC9 /* ReactNativeConfig.h */,
+				E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */,
 			);
-			name = Config;
-			path = biohusid/Config;
+			path = Config;
 			sourceTree = "<group>";
 		};
 		F1A493DF866821592B1560C9 /* Frameworks */ = {
@@ -174,7 +131,8 @@
 			buildConfigurationList = E33F99841F77011C00152423 /* Build configuration list for PBXLegacyTarget "dotenv" */;
 			buildPhases = (
 			);
-			buildToolPath = "${SRCROOT}/Config/BuildDotenvConfig.ruby";
+			buildToolPath = "${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildDotenvConfig.ruby";
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = dotenv;
@@ -184,27 +142,6 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* biohusidTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "biohusidTests" */;
-			buildPhases = (
-				630132A278866F089F22F954 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-				A030DA47E00004E133714E4D /* [CP] Embed Pods Frameworks */,
-				9E79B888263B6F612744444C /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = biohusidTests;
-			productName = biohusidTests;
-			productReference = 00E356EE1AD99517003FC87E /* biohusidTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* biohusid */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "biohusid" */;
@@ -235,10 +172,6 @@
 				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 5PD7JU2FJC;
 					};
@@ -264,26 +197,18 @@
 			targets = (
 				E33F99811F77011C00152423 /* dotenv */,
 				13B07F861A680F5B00A75B9A /* biohusid */,
-				00E356ED1AD99517003FC87E /* biohusidTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				E3ACEDDE1F51F5580059C800 /* BuildDotenvConfig.ruby in Resources */,
+				E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,24 +244,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusid/Pods-biohusid-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		630132A278866F089F22F954 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-biohusidTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7303D7BEA6862430C839A699 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,36 +257,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusid/Pods-biohusid-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E79B888263B6F612744444C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusidTests/Pods-biohusidTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A030DA47E00004E133714E4D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusidTests/Pods-biohusidTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD10C1F4B479720B0B8021C3 /* [CP] Check Pods Manifest.lock */ = {
@@ -403,110 +280,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* biohusidTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3ACEDDF1F51F5580059C800 /* ReactNativeConfig.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				E32F7A251FB291000020FAC9 /* ReactNativeConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* biohusid */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 022C04980EF01FE8BD62AFAE /* Pods-biohusidTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
-				);
-				INFOPLIST_FILE = biohusidTests/Info.plist;
-				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/biohusid.app/biohusid";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F1882B8AFC2376440AA954E /* Pods-biohusidTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
-				);
-				INFOPLIST_FILE = biohusidTests/Info.plist;
-				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/biohusid.app/biohusid";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F02673971FAFE32B44FEA9F /* Pods-biohusid.debug.xcconfig */;
@@ -724,15 +510,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "biohusidTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "biohusid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

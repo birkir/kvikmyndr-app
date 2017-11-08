@@ -2,12 +2,9 @@ platform :ios, '9.0'
 
 target 'biohusid' do
 
-  # pod 'A0Auth0', :path => '../node_modules/react-native-auth0/ios'
-  # pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
-
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
-  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',
@@ -22,7 +19,4 @@ target 'biohusid' do
     'DevSupport',
   ]
 
-  target 'biohusidTests' do
-    inherit! :search_paths
-  end
 end

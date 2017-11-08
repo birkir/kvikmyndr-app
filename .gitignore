@@ -56,5 +56,6 @@ fastlane/screenshots
 android/keystores/release.*
 .env
 src/config.env.js
-GeneratedDotEnv.m
+ios/Config/GeneratedDotEnv.m
+ios/Config/GeneratedInfoPlistDotEnv
 jsconfig.json

@@ -1,6 +1,6 @@
 {
   "name": "React",
-  "version": "0.48.4",
+  "version": "0.50.2",
   "summary": "A framework for building native apps using React",
   "description": "React Native apps are built using the React JS\nframework, and render directly to native UIKit\nelements using a fully asynchronous architecture.\nThere is no browser and no HTML. We have picked what\nwe think is the best set of features from these and\nother technologies to build what we hope to become\nthe best product development framework available,\nwith an emphasis on iteration speed, developer\ndelight, continuity of technology, and absolutely\nbeautiful and fast products with no compromises in\nquality or capability.",
   "homepage": "http://facebook.github.io/react-native/",
@@ -8,7 +8,7 @@
   "authors": "Facebook",
   "source": {
     "git": "https://github.com/facebook/react-native.git",
-    "tag": "v0.48.4"
+    "tag": "v0.50.2"
   },
   "default_subspecs": "Core",
   "requires_arc": true,
@@ -30,8 +30,8 @@
     {
       "name": "Core",
       "dependencies": {
-        "Yoga": [
-          "0.48.4.React"
+        "yoga": [
+          "0.50.2.React"
         ]
       },
       "source_files": "React/**/*.{c,h,m,mm,S}",
@@ -152,6 +152,9 @@
       "dependencies": {
         "Folly": [
           "2016.09.26.00"
+        ],
+        "React/PrivateDatabase": [
+
         ]
       },
       "compiler_flags": "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1",
@@ -161,6 +164,14 @@
         "HEADER_SEARCH_PATHS": "\"$(PODS_TARGET_SRCROOT)/ReactCommon\""
       },
       "frameworks": "JavaScriptCore"
+    },
+    {
+      "name": "PrivateDatabase",
+      "source_files": "ReactCommon/privatedata/*.{cpp,h}",
+      "private_header_files": "ReactCommon/privatedata/*.h",
+      "pod_target_xcconfig": {
+        "HEADER_SEARCH_PATHS": "\"$(PODS_TARGET_SRCROOT)/ReactCommon\""
+      }
     },
     {
       "name": "cxxreact",
@@ -200,15 +211,6 @@
         ]
       },
       "source_files": "Libraries/ActionSheetIOS/*.{h,m}"
-    },
-    {
-      "name": "RCTAdSupport",
-      "dependencies": {
-        "React/Core": [
-
-        ]
-      },
-      "source_files": "Libraries/AdSupport/*.{h,m}"
     },
     {
       "name": "RCTAnimation",
@@ -316,9 +318,17 @@
         ],
         "React/RCTBlob": [
 
+        ],
+        "React/fishhook": [
+
         ]
       },
       "source_files": "Libraries/WebSocket/*.{h,m}"
+    },
+    {
+      "name": "fishhook",
+      "header_dir": "fishhook",
+      "source_files": "Libraries/fishhook/*.{h,c}"
     },
     {
       "name": "RCTLinkingIOS",
