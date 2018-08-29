@@ -1,0 +1,6 @@
+query fetchCinemaById($cinemaId: ID!) {
+  Cinema(id: $cinemaId) {
+    id
+    name
+  }
+}

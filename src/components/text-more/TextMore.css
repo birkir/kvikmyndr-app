@@ -1,0 +1,17 @@
+.host {
+  flex-direction: column;
+}
+
+.button {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.calculate {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  opacity: 0;
+}

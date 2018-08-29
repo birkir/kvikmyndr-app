@@ -1,54 +1,141 @@
 {
-  "name": "biohusid",
-  "version": "3.0.0",
+  "name": "Biohusid",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "sh scripts/postinstall.sh",
+    "build:env": "sh ./scripts/build-env.sh",
+    "build:e2e:ios": "detox build --configuration ios.sim.release",
+    "build:e2e:android": "detox build --configuration android.emu.release",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "eslint src",
-    "test": "jest"
+    "rename": "./scripts/rename.sh",
+    "test": "jest",
+    "test:e2e": "yarn build:e2e:ios && yarn test:e2e:ios",
+    "test:e2e:ios": "detox test --configuration ios.sim.release",
+    "test:e2e:android": "detox test --configuration android.emu.release",
+    "lint": "yarn tslint",
+    "tslint": "tslint 'src/**/*.ts?(x)'",
+    "precommit": "lint-staged",
+    "prepush": "npm run test",
+    "prepare": "patch-package"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "tslint"
+    ]
   },
   "dependencies": {
-    "apollo-cache-inmemory": "0.2.0-beta.6",
-    "apollo-client": "2.0.2",
-    "apollo-fetch": "0.6.0",
-    "apollo-link-http": "0.6.1-beta.6",
+    "@merryjs/photo-viewer": "2.2.2",
+    "apollo-boost": "0.1.13",
     "core-decorators": "0.20.0",
     "date-fns": "1.29.0",
-    "graphql-tag": "2.5.0",
-    "lodash": "4.17.4",
-    "mobile-center-push": "0.11.2",
-    "mobx": "3.3.1",
-    "mobx-react": "4.3.4",
-    "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "react-apollo": "2.0.0",
-    "react-native": "0.50.2",
-    "react-native-android-kit": "https://github.com/adbayb/react-native-android-kit.git#2.0",
-    "react-native-code-push": "5.1.3-beta",
-    "react-native-config": "0.9.0",
+    "graphql": "0.13.2",
+    "jsc-android": "224109.1.0",
+    "lodash": "4.17.10",
+    "mobx": "5.0.3",
+    "mobx-react": "5.2.3",
+    "mobx-state-tree": "3.0.2",
+    "react": "16.4.2",
+    "react-native": "0.56.0",
+    "react-native-code-push": "5.4.1",
+    "react-native-config": "0.11.5",
     "react-native-custom-tabs": "0.1.7",
-    "react-native-fcm": "10.0.3",
-    "react-native-navigation": "1.1.261",
-    "react-native-sentry": "0.30.2"
+    "react-native-fast-image": "4.0.14",
+    "react-native-firebase": "4.3.8",
+    "react-native-gesture-handler": "1.0.7",
+    "react-native-linear-gradient": "2.4.0",
+    "react-native-navigation": "2.0.2467",
+    "react-native-reanimated": "1.0.0-alpha.6",
+    "react-native-sentry": "0.39.0",
+    "react-native-tab-view": "1.0.2",
+    "react-native-version-number": "0.3.4"
   },
   "devDependencies": {
-    "babel-eslint": "8.0.2",
-    "babel-jest": "21.2.0",
-    "babel-plugin-module-resolver": "2.7.1",
-    "babel-preset-react-native": "4.0.0",
-    "babel-preset-react-native-stage-0": "1.0.1",
-    "eslint": "4.10.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-import-resolver-babel-module": "3.0.0",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
-    "eslint-plugin-react": "7.4.0",
-    "eslint-plugin-react-native": "3.1.0",
-    "jest": "21.2.1",
-    "react-test-renderer": "16.0.0"
+    "@babel/core": "7.0.0-beta.56",
+    "@firebase/app-types": "0.3.2",
+    "@types/core-decorators": "^0.20.0",
+    "@types/date-fns": "^2.6.0",
+    "@types/enzyme": "3.1.13",
+    "@types/enzyme-adapter-react-16": "1.0.3",
+    "@types/html-entities": "1.2.16",
+    "@types/jest": "23.3.1",
+    "@types/lodash": "4.14.116",
+    "@types/mobx-devtools-mst": "0.9.0",
+    "@types/react": "16.4.8",
+    "@types/react-native": "0.56.6",
+    "@types/react-native-navigation": "1.1.12",
+    "@types/react-native-tab-view": "1.0.2",
+    "@types/react-test-renderer": "16.0.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "23.4.2",
+    "babel-plugin-module-resolver": "3.1.1",
+    "babel-preset-react-native": "5.0.2",
+    "detox": "8.1.4",
+    "enzyme": "3.4.0",
+    "enzyme-adapter-react-16": "1.2.0",
+    "husky": "0.14.3",
+    "jest": "23.4.2",
+    "lint-staged": "7.2.0",
+    "mobx-devtools": "0.9.18",
+    "mobx-devtools-mst": "0.9.18",
+    "patch-package": "5.1.1",
+    "postinstall-prepare": "1.0.1",
+    "react-dom": "16.4.2",
+    "react-native-graphql-transformer": "0.1.3",
+    "react-native-rename": "2.2.2",
+    "react-native-typescript-transformer": "1.2.10",
+    "react-native-ueno-css-modules": "1.0.12",
+    "react-test-renderer": "16.4.2",
+    "stylus": "0.54.5",
+    "ts-jest": "23.1.3",
+    "tslib": "1.9.3",
+    "tslint": "5.11.0",
+    "tslint-config-airbnb": "5.9.2",
+    "tslint-react": "3.6.0",
+    "typescript": "3.0.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/scripts/jest-setup.js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.css$": "<rootDir>/scripts/jest-css.js"
+    },
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/e2e/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "detox": {
+    "test-runner": "jest",
+    "specs": "e2e",
+    "configurations": {
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/Biohusid.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -workspace ios/Biohusid.xcworkspace -scheme Biohusid -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet",
+        "type": "ios.simulator",
+        "name": "iPhone 7 Plus"
+      },
+      "android.emu.release": {
+        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
+        "build": "pushd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && popd",
+        "type": "android.emulator",
+        "name": "Nexus_5X_API_28"
+      }
+    }
   }
 }

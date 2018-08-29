@@ -1,13 +1,13 @@
 {
   "name": "SentryReactNative",
-  "version": "0.30.2",
+  "version": "0.39.0",
   "license": "MIT",
   "summary": "Official Sentry SDK for react-native",
   "authors": "Sentry",
   "homepage": "https://github.com/getsentry/react-native-sentry",
   "source": {
     "git": "https://github.com/getsentry/react-native-sentry.git",
-    "tag": "0.30.2"
+    "tag": "v0.39.0"
   },
   "platforms": {
     "ios": "8.0",
@@ -19,10 +19,7 @@
 
     ],
     "Sentry": [
-      "~> 3.9.0"
-    ],
-    "Sentry/KSCrash": [
-      "~> 3.9.0"
+      "~> 4.0.1"
     ]
   },
   "source_files": "ios/RNSentry*.{h,m}",

@@ -1,0 +1,9 @@
+.credits {
+  margin-left: -32px;
+  margin-right: -32px;
+}
+
+.credits__content {
+  padding-left: 32px;
+  padding-right: 8px;
+}

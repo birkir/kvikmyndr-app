@@ -1,0 +1,18 @@
+.host {
+  flex: 1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.section {
+  background-color: #000;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.section__title {
+  font-size: 16px;
+  color: #ffffff;
+}

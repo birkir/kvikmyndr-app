@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "215859228524-kt1eutibm67e75ckolg71r7k5fcq1knh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.solidmobile.kvikmyndr",
-            "certificate_hash": "0b455fe6628c8a61377272ff38ee5704ceaf9b24"
-          }
-        },
-        {
           "client_id": "215859228524-idj6sk21efq5a7mcloroh8ir74hn1d7c.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "215859228524-idj6sk21efq5a7mcloroh8ir74hn1d7c.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "215859228524-n8sprhuqd2pcrpl2pbj06u4vkaahufi6.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.solidmobile.kvikmyndr"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

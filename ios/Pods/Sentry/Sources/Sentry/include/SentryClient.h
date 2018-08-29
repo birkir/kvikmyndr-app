@@ -102,6 +102,14 @@ NS_SWIFT_NAME(Client)
 @property(nonatomic) float sampleRate;
 
 /**
+ * This block can be used to prevent the event from being deleted after a failed send attempt.
+ * Default is it will only be stored once after you hit a rate limit or there is no internet connect/cannot connect.
+ * Also note that if an event fails to be sent again after it was queued, it will be discarded regardless.
+ * @return BOOL YES = store and try again later, NO = delete
+ */
+@property(nonatomic, copy) SentryShouldQueueEvent _Nullable shouldQueueEvent;
+
+/**
  * Initializes a SentryClient. Pass your private DSN string.
  *
  * @param dsn DSN string of sentry
@@ -115,7 +123,7 @@ NS_SWIFT_NAME(Client)
  * This automatically adds breadcrumbs for different user actions.
  */
 - (void)enableAutomaticBreadcrumbTracking;
-    
+
 /**
  * Sends and event to sentry. Internally calls @selector(sendEvent:useClientProperties:withCompletionHandler:) with
  * useClientProperties: YES. CompletionHandler will be called if set.
@@ -137,26 +145,26 @@ NS_SWIFT_NAME(send(event:completion:));
  */
 - (void)clearContext;
 
-/// KSCrash
-/// Functions below will only do something if KSCrash is linked
+/// SentryCrash
+/// Functions below will only do something if SentryCrash is linked
 
 /**
- * This forces a crash, useful to test the KSCrash integration
+ * This forces a crash, useful to test the SentryCrash integration
  *
  */
 - (void)crash;
 
 /**
- * This function tries to start the KSCrash handler, return YES if successfully started
+ * This function tries to start the SentryCrash handler, return YES if successfully started
  * otherwise it will return false and set error
  *
- * @param error if KSCrash is not available error will be set
+ * @param error if SentryCrash is not available error will be set
  * @return successful
  */
 - (BOOL)startCrashHandlerWithError:(NSError *_Nullable *_Nullable)error;
 
-/** 
- * Report a custom, user defined exception. Only works if KSCrash is linked.
+/**
+ * Report a custom, user defined exception. Only works if SentryCrash is linked.
  * This can be useful when dealing with scripting languages.
  *
  * If terminateProgram is true, all sentries will be uninstalled and the application will

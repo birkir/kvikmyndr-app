@@ -1,16 +1,28 @@
 platform :ios, '9.0'
 
-target 'biohusid' do
+target 'Biohusid' do
 
-  pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
-  pod 'react-native-fcm', :path => '../node_modules/react-native-fcm'
+  pod 'Firebase/Core', '~> 5.3.0'
+
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios/RNFirebase.podspec'
+  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+  pod 'react-native-version-number', :path => '../node_modules/react-native-version-number'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  pod 'MerryPhotoViewer', :path => '../node_modules/@merryjs/photo-viewer'
+
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',
-    'BatchedBridge',
+    'CxxBridge',
+    'RCTActionSheet',
     'RCTText',
     'RCTNetwork',
     'RCTWebSocket',
@@ -20,5 +32,4 @@ target 'biohusid' do
     'RCTPushNotification',
     'DevSupport',
   ]
-
 end

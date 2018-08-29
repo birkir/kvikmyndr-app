@@ -1,6 +1,6 @@
 {
   "name": "react-native-config",
-  "version": "0.9.0",
+  "version": "0.11.5",
   "summary": "Expose config variables to React Native apps",
   "authors": "Pedro Belo",
   "homepage": "https://github.com/luggit/react-native-config",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/luggit/react-native-config.git",
-    "tag": "0.9.0"
+    "tag": "0.11.5"
   },
   "source_files": "ios/**/*.{h,m}",
   "requires_arc": true,

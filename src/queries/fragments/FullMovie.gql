@@ -1,0 +1,31 @@
+fragment FullMovie on Movie {
+  id
+  budget
+  revenue
+  tagline
+  homepage
+  summary
+  credits {
+    id
+    # externalId
+    cast {
+      id
+      # externalId
+      # gender
+      name
+      pictureUrl
+    }
+    order
+    role
+    type
+  }
+  locales (filter: { locale: ICELANDIC }) {
+    id
+    locale
+    contentRating
+    title
+    summary
+    alternateTitle
+    releaseDate
+  }
+}

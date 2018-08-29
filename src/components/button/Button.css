@@ -1,0 +1,12 @@
+.button {
+  border-radius: 4px;
+  background-color: var(--primary-color);
+}
+
+.text {
+  padding: 12px;
+
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}

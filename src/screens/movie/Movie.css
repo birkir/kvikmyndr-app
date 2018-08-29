@@ -1,0 +1,94 @@
+.host {
+  flex: 1;
+}
+
+.hero {
+  position: relative;
+
+  margin-bottom: 48px;
+}
+
+.backdrop {
+  height: 240px;
+  opacity: 0.875;
+}
+
+.backdrop__overlay {
+  position: absolute;
+
+  width: 100%;
+  height: 240px;
+  background-color: green;
+}
+
+.poster {
+  width: 100px;
+  height: 160px;
+  border-radius: 3px;
+  margin-right: 16px;
+
+  aspect-ratio: 0.66;
+  box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.25);
+}
+
+.poster__image {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 3px;
+}
+
+.content {
+  position: absolute;
+  right: 0px;
+
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 25px;
+  color: #FFFFFF;
+  margin-bottom: 3px;
+}
+
+.genres {
+  font-weight: 100;
+  font-size: 17px;
+  color: #B5B5B5;
+  padding-bottom: 5px;
+}
+
+.runtime {
+  font-weight: 100;
+  font-size: 16px;
+  color: #B5B5B5;
+  padding-bottom: 4px;
+}
+
+.ratings {
+  flex-direction: row;
+}
+
+.showtimes {
+  margin-top: 16px;
+}
+
+.cinema {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+
+  margin-bottom: 8px;
+  margin-left: 16px;
+}
+
+.row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  padding-left: 16px;
+  margin-right: 8px;
+  margin-bottom: 16px;
+}

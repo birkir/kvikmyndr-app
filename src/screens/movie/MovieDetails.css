@@ -1,0 +1,18 @@
+.host {
+  flex: 1;
+
+  padding: 16px;
+}
+
+.loading {
+  height: 200px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  font-weight: 100;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}

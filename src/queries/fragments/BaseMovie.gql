@@ -1,0 +1,16 @@
+fragment BaseMovie on Movie {
+  title
+  createdAt
+  updatedAt
+  posterUrl
+  backdropUrl
+  runtime
+  imdbRating
+  imdbId
+  metacriticRating
+  trailerUrl
+  releaseDate
+  genres {
+    id
+  }
+}

@@ -1,0 +1,15 @@
+.host {
+  flex: 1;
+}
+
+.tabbar {
+  z-index: 2;
+
+  /* position: absolute; */
+  left: 0;
+  right: 0;
+
+  height: 56px;
+
+  background-color: #000000;
+}

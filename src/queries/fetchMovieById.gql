@@ -1,0 +1,23 @@
+#import "./fragments/BaseMovie.gql"
+#import "./fragments/FullMovie.gql"
+#import "./fragments/FullShowtime.gql"
+
+query fetchMovieById(
+  $movieId: ID!
+  $start: DateTime!
+  $end: DateTime!
+) {
+  Movie(id: $movieId) {
+    id
+    ...BaseMovie
+    ...FullMovie
+    showtimes(
+      filter: {
+        playingAt_gte: $start,
+        playingAt_lte: $end,
+      }
+    ) {
+      ...FullShowtime
+    }
+  }
+}

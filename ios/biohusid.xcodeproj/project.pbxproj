@@ -5,37 +5,31 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2631E2F881AFFEB45A4E228F /* libPods-biohusid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 171B0D676C29F893E53D08FC /* libPods-biohusid.a */; };
-		E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3267BD71F44A806002770F8 /* LaunchScreen.xib */; };
-		E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */; };
-		E32F7A251FB291000020FAC9 /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */; };
-		E3C3A57F1FB36EFC0085D0D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */; };
+		1C9BC405710B4376ACBA4D1F /* libPods-Biohusid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E4EB30ABEFC190EFE7436 /* libPods-Biohusid.a */; };
+		E33FD0F41FFBDBD900EB627A /* RNUeno.m in Sources */ = {isa = PBXBuildFile; fileRef = E33FD0F31FFBDBD900EB627A /* RNUeno.m */; };
+		E3A2B8A61FEACEE70099C8F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A2B89F1FEACEE70099C8F8 /* AppDelegate.m */; };
+		E3A2B8A71FEACEE70099C8F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3A2B8A01FEACEE70099C8F8 /* LaunchScreen.xib */; };
+		E3A2B8A81FEACEE70099C8F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3A2B8A21FEACEE70099C8F8 /* GoogleService-Info.plist */; };
+		E3A2B8A91FEACEE70099C8F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A2B8A31FEACEE70099C8F8 /* Images.xcassets */; };
+		E3A2B8AB1FEACEE70099C8F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A2B8A51FEACEE70099C8F8 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		022C04980EF01FE8BD62AFAE /* Pods-biohusidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusidTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-biohusidTests/Pods-biohusidTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* biohusid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biohusid.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = biohusid/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = biohusid/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = biohusid/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = biohusid/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = biohusid/main.m; sourceTree = "<group>"; };
-		171B0D676C29F893E53D08FC /* libPods-biohusid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-biohusid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F1882B8AFC2376440AA954E /* Pods-biohusidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusidTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-biohusidTests/Pods-biohusidTests.release.xcconfig"; sourceTree = "<group>"; };
-		5F02673971FAFE32B44FEA9F /* Pods-biohusid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-biohusid/Pods-biohusid.debug.xcconfig"; sourceTree = "<group>"; };
-		6E48BB38BB704264868C6CC2 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		B5C6FF9D2D56B5D6511703BA /* libPods-biohusidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-biohusidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C675E352C207742F70339205 /* Pods-biohusid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biohusid.release.xcconfig"; path = "Pods/Target Support Files/Pods-biohusid/Pods-biohusid.release.xcconfig"; sourceTree = "<group>"; };
-		E3267BD71F44A806002770F8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BuildDotenvConfig.ruby; sourceTree = "<group>"; };
-		E32F7A211FB291000020FAC9 /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeConfig.h; sourceTree = "<group>"; };
-		E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeConfig.m; sourceTree = "<group>"; };
-		E361644C1FB2A1A5002D4C83 /* biohusid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = biohusid.entitlements; path = biohusid/biohusid.entitlements; sourceTree = "<group>"; };
-		E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "biohusid/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Biohusid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Biohusid.app; path = "/Volumes/Data/Projects/birkir/Biohusid/ios/build/Debug-iphoneos/Biohusid.app"; sourceTree = "<absolute>"; };
+		BE1E4EB30ABEFC190EFE7436 /* libPods-Biohusid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Biohusid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54EB502811BEE926F2F8941 /* Pods-Biohusid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biohusid.release.xcconfig"; path = "Pods/Target Support Files/Pods-Biohusid/Pods-Biohusid.release.xcconfig"; sourceTree = "<group>"; };
+		E33FD0F31FFBDBD900EB627A /* RNUeno.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNUeno.m; sourceTree = "<group>"; };
+		E33FD0F51FFBDBFB00EB627A /* RNUeno.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNUeno.h; sourceTree = "<group>"; };
+		E3A2B89E1FEACEE70099C8F8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E3A2B89F1FEACEE70099C8F8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E3A2B8A11FEACEE70099C8F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E3A2B8A21FEACEE70099C8F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3A2B8A31FEACEE70099C8F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E3A2B8A41FEACEE70099C8F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3A2B8A51FEACEE70099C8F8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F978EFCD4B3FC4AAB213917B /* Pods-Biohusid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biohusid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Biohusid/Pods-Biohusid.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,136 +37,95 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2631E2F881AFFEB45A4E228F /* libPods-biohusid.a in Frameworks */,
+				1C9BC405710B4376ACBA4D1F /* libPods-Biohusid.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* biohusid */ = {
+		34010D848C7A0E50E09F601F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E361644C1FB2A1A5002D4C83 /* biohusid.entitlements */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
-				E3267BD71F44A806002770F8 /* LaunchScreen.xib */,
-				13B07FB71A68108700A75B9A /* main.m */,
-				E3C3A57E1FB36EFC0085D0D0 /* GoogleService-Info.plist */,
+				BE1E4EB30ABEFC190EFE7436 /* libPods-Biohusid.a */,
 			);
-			name = biohusid;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		70FE976726AF0046CDC8F518 /* Pods */ = {
+		8079FCF0BF9CE803AC9EB17F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5F02673971FAFE32B44FEA9F /* Pods-biohusid.debug.xcconfig */,
-				C675E352C207742F70339205 /* Pods-biohusid.release.xcconfig */,
-				022C04980EF01FE8BD62AFAE /* Pods-biohusidTests.debug.xcconfig */,
-				4F1882B8AFC2376440AA954E /* Pods-biohusidTests.release.xcconfig */,
+				F978EFCD4B3FC4AAB213917B /* Pods-Biohusid.debug.xcconfig */,
+				D54EB502811BEE926F2F8941 /* Pods-Biohusid.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E32F7A1D1FB291000020FAC9 /* Config */,
-				13B07FAE1A68108700A75B9A /* biohusid */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				83CBBA001A601CBA00E9B192 /* Products */,
-				70FE976726AF0046CDC8F518 /* Pods */,
-				F1A493DF866821592B1560C9 /* Frameworks */,
+				E3A2B89D1FEACEE70099C8F8 /* Biohusid */,
+				8079FCF0BF9CE803AC9EB17F /* Pods */,
+				34010D848C7A0E50E09F601F /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
 			tabWidth = 2;
-			usesTabs = 0;
 		};
-		83CBBA001A601CBA00E9B192 /* Products */ = {
+		E3A2B89D1FEACEE70099C8F8 /* Biohusid */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* biohusid.app */,
+				E3A2B89E1FEACEE70099C8F8 /* AppDelegate.h */,
+				E3A2B89F1FEACEE70099C8F8 /* AppDelegate.m */,
+				E3A2B8A01FEACEE70099C8F8 /* LaunchScreen.xib */,
+				E3A2B8A21FEACEE70099C8F8 /* GoogleService-Info.plist */,
+				E3A2B8A31FEACEE70099C8F8 /* Images.xcassets */,
+				E3A2B8A41FEACEE70099C8F8 /* Info.plist */,
+				E3A2B8A51FEACEE70099C8F8 /* main.m */,
+				E33FD0F31FFBDBD900EB627A /* RNUeno.m */,
+				E33FD0F51FFBDBFB00EB627A /* RNUeno.h */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E32F7A1D1FB291000020FAC9 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				E32F7A1E1FB291000020FAC9 /* BuildDotenvConfig.ruby */,
-				E32F7A211FB291000020FAC9 /* ReactNativeConfig.h */,
-				E32F7A221FB291000020FAC9 /* ReactNativeConfig.m */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
-		F1A493DF866821592B1560C9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				171B0D676C29F893E53D08FC /* libPods-biohusid.a */,
-				B5C6FF9D2D56B5D6511703BA /* libPods-biohusidTests.a */,
-				6E48BB38BB704264868C6CC2 /* libz.tbd */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5C576BC2B2F145029F208CDA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
+			path = Biohusid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		E33F99811F77011C00152423 /* dotenv */ = {
+		E3AAD4501F573E3700B7831D /* build-env */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = E33F99841F77011C00152423 /* Build configuration list for PBXLegacyTarget "dotenv" */;
+			buildConfigurationList = E3AAD4511F573E3800B7831D /* Build configuration list for PBXLegacyTarget "build-env" */;
 			buildPhases = (
 			);
-			buildToolPath = "${SRCROOT}/Config/BuildDotenvConfig.ruby";
-			buildWorkingDirectory = "";
+			buildToolPath = "${SRCROOT}/../scripts/build-env.sh";
+			buildWorkingDirectory = "${SRCROOT}/..";
 			dependencies = (
 			);
-			name = dotenv;
+			name = "build-env";
 			passBuildSettingsInEnvironment = 1;
-			productName = dotenv;
+			productName = BuildEnv;
 		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* biohusid */ = {
+		13B07F861A680F5B00A75B9A /* Biohusid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "biohusid" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Biohusid" */;
 			buildPhases = (
-				BD10C1F4B479720B0B8021C3 /* [CP] Check Pods Manifest.lock */,
+				DE29A3C61EA94606C7B30F25 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				35EAFC950BFEA1DDE28B93E2 /* [CP] Embed Pods Frameworks */,
-				7303D7BEA6862430C839A699 /* [CP] Copy Pods Resources */,
+				E0CDE00DE45590C6BBAA6758 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = biohusid;
+			name = Biohusid;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* biohusid.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Biohusid.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,31 +134,21 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 5PD7JU2FJC;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-							com.apple.Keychain = {
-								enabled = 0;
-							};
-							com.apple.Push = {
-								enabled = 1;
-							};
-						};
+						DevelopmentTeam = M734F5G6DK;
+						ProvisioningStyle = Automatic;
 					};
-					E33F99811F77011C00152423 = {
-						CreatedOnToolsVersion = 9.0;
+					E3AAD4501F573E3700B7831D = {
+						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5PD7JU2FJC;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "biohusid" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Biohusid" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -214,12 +157,12 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
-			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			productRefGroup = 83CBB9F61A601CBA00E9B192;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E33F99811F77011C00152423 /* dotenv */,
-				13B07F861A680F5B00A75B9A /* biohusid */,
+				E3AAD4501F573E3700B7831D /* build-env */,
+				13B07F861A680F5B00A75B9A /* Biohusid */,
 			);
 		};
 /* End PBXProject section */
@@ -229,10 +172,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3267BD81F44A806002770F8 /* LaunchScreen.xib in Resources */,
-				E3C3A57F1FB36EFC0085D0D0 /* GoogleService-Info.plist in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				E32F7A231FB291000020FAC9 /* BuildDotenvConfig.ruby in Resources */,
+				E3A2B8A91FEACEE70099C8F8 /* Images.xcassets in Resources */,
+				E3A2B8A71FEACEE70099C8F8 /* LaunchScreen.xib in Resources */,
+				E3A2B8A81FEACEE70099C8F8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,39 +193,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/sentry-cli-binary/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\nif [ ! -z \"$SENTRY_AUTH_TOKEN\" ]; then\n  ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\nelse\n  ../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
-		35EAFC950BFEA1DDE28B93E2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusid/Pods-biohusid-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7303D7BEA6862430C839A699 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biohusid/Pods-biohusid-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD10C1F4B479720B0B8021C3 /* [CP] Check Pods Manifest.lock */ = {
+		DE29A3C61EA94606C7B30F25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,26 +206,30 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-biohusid-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Biohusid-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8BDF12DFFEF64118BA1EA538 /* Upload Debug Symbols to Sentry */ = {
+		E0CDE00DE45590C6BBAA6758 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-			name = "Upload Debug Symbols to Sentry";
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Biohusid/Pods-Biohusid-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/NYTPhotoViewer/NYTPhotoViewer.bundle",
 			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NYTPhotoViewer.bundle",
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/sentry-cli-binary/bin/sentry-cli upload-dsym";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Biohusid/Pods-Biohusid-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -322,84 +238,79 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				E32F7A251FB291000020FAC9 /* ReactNativeConfig.m in Sources */,
+				E3A2B8AB1FEACEE70099C8F8 /* main.m in Sources */,
+				E33FD0F41FFBDBD900EB627A /* RNUeno.m in Sources */,
+				E3A2B8A61FEACEE70099C8F8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		E3A2B8A01FEACEE70099C8F8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3A2B8A11FEACEE70099C8F8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F02673971FAFE32B44FEA9F /* Pods-biohusid.debug.xcconfig */;
+			baseConfigurationReference = F978EFCD4B3FC4AAB213917B /* Pods-Biohusid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = biohusid/biohusid.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
-				);
-				INFOPLIST_FILE = biohusid/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Biohusid/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/react-native-config",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.solidmobile.kvikmyndr;
-				PRODUCT_NAME = biohusid;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = Biohusid;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C675E352C207742F70339205 /* Pods-biohusid.release.xcconfig */;
+			baseConfigurationReference = D54EB502811BEE926F2F8941 /* Pods-Biohusid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = biohusid/biohusid.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
-					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
-				);
-				INFOPLIST_FILE = biohusid/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 18;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Biohusid/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/react-native-config",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.solidmobile.kvikmyndr;
-				PRODUCT_NAME = biohusid;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = Biohusid;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -417,20 +328,15 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -443,10 +349,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
-				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -467,29 +369,21 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
-				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -497,26 +391,20 @@
 			};
 			name = Release;
 		};
-		E33F99821F77011C00152423 /* Debug */ = {
+		E3AAD4521F573E3800B7831D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUGGING_SYMBOLS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_TESTABILITY = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -524,25 +412,18 @@
 			};
 			name = Debug;
 		};
-		E33F99831F77011C00152423 /* Release */ = {
+		E3AAD4531F573E3800B7831D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -552,7 +433,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "biohusid" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Biohusid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -561,7 +442,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "biohusid" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Biohusid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
@@ -570,11 +451,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E33F99841F77011C00152423 /* Build configuration list for PBXLegacyTarget "dotenv" */ = {
+		E3AAD4511F573E3800B7831D /* Build configuration list for PBXLegacyTarget "build-env" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E33F99821F77011C00152423 /* Debug */,
-				E33F99831F77011C00152423 /* Release */,
+				E3AAD4521F573E3800B7831D /* Debug */,
+				E3AAD4531F573E3800B7831D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

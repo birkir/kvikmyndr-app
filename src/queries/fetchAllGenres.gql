@@ -1,0 +1,11 @@
+query {
+  allGenres {
+    id
+    name
+    locales {
+      id
+      locale
+      name
+    }
+  }
+}

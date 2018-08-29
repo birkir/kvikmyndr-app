@@ -1,0 +1,27 @@
+#import "./fragments/BaseMovie.gql"
+
+query fetchMoviesForWeek(
+  $start: DateTime!
+  $end: DateTime!
+) {
+  allMovies(
+    filter: {
+      showtimes_some: {
+        playingAt_gte: $start,
+        playingAt_lte: $end
+      }
+    }
+  ) {
+    id
+    ...BaseMovie
+    showtimes(
+      filter: {
+        playingAt_gte: $start,
+        playingAt_lte: $end,
+      }
+    ) {
+      id
+      playingAt
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query fetchGenreById($genreId: ID!) {
+  Genre(id:$genreId) {
+    id
+    name
+    locales {
+      id
+      locale
+      name
+    }
+  }
+}

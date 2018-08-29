@@ -1,0 +1,8 @@
+fragment FullShowtime on Showtime {
+  id
+  cinema { id }
+  playingAt
+  room
+  flags
+  ticketUrl
+}
