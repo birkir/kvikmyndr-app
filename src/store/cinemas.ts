@@ -8,7 +8,7 @@ export const CinemaReference = types.reference(Cinema, {
   get(identifier: string) {
     return Cinemas.getOrLoadById(identifier) as typeof Cinema.Type || [];
   },
-  set(value) {
+  set(value: typeof Cinema.Type) {
     return value.id;
   },
 });

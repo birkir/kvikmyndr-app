@@ -19,6 +19,12 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 
+// MerryPhotoView
+import com.facebook.drawee.backends.pipeline.DraweeConfig;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
+
 // Ueno RNS: Include Libraries here
 import com.microsoft.codepush.react.CodePush;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -30,6 +36,7 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
+import com.merryjs.PhotoViewer.MerryPhotoViewPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -52,6 +59,15 @@ public class MainApplication extends NavigationApplication {
                 return "index";
             }
         };
+
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
+                .setResizeAndRotateEnabledForNetwork(true)
+                .setDownsampleEnabled(true)
+                .build();
+
+        Fresco.initialize(this);
+
         return new ReactGateway(this, isDebug(), host);
     }
 
@@ -70,6 +86,7 @@ public class MainApplication extends NavigationApplication {
           new ReanimatedPackage(),
           new LinearGradientPackage(),
           new CustomTabsPackage(),
+          new MerryPhotoViewPackage(),
           new RNSentryPackage(),
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage()

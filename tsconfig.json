@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "jsx": "react-native",
+    "jsx": "react",
     "noEmit": true,
     "moduleResolution": "node",
     "strictPropertyInitialization": false,

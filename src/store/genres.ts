@@ -8,7 +8,7 @@ export const GenreReference = types.reference(Genre, {
   get(identifier: string) {
     return Genres.getOrLoadById(identifier) as typeof Genre.Type || [];
   },
-  set(value) {
+  set(value: typeof Genre.Type) {
     return value.id;
   },
 });

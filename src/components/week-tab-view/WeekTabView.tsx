@@ -5,8 +5,7 @@ import Reanimated from 'react-native-reanimated';
 import { TabView, TabBar } from 'react-native-tab-view';
 import * as GestureHandler from 'react-native-gesture-handler';
 import { autobind } from 'core-decorators';
-import addDays from 'date-fns/add_days';
-import format from 'date-fns/format';
+import { format, addDays } from 'date-fns';
 import { runScrollEndSpring } from 'utils/runScrollEndSpring';
 const PagerExperimental = require('react-native-tab-view').PagerExperimental;
 const styles = require('./WeekTabView.css');
@@ -136,7 +135,7 @@ export default class WeekTabView extends React.Component<IProps> {
           ref={(ref) => { this.tabBar = ref; }}
           style={[styles.tabbar, posStyle]}
           indicatorStyle={{ backgroundColor: '#FF2244' }}
-          renderLabel={Platform.OS === 'ios' && this.renderTabLabel}
+          renderLabel={Platform.OS === 'ios' ? this.renderTabLabel : undefined}
         />
       </Reanimated.View>
     );

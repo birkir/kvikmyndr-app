@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { types, flow, applySnapshot, onSnapshot } from 'mobx-state-tree';
 import makeInspectable from 'mobx-devtools-mst';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
 import { Settings } from './models/Settings';
 import { InTheaters } from 'store/in-theaters';
 import { Movies } from 'store/movies';

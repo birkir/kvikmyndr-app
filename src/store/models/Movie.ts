@@ -6,7 +6,7 @@ import { Credit } from './Credit';
 import { Language } from './Language';
 import { toMovieDate } from 'utils/toMovieDate';
 import { mapMovie } from 'utils/mapMovie';
-import uniqBy from 'lodash/uniqBy';
+import { uniqBy } from 'lodash';
 interface IMovieLocale {
   contentRating?: string;
   title?: string;

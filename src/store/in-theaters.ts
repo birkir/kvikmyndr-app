@@ -3,7 +3,7 @@ import { client } from '../services/graphql.service';
 import fetchMoviesForWeekQuery from '../queries/fetchMoviesForWeek.gql';
 import { Movies } from './movies';
 import { Movie } from './models/Movie';
-import addDays from 'date-fns/add_days';
+import { addDays } from 'date-fns';
 import { toMovieDate } from 'utils/toMovieDate';
 
 interface IShowtimeFromDb {
@@ -24,7 +24,7 @@ export const InTheaters = types.model('InTheaters', {
         get(identifier: string) {
           return Movies.movies.get(identifier) as typeof Movie.Type;
         },
-        set(value) {
+        set(value: typeof Movie.Type) {
           return value.id;
         },
       }),

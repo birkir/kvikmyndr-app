@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { View, StatusBar, Platform, PixelRatio, ActionSheetIOS } from 'react-native';
+import { View, StatusBar, Platform, ActionSheetIOS } from 'react-native';
 import { observer, Observer } from 'mobx-react';
-import * as GestureHandler from 'react-native-gesture-handler';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
+import { Navigation } from 'react-native-navigation';
 import { Options } from 'types/Options';
 import { autobind } from 'core-decorators';
-import { getConstants, getInsets } from 'utils/getConstants';
+import { getInsets } from 'utils/getConstants';
 import { InTheaters } from 'store/in-theaters';
 import { IMovie } from 'store/models/Movie';
 import { pushMovieScreen } from 'screens';
 import MovieItem from 'components/movie-item/MovieItem';
 import WeekTabView from 'components/week-tab-view/WeekTabView';
-import { Navigation } from 'react-native-navigation';
-import Store from '../../store';
+import Store from 'store';
+import CodePush from 'react-native-code-push';
+import codePushConfig from 'utils/codePushConfig';
 const styles = require('./Week.css');
 
 interface IProps {
@@ -19,6 +21,7 @@ interface IProps {
   testID?: string;
 }
 
+@CodePush(codePushConfig())
 @observer
 class Week extends React.Component<IProps> {
 
@@ -157,15 +160,17 @@ class Week extends React.Component<IProps> {
     };
 
     return (
-      <Observer>{() => InTheaters.moviesForDate(date).sort(s).map((item, i) => (
-        <MovieItem
-          elementId={`${key}_${item.movie.id}`}
-          key={i}
-          movie={item.movie}
-          selectedTab={Number(key)}
-          onPress={this.onMoviePress}
-        />
-      ))}</Observer>
+      <Observer>
+        {() => InTheaters.moviesForDate(date).sort(s).map((item: { movie: IMovie }, i: number) => (
+          <MovieItem
+            elementId={`${key}_${item.movie.id}`}
+            key={i}
+            movie={item.movie}
+            selectedTab={Number(key)}
+            onPress={this.onMoviePress}
+          />
+        ))}
+      </Observer>
     );
   }
 
@@ -189,4 +194,4 @@ class Week extends React.Component<IProps> {
   }
 }
 
-export default GestureHandler.gestureHandlerRootHOC(Week);
+export default gestureHandlerRootHOC(Week);

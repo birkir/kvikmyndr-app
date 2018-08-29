@@ -3,7 +3,7 @@ import { Movie } from './models/Movie';
 import { client } from '../services/graphql.service';
 import fetchMovieByIdQuery from '../queries/fetchMovieById.gql';
 import fetchNewMoviesQuery from '../queries/fetchNewMovies.gql';
-import addDays from 'date-fns/add_days';
+import { addDays } from 'date-fns';
 import { mapMovie } from 'utils/mapMovie';
 
 export const Movies = types.model('Movies', {

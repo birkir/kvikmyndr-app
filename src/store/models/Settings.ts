@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import config from 'config';
 
 export const SortBy = types.enumeration('SortBy', [
   'popularity',
@@ -13,6 +14,7 @@ export const Settings = types.model('Settings', {
   hideSynopsis: types.optional(types.boolean, false),
   hideDaysOnScroll: types.optional(types.boolean, true),
   weekSortBy: types.optional(SortBy, 'popularity'),
+  isBeta: types.optional(types.boolean, config.isTestFlight || false),
 })
 .actions(self => ({
   setWeekSortBy(value: typeof SortBy.Type) {

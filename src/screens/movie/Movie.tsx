@@ -1,23 +1,24 @@
 import * as React from 'react';
-import { Animated, View, Text, Image, StyleSheet, BackHandler, Platform, TouchableWithoutFeedback } from 'react-native';
-import { Options } from 'types/Options';
+import { Animated, View, Text, Image, StyleSheet,
+  BackHandler, Platform, TouchableWithoutFeedback } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { POSTER } from 'screens';
-import { Movies } from 'store/movies';
-import { observer } from 'mobx-react';
-import LinearGradient from 'react-native-linear-gradient';
-import groupBy from 'lodash/groupBy';
-import PhotoView from '@merryjs/photo-viewer';
 import { autobind } from 'core-decorators';
-import MovieDetails from './MovieDetails';
-import { IMovie } from 'store/models/Movie';
+import { observer } from 'mobx-react';
+import { groupBy } from 'lodash';
+import LinearGradient from 'react-native-linear-gradient';
+import PhotoView from '@merryjs/photo-viewer';
+import { Options } from 'types/Options';
 import WeekTabView from 'components/week-tab-view/WeekTabView';
-import { IShowtime } from 'store/models/Showtime';
 import Showtime from 'components/showtime/Showtime';
-import { openUrl } from 'utils/openUrl';
 import ImdbRating from 'components/imdb-rating/ImdbRating';
 import Metascore from 'components/metascore/Metascore';
+import { openUrl } from 'utils/openUrl';
+import { Movies } from 'store/movies';
+import { IMovie } from 'store/models/Movie';
+import { IShowtime } from 'store/models/Showtime';
 import { Store } from 'store';
+import MovieDetails from './MovieDetails';
+
 const styles = require('./Movie.css');
 
 interface IProps {
@@ -33,45 +34,6 @@ const BACKDROP_HEIGHT = 240;
 const POSTER_WIDTH = 100;
 const POSTER_HEIGHT = 160;
 const POSTER_X = (BACKDROP_HEIGHT - POSTER_HEIGHT) + 32;
-
-
-const photos = [
-  {
-    source: {
-      uri: "https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"
-    },
-    title: "Flash End-of-Life",
-    summary:
-      "Adobe announced its roadmap to stop supporting Flash at the end of 2020. ",
-    // must be valid hex color or android will crashes
-    titleColor: "#f90000",
-    summaryColor: "green",
-  },
-  {
-    source: {
-      uri:
-        "https://images.pexels.com/photos/142615/pexels-photo-142615.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"
-    }
-  },
-  {
-    source: {
-      uri:
-        "https://images.pexels.com/photos/82072/cat-82072.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"
-    }
-  },
-  {
-    source: {
-      uri:
-        "https://images.pexels.com/photos/248261/pexels-photo-248261.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"
-    }
-  },
-  {
-    source: {
-      uri: "https://media.giphy.com/media/3o6vXWzHtGfMR3XoXu/giphy.gif"
-    },
-    title: "gif 1",
-  },
-];
 
 @observer
 export default class Movie extends React.Component<IProps> {

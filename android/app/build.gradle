@@ -109,12 +109,12 @@ android {
         applicationId "com.solidmobile.kvikmyndr"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 24
+        versionName "3.1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
         multiDexEnabled true
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -172,6 +172,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // Ueno RNS: Add your modules here
+    implementation project(':@merryjs/photo-viewer')
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-gesture-handler')

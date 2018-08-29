@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { IMovie } from 'store/models/Movie';
 import { observer } from 'mobx-react/native';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 import TextMore from 'components/text-more/TextMore';
 import Credits from './Credits';
 import Section from './Section';

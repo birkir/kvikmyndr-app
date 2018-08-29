@@ -1,4 +1,4 @@
-import addDays from 'date-fns/add_days';
+import { addDays } from 'date-fns';
 
 // if date 00:00 - 03:00: subtract 1 day
 export function toMovieDate(date: Date) {
