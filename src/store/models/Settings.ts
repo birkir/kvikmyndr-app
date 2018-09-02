@@ -66,4 +66,7 @@ export const Settings = types.model('Settings', {
   setUseReaderMode(value: boolean) {
     self.useReaderMode = value;
   },
+  setIsBeta(value: boolean) {
+    self.isBeta = value;
+  },
 }));

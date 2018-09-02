@@ -1,11 +1,16 @@
 import * as React from 'react';
-import { ScrollView, Switch, Platform, ActionSheetIOS } from 'react-native';
+import { ScrollView, Switch, Platform, ActionSheetIOS, Alert, ActivityIndicator } from 'react-native';
 import { observer } from 'mobx-react';
 import CellGroup from 'components/cell/CellGroup';
 import Cell from 'components/cell/Cell';
 import { Options } from 'types/Options';
 import { Store } from 'store';
 import { Languages, Browsers } from 'store/models/Settings';
+import { autobind } from 'core-decorators';
+import codePushConfig from 'utils/codePushConfig';
+import CodePush, { DownloadProgress, RemotePackage } from 'react-native-code-push';
+import { Update } from 'store/update';
+import { observable, computed } from 'mobx';
 const styles = require('./Settings.css');
 
 interface IProps {
@@ -55,6 +60,25 @@ export default class Settings extends React.Component<IProps> {
     } as Options;
   }
 
+  @observable
+  private progress: number | null = null;
+
+  @observable
+  private isUpdating: boolean = false;
+
+  @computed
+  get updateDisplay() {
+    if (this.progress !== null) {
+      return `${(this.progress * 100).toFixed(1)}%`;
+    }
+
+    if (this.isUpdating) {
+      return <ActivityIndicator />;
+    }
+
+    return Update.updateVersion;
+  }
+
   onLanguagePress() {
     const options = [...Object.values(Languages), 'Cancel'];
     ActionSheetIOS.showActionSheetWithOptions(
@@ -83,6 +107,45 @@ export default class Settings extends React.Component<IProps> {
         }
       },
     );
+  }
+
+  @autobind
+  onBetaChange(flag: boolean) {
+    Store.settings.setIsBeta(flag);
+    const config = codePushConfig();
+    config.installMode = CodePush.InstallMode.IMMEDIATE;
+    CodePush.sync(config);
+  }
+
+  @autobind
+  onDownloadProgress({ totalBytes, receivedBytes }: DownloadProgress) {
+    this.progress = receivedBytes / totalBytes;
+  }
+
+  @autobind
+  onBinaryVersionMismatch(update: RemotePackage) {
+    Alert.alert('New version available in AppStore');
+  }
+
+  @autobind
+  async onCodePushPress() {
+    this.isUpdating = true;
+
+    const config = codePushConfig();
+    config.installMode = CodePush.InstallMode.IMMEDIATE;
+    const update = await CodePush.sync(config, undefined, this.onDownloadProgress, this.onBinaryVersionMismatch);
+
+    this.isUpdating = false;
+    this.progress = null;
+
+    switch (update) {
+      case CodePush.SyncStatus.UP_TO_DATE:
+        Alert.alert('No update available');
+        break;
+      case CodePush.SyncStatus.UNKNOWN_ERROR:
+        Alert.alert('Unknown error');
+        break;
+    }
   }
 
   render() {
@@ -143,6 +206,34 @@ export default class Settings extends React.Component<IProps> {
             value={Store.settings.browserDisplay}
             onPress={this.onBrowserPress}
           />
+        </CellGroup>
+        <CellGroup header="About">
+          <Cell
+            title="Version"
+            value={Update.appVersion}
+          />
+          <Cell
+            title="Check for Update"
+            subtitle={Update.updateDescription}
+            value={this.updateDisplay}
+            onPress={this.onCodePushPress}
+          />
+          {Platform.OS === 'android' && (
+            <Cell
+              title="Opt-in to Beta"
+              value={<Switch
+                value={Store.settings.isBeta}
+                onValueChange={this.onBetaChange}
+                {...switchConfig}
+              />}
+            />
+          )}
+          {Platform.OS === 'ios' && Store.settings.isBeta && (
+            <Cell
+              title="Beta"
+              value="Yes"
+            />
+          )}
         </CellGroup>
       </ScrollView>
     );

@@ -13,6 +13,7 @@
     "no-var-requires": false,
     "variable-name": false,
     "import-name": false,
-    "no-boolean-literal-compare": false
+    "no-boolean-literal-compare": false,
+    "max-line-length": false
   }
 }
