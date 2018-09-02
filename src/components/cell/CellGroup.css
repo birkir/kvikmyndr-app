@@ -1,0 +1,45 @@
+.host {
+  /* &__android {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--content-border);
+    background-color: var(--content-bg);
+  } */
+}
+
+.items {
+  border-top-width: var(--hairline-width);
+  border-top-color: var(--content-border);
+
+  border-bottom-width: var(--hairline-width);
+  border-bottom-color: var(--content-border);
+}
+
+.header {
+  padding-top: 16px;
+  padding-bottom: 7.5px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.header__text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: -0.05px;
+}
+
+.footer {
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.footer__text {
+  font-size: 13px;
+  color: #ffffff;
+
+  opacity: 0.65;
+  letter-spacing: -0.05px;
+}

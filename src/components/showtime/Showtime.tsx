@@ -7,7 +7,6 @@ const styles = require('./Showtime.css');
 
 interface IProps {
   testID?: string;
-  disabled?: boolean;
   showtime: IShowtime;
 }
 
@@ -26,13 +25,12 @@ export default class Showtime extends React.PureComponent<IProps, {}> {
   render() {
     const {
       showtime,
-      disabled = false,
       testID,
     } = this.props;
 
     return (
-      <View style={[styles.host, disabled ? styles.disabled : {}]} testID={testID}>
-        <TouchableOpacity onPress={this.onPress} style={styles.button} disabled={disabled}>
+      <View style={[styles.host, showtime.disabled ? styles.disabled : {}]} testID={testID}>
+        <TouchableOpacity onPress={this.onPress} style={styles.button} disabled={showtime.disabled}>
           <Text style={styles.hour}>
             {(new Date(showtime.playingAt || 0)).toTimeString().substr(0, 5)}
           </Text>

@@ -5,14 +5,15 @@ import { Platform } from 'react-native';
 import Week from './week/Week';
 import Movie from './movie/Movie';
 import Menu from './menu/Menu';
-import Poster from './poster/Poster';
+import Settings from './settings/Settings';
 import ComingSoon from './coming-soon/ComingSoon';
+import { Store } from 'store';
 
 // Constants
 export const WEEK = 'biohusid.WeekScreen';
 export const MOVIE = 'biohusid.MovieScreen';
 export const MENU = 'biohusid.MenuSidebar';
-export const POSTER = 'biohusid.PosterScreen';
+export const SETTINGS = 'biohusid.SettingsScreen';
 export const COMING_SOON = 'biohusid.ComingSoonScreen';
 
 // Screen component map
@@ -20,7 +21,7 @@ export const Screens = new Map();
 Screens.set(WEEK, Week);
 Screens.set(MOVIE, Movie);
 Screens.set(MENU, Menu);
-Screens.set(POSTER, Poster);
+Screens.set(SETTINGS, Settings);
 Screens.set(COMING_SOON, ComingSoon);
 
 export const startApp = () => {
@@ -51,6 +52,19 @@ export const startApp = () => {
     },
   };
 
+  const settingsScreen = {
+    stack: {
+      id: 'SETTINGS_SCREEN',
+      children: [
+        {
+          component: {
+            name: SETTINGS,
+          },
+        },
+      ],
+    },
+  };
+
   if (Platform.OS === 'ios') {
     return Navigation.setRoot({
       root: {
@@ -59,6 +73,7 @@ export const startApp = () => {
           children: [
             weekScreen,
             comingSoonScreen,
+            settingsScreen,
           ],
         },
       },
@@ -97,6 +112,7 @@ export const pushMovieScreen = ({
   elementId,
   selectedTab,
 }: IPushMovieScreenProps) => {
+  const { posterAnimation } = Store.settings;
   Navigation.push(componentId, {
     component: {
       name: MOVIE,
@@ -104,7 +120,7 @@ export const pushMovieScreen = ({
         movieId,
         selectedTab,
       },
-      options: !elementId ? {} : {
+      options: (!elementId || !posterAnimation) ? {} : {
         animations: {
           push: {
             waitForRender: true,

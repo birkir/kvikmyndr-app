@@ -7,6 +7,7 @@ import TextMore from 'components/text-more/TextMore';
 import Credits from './Credits';
 import Section from './Section';
 import { openUrl } from 'utils/openUrl';
+import { Store } from 'store';
 const styles = require('./MovieDetails.css');
 
 interface IProps {
@@ -52,9 +53,12 @@ export default class MovieDetails extends React.Component<IProps, {}> {
       );
     }
 
+    const showSummary = movie.locale.summary && !Store.settings.hideSynopsis;
+
     return (
       <View style={styles.host}>
-        {!!movie.locale.summary && (
+
+        {showSummary && (
           <Section title="Summary">
             <TextMore style={styles.text}>{movie.locale.summary}</TextMore>
           </Section>

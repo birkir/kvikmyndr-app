@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Animated, View, Text, Image, StyleSheet,
+import { Animated, View, Text, StyleSheet,
   BackHandler, Platform, TouchableWithoutFeedback } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { Navigation } from 'react-native-navigation';
 import { autobind } from 'core-decorators';
 import { observer } from 'mobx-react';
@@ -73,7 +74,7 @@ export default class Movie extends React.Component<IProps> {
         backgroundColor: '#000000',
       },
       popGesture: true,
-      animations: {
+      animations: Store.settings.posterAnimation ? {
         pop: {
           content: {
             alpha: {
@@ -83,7 +84,7 @@ export default class Movie extends React.Component<IProps> {
             },
           },
         },
-      },
+      } : {},
       bottomTabs: {
         translucent: false,
         barStyle: 'black',
@@ -109,6 +110,14 @@ export default class Movie extends React.Component<IProps> {
         outputRange: [2.5, 1],
       }),
     }],
+  };
+
+  private animatedTopBarStyles = {
+    opacity: this.scrollY.interpolate({
+      inputRange: [0, TOOLBAR_HEIGHT],
+      outputRange: [0, 1],
+      extrapolate: 'clamp',
+    }),
   };
 
   state = {
@@ -170,8 +179,10 @@ export default class Movie extends React.Component<IProps> {
       return null;
     }
 
-    const cinemas = groupBy(movie.showtimesForDate(route.date), (showtime: IShowtime) =>
-      showtime.cinema && showtime.cinema.name);
+    const cinemas = groupBy(
+      movie.showtimesForDate(route.date),
+      (showtime: any) => showtime.cinema && showtime.cinema.name,
+    );
 
     return (
       <View style={styles.showtimes}>
@@ -195,95 +206,118 @@ export default class Movie extends React.Component<IProps> {
     const isReady = !movie!.isPartial && showtimes.length > 0 && !!showtimes[0].cinema;
 
     return (
-      <Animated.ScrollView
-        style={styles.host}
-        testID="MOVIE_SCREEN"
-        contentInsetAdjustmentBehavior="never"
-        scrollEventThrottle={1}
-        overScrollMode="always"
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: this.scrollY } } }],
-          { useNativeDriver: true },
-        )}
-      >
-        <Animated.View style={[styles.hero, this.animatedHeroStyles]}>
-          <Image
-            resizeMode="cover"
-            source={{ uri: movie && movie.backdropImageUrl }}
-            style={styles.backdrop}
+      <View style={{ flex: 1 }}>
+        <Animated.ScrollView
+          style={styles.host}
+          testID="MOVIE_SCREEN"
+          contentInsetAdjustmentBehavior="never"
+          scrollEventThrottle={1}
+          overScrollMode="always"
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.scrollY } } }],
+            { useNativeDriver: true },
+          )}
+        >
+          <Animated.View style={[styles.hero, this.animatedHeroStyles]}>
+            <FastImage
+              resizeMode="cover"
+              source={{ uri: movie && movie.backdropImageUrl }}
+              style={styles.backdrop}
+            />
+            <LinearGradient
+              colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 1)']}
+              style={StyleSheet.absoluteFill}
+            />
+          </Animated.View>
+
+          <PhotoView
+            visible={this.state.visible}
+            data={[{
+              source: {
+                uri: movie!.posterUrlOriginal,
+              },
+            }]}
+            hideCloseButton={true}
+            hideShareButton={true}
+            hideStatusBar={false}
+            initial={this.state.initial}
+            onDismiss={() => this.setState({ visible: false })}
+          />
+
+          {movie && (
+            <View style={[styles.content, { top: POSTER_X, left: POSTER_WIDTH + GUTTER }]}>
+              <Text style={styles.title}>{movie.locale.title}</Text>
+              {movie.genres && (
+                <Text style={styles.genres} numberOfLines={2}>
+                  {movie.genres.map((item: any) => item.name).join(', ')}
+                </Text>
+              )}
+              <Text style={styles.runtime}>{movie.formatRuntime}</Text>
+              <View style={styles.ratings}>
+                <ImdbRating
+                  imdbId={movie.imdbId!}
+                  rating={movie.imdbRating!}
+                />
+                <Metascore
+                  rating={movie.metacriticRating!}
+                />
+              </View>
+            </View>
+          )}
+
+          <MovieDetails
+            movie={movie as IMovie}
+          />
+
+          <View style={{ position: 'absolute', top: POSTER_X, left: GUTTER }}>
+            <Navigation.Element
+              resizeMode="cover"
+              elementId="MOVIE_POSTER"
+            >
+              <TouchableWithoutFeedback onPress={this.onPosterPress}>
+                <View style={styles.poster}>
+                  {movie!.posterUrl && <FastImage
+                    resizeMode="cover"
+                    style={styles.poster__image}
+                    source={{ uri: movie!.posterUrlNormal }}
+                  />}
+                </View>
+              </TouchableWithoutFeedback>
+            </Navigation.Element>
+          </View>
+
+          {isReady && (
+            <WeekTabView
+              render={this.renderTab}
+              useScrollView={false}
+              selectedTab={this.props.selectedTab}
+            />
+          )}
+
+          <View style={{ height: 100 }} />
+        </Animated.ScrollView>
+        <Animated.View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            ...this.animatedTopBarStyles,
+          }}
+        >
+          <View
+            style={{
+              height: Store.insets.top - TOOLBAR_HEIGHT,
+              width: '100%',
+              backgroundColor: 'black',
+            }}
           />
           <LinearGradient
-            colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 1)']}
-            style={StyleSheet.absoluteFill}
+            colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
+            style={{ height: TOOLBAR_HEIGHT * 2, width: '100%' }}
           />
         </Animated.View>
-
-        <PhotoView
-          visible={this.state.visible}
-          data={[{
-            source: {
-              uri: movie!.posterUrlOriginal,
-            },
-          }]}
-          hideCloseButton={true}
-          hideShareButton={true}
-          hideStatusBar={false}
-          initial={this.state.initial}
-          onDismiss={() => this.setState({ visible: false })}
-        />
-
-        {movie && (
-          <View style={[styles.content, { top: POSTER_X, left: POSTER_WIDTH + GUTTER }]}>
-            <Text style={styles.title}>{movie.locale.title}</Text>
-            {movie.genres && (
-              <Text style={styles.genres} numberOfLines={2}>
-                {movie.genres.map(item => item.name).join(', ')}
-              </Text>
-            )}
-            <Text style={styles.runtime}>{movie.formatRuntime}</Text>
-            <View style={styles.ratings}>
-              <ImdbRating
-                imdbId={movie.imdbId!}
-                rating={movie.imdbRating!}
-              />
-              <Metascore
-                rating={movie.metacriticRating!}
-              />
-            </View>
-          </View>
-        )}
-
-        <MovieDetails
-          movie={movie as IMovie}
-        />
-
-        <View style={{ position: 'absolute', top: POSTER_X, left: GUTTER }}>
-          <Navigation.Element
-            resizeMode="cover"
-            elementId="MOVIE_POSTER"
-          >
-            <TouchableWithoutFeedback onPress={this.onPosterPress}>
-              <View style={styles.poster}>
-                {movie!.posterUrl && <Image
-                  resizeMode="cover"
-                  style={styles.poster__image}
-                  source={{ uri: movie!.posterUrlNormal }}
-                />}
-              </View>
-            </TouchableWithoutFeedback>
-          </Navigation.Element>
-        </View>
-
-        {isReady && (
-          <WeekTabView
-            render={this.renderTab}
-            useScrollView={false}
-            selectedTab={this.props.selectedTab}
-          />
-        )}
-
-        <View style={{ height: 100 }} />
-      </Animated.ScrollView>
+      </View>
     );
   }
 }

@@ -57,7 +57,17 @@ export default class WeekTabView extends React.Component<IProps> {
   state = {
     index: Number(this.props.selectedTab || 0),
     routes: this.routes,
+    enabled: true,
   };
+
+  componentWillReceiveProps(nextProps: any) {
+    if (this.props.hideTabsOnScroll !== nextProps.hideTabsOnScroll) {
+      this.setState(
+        { enabled: false },
+        () => setTimeout(() => this.setState({ enabled: true }), 100),
+      );
+    }
+  }
 
   get routes() {
     return Array.from({ length: 5 }).map((_, i) => {
@@ -160,10 +170,10 @@ export default class WeekTabView extends React.Component<IProps> {
         bounces={!hideTabsOnScroll}
         scrollEventThrottle={1}
         contentInsetAdjustmentBehavior="never"
-        contentInset={{ bottom: bottom + 16 }}
+        automaticallyAdjustContentInsets={false}
         contentContainerStyle={{
-          marginTop: top + 16,
-          paddingBottom: bottom + 16,
+          marginTop: NAVBAR_HEIGHT + 16,
+          paddingBottom: bottom + NAVBAR_HEIGHT + 16,
         }}
         onScroll={!hideTabsOnScroll ? undefined : Reanimated.event(
           [{ nativeEvent: { contentOffset: { y: this.scrollY } } }],
@@ -193,6 +203,10 @@ export default class WeekTabView extends React.Component<IProps> {
     const tabViewProps = { useNativeDriver: true } as any;
     const { top = 0 } = this.props.insets || {};
 
+    if (!this.state.enabled) {
+      return null;
+    }
+
     return (
       <TabView
         style={[styles.host, { marginTop: top }]}
@@ -202,7 +216,6 @@ export default class WeekTabView extends React.Component<IProps> {
         renderPager={this.renderPager}
         onIndexChange={this.onIndexChange}
         initialLayout={INITIAL_LAYOUT}
-
         {...tabViewProps}
       />
     );

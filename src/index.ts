@@ -13,6 +13,8 @@ YellowBox.ignoreWarnings([
 if (__DEV__) {
   const { connectToDevTools } = require('mobx-devtools/lib/mobxDevtoolsBackend.js');
   connectToDevTools({ host: 'localhost', port: '8098' });
+
+  XMLHttpRequest = (global as any).originalXMLHttpRequest || (global as any).XMLHttpRequest;
 }
 
 // Enable LayoutAnimation on android

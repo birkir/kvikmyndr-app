@@ -18,7 +18,6 @@
 
   width: 100%;
   height: 240px;
-  background-color: green;
 }
 
 .poster {
@@ -36,6 +35,8 @@
   height: 100%;
 
   border-radius: 3px;
+
+  background-color: rgba(32, 32, 32, 0.66);
 }
 
 .content {
@@ -90,5 +91,5 @@
 
   padding-left: 16px;
   margin-right: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }

@@ -22,6 +22,7 @@
   height: 100%;
 
   border-radius: 3px;
+  background-color: rgba(32, 32, 32, 0.66);
 }
 
 .content {

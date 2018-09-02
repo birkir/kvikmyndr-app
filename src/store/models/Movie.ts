@@ -7,6 +7,8 @@ import { Language } from './Language';
 import { toMovieDate } from 'utils/toMovieDate';
 import { mapMovie } from 'utils/mapMovie';
 import { uniqBy } from 'lodash';
+import Store from 'store';
+
 interface IMovieLocale {
   contentRating?: string;
   title?: string;
@@ -33,8 +35,6 @@ export const MovieLocale = types.model('MovieLocale', {
 export const Movie = types.model('Movie', {
   id: types.identifier,
   isPartial: types.optional(types.boolean, true),
-  // createdAt: types.Date,
-  // updatedAt: types.Date,
   title: types.maybeNull(types.string),
   year: types.maybeNull(types.number),
   summary: types.maybeNull(types.string),
@@ -106,7 +106,9 @@ export const Movie = types.model('Movie', {
     return `${self.runtime} min`;
   },
   get locale(): IMovieLocale {
-    const loc = self.locales.find(({ locale }: any) => locale === 'ICELANDIC') || {} as any;
+    const locales = { is: 'ICELANDIC', en: 'ENGLISH' };
+    const selectedLocale = locales[Store.settings.language];
+    const loc = self.locales.find(({ locale }: any) => locale === selectedLocale) || {} as any;
     return {
       title: loc.title || self.title,
       summary: loc.summary || self.summary,

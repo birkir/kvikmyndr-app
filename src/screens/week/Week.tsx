@@ -47,7 +47,7 @@ class Week extends React.Component<IProps> {
         buttonColor: '#FF2244',
         rightButtons: [{
           id: 'ICON_FILTER',
-          icon: require('../../assets/icons/filter.png'),
+          icon: require('../../assets/icons/ascending-sorting.png'),
           text: 'Filter',
           color: '#FFFFFF',
         }],
@@ -84,7 +84,10 @@ class Week extends React.Component<IProps> {
     InTheaters.loadWeek();
 
     getInsets(this.props.componentId)
-      .then(insets => this.setState({ insets }));
+      .then((insets) => {
+        this.setState({ insets });
+        Store.setInsets(insets);
+      });
   }
 
   componentDidAppear() {
@@ -98,18 +101,22 @@ class Week extends React.Component<IProps> {
   @autobind
   navigationButtonPressed({ buttonId }: { buttonId: string }) {
     if (buttonId === 'ICON_FILTER') {
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          cancelButtonIndex: 2,
-          options: ['Sort By', 'Filter By', 'Cancel'],
-        },
-        this.onFilterPress,
-      );
+      this.onFilterSelect(0);
     }
   }
 
+  onFilterPress() {
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        cancelButtonIndex: 2,
+        options: ['Sort By', 'Filter By', 'Cancel'],
+      },
+      this.onFilterSelect,
+    );
+  }
+
   @autobind
-  onFilterPress(buttonIndex: number) {
+  onFilterSelect(buttonIndex: number) {
     if (buttonIndex === 0) {
       ActionSheetIOS.showActionSheetWithOptions(
         {
@@ -146,7 +153,7 @@ class Week extends React.Component<IProps> {
   @autobind
   renderTab(route: { key: string; date: Date; }) {
     const { date, key } = route;
-    const s = (a: { movie: IMovie }, b: { movie: IMovie }) => {
+    const s = (a: any, b: any) => {
 
       if (Store.settings.weekSortBy === 'title') {
         return a.movie.title!.localeCompare(b.movie.title!);
@@ -161,7 +168,7 @@ class Week extends React.Component<IProps> {
 
     return (
       <Observer>
-        {() => InTheaters.moviesForDate(date).sort(s).map((item: { movie: IMovie }, i: number) => (
+        {() => InTheaters.moviesForDate(date).sort(s).map((item: any, i: number) => (
           <MovieItem
             elementId={`${key}_${item.movie.id}`}
             key={i}
@@ -187,7 +194,7 @@ class Week extends React.Component<IProps> {
         <WeekTabView
           insets={insets}
           render={this.renderTab}
-          hideTabsOnScroll={false}
+          hideTabsOnScroll={Store.settings.hideDaysOnScroll}
         />
       </View>
     );

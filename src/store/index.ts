@@ -12,6 +12,7 @@ export const Store = types
   .model('Store', {
     settings: Settings,
     componentId: types.maybe(types.string),
+    insets: types.optional(types.model({ top: 0, bottom: 0 }), {}),
     isHydrated: types.optional(types.boolean, false),
   })
   .actions(self => ({
@@ -57,6 +58,10 @@ export const Store = types
     }),
     setComponentId(componentId: string) {
       self.componentId = componentId;
+    },
+    setInsets(insets: any) {
+      self.insets.top = insets.top;
+      self.insets.bottom = insets.bottom;
     },
   }))
   .create({

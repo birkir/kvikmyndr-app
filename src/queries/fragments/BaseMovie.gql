@@ -13,4 +13,9 @@ fragment BaseMovie on Movie {
   genres {
     id
   }
+  locales (filter: { locale: ICELANDIC }) {
+    id
+    locale
+    title
+  }
 }
