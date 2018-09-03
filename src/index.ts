@@ -1,3 +1,4 @@
+import './utils/sentry';
 import { Navigation } from 'react-native-navigation';
 import { YellowBox, Platform, UIManager } from 'react-native';
 import { Screens, startApp } from './screens';
@@ -21,6 +22,7 @@ if (__DEV__) {
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
 // Register screens
 Screens.forEach((ScreenComponent, key) =>
   Navigation.registerComponent(key, () => ScreenComponent));
