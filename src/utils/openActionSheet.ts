@@ -67,7 +67,7 @@ export function openActionSheet(config: IOpenActionSheetConfig) {
     ActionSheetIOS.showActionSheetWithOptions(
       opts,
       (index: number) => {
-        if (opts.options.length === index && typeof config.onCancel === 'function') {
+        if (config.options.length === index && typeof config.onCancel === 'function') {
           return config.onCancel();
         }
         if (typeof config.onSelect === 'function') {
