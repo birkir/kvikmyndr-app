@@ -11,7 +11,8 @@ import { Cinemas } from 'store/cinemas';
 export const Store = types
   .model('Store', {
     settings: Settings,
-    componentId: types.maybe(types.string),
+    componentId: types.optional(types.string, ''),
+    menuComponentId: types.optional(types.string, ''),
     insets: types.optional(types.model({ top: 0, bottom: 0 }), {}),
     isHydrated: types.optional(types.boolean, false),
   })
@@ -58,6 +59,9 @@ export const Store = types
     }),
     setComponentId(componentId: string) {
       self.componentId = componentId;
+    },
+    setMenuComponentId(componentId: string) {
+      self.menuComponentId = componentId;
     },
     setInsets(insets: any) {
       self.insets.top = insets.top;

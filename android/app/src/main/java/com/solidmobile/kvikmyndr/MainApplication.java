@@ -37,6 +37,8 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
 import com.merryjs.PhotoViewer.MerryPhotoViewPackage;
+import com.aakashns.reactnativedialogs.ReactNativeDialogsPackage;
+import com.dylanvann.fastimage.FastImageViewPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -83,6 +85,8 @@ public class MainApplication extends NavigationApplication {
           new ReactNativeConfigPackage(),
           new RNVersionNumberPackage(),
           new RNGestureHandlerPackage(),
+          new ReactNativeDialogsPackage(),
+          new FastImageViewPackage(),
           new ReanimatedPackage(),
           new LinearGradientPackage(),
           new CustomTabsPackage(),

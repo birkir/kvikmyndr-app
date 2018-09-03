@@ -5,7 +5,7 @@ import { UpdateMetadata } from './models/UpdateMetadata';
 
 export const Update = types
   .model('Update', {
-    updateMetadata: types.maybe(UpdateMetadata),
+    updateMetadata: types.maybeNull(UpdateMetadata),
     version: VersionNumber.appVersion,
     build: VersionNumber.buildVersion,
   })

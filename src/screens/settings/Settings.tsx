@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, Switch, Platform, ActionSheetIOS, Alert, ActivityIndicator } from 'react-native';
+import { ScrollView, Switch, Platform, Alert, ActivityIndicator } from 'react-native';
 import { observer } from 'mobx-react';
 import CellGroup from 'components/cell/CellGroup';
 import Cell from 'components/cell/Cell';
@@ -11,6 +11,8 @@ import codePushConfig from 'utils/codePushConfig';
 import CodePush, { DownloadProgress, RemotePackage } from 'react-native-code-push';
 import { Update } from 'store/update';
 import { observable, computed } from 'mobx';
+import { openActionSheet } from 'utils/openActionSheet';
+import { Navigation } from 'react-native-navigation';
 const styles = require('./Settings.css');
 
 interface IProps {
@@ -18,10 +20,17 @@ interface IProps {
   imageUrl: string;
 }
 
-const switchConfig = {
-  onTintColor: '#ff2244',
-  trackColor: '#ff2244',
-};
+const switchConfig = Platform.select({
+  ios: {
+    onTintColor: '#ff2244',
+    trackColor: '#ff2244',
+  },
+  android: {
+    onTintColor: 'rgba(255, 34, 68, 0.5)',
+    trackColor: 'rgba(255, 34, 68, 0.5)',
+    thumbTintColor: '#ff2244',
+  },
+});
 
 @observer
 export default class Settings extends React.Component<IProps> {
@@ -37,6 +46,15 @@ export default class Settings extends React.Component<IProps> {
           color: '#000000',
         },
         buttonColor: '#FF2244',
+        leftButtons: Platform.select({
+          android: [{
+            id: 'ICON_MENU',
+            icon: require('../../assets/icons/menu.png'),
+            text: 'Menu',
+            color: '#FFFFFF',
+          }],
+          ios: [],
+        }),
       },
       bottomTab: {
         testID: 'SETTINGS_TAB',
@@ -66,6 +84,25 @@ export default class Settings extends React.Component<IProps> {
   @observable
   private isUpdating: boolean = false;
 
+  events = Navigation.events().bindComponent(this);
+
+  componentWillUnmount() {
+    this.events.remove();
+  }
+
+  @autobind
+  navigationButtonPressed({ buttonId }: { buttonId: string }) {
+    if (buttonId === 'ICON_MENU') {
+      Navigation.mergeOptions(Store.menuComponentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
+    }
+  }
+
   @computed
   get updateDisplay() {
     if (this.progress !== null) {
@@ -80,33 +117,27 @@ export default class Settings extends React.Component<IProps> {
   }
 
   onLanguagePress() {
-    const options = [...Object.values(Languages), 'Cancel'];
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex: 2,
+    openActionSheet({
+      options: Object.entries(Languages),
+      selectedId: Store.settings.language,
+      cancel: true,
+      type: 'radio',
+      onSelect(option: any) {
+        Store.settings.setLanguage(option[0]);
       },
-      (index: number) => {
-        if (index < options.length) {
-          Store.settings.setLanguage(Object.keys(Languages)[index]);
-        }
-      },
-    );
+    });
   }
 
   onBrowserPress() {
-    const options = [...Object.values(Browsers), 'Cancel'];
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex: 2,
+    openActionSheet({
+      options: Object.entries(Browsers),
+      selectedId: Store.settings.browser,
+      cancel: true,
+      type: 'radio',
+      onSelect(option: any) {
+        Store.settings.setBrowser(option[0]);
       },
-      (index: number) => {
-        if (index < options.length) {
-          Store.settings.setBrowser(Object.keys(Browsers)[index]);
-        }
-      },
-    );
+    });
   }
 
   @autobind
@@ -124,7 +155,7 @@ export default class Settings extends React.Component<IProps> {
 
   @autobind
   onBinaryVersionMismatch(update: RemotePackage) {
-    Alert.alert('New version available in AppStore');
+    Alert.alert('New version available in AppStore', update.description);
   }
 
   @autobind

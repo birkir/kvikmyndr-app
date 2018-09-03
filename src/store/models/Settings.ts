@@ -2,11 +2,11 @@ import { types } from 'mobx-state-tree';
 import config from 'config';
 import { Platform } from 'react-native';
 
-export const SortBy = types.enumeration('SortBy', [
-  'popularity',
-  'title',
-  'rating',
-]);
+export const SortBys = {
+  popularity: 'Popularity',
+  title: 'Title',
+  rating: 'Rating',
+};
 
 export const Browsers = {
   inApp: 'In-App',
@@ -18,7 +18,13 @@ export const Languages = {
   is: 'Icelandic',
 };
 
-export const Theme = types.enumeration('Theme', ['light', 'dark']);
+export const Themes = {
+  light: 'Light',
+  dark: 'Dark',
+};
+
+export const SortBy = types.enumeration('SortBy', Object.keys(SortBys));
+export const Theme = types.enumeration('Theme', Object.keys(Themes));
 export const Language = types.enumeration('Language', Object.keys(Languages));
 export const Browser = types.enumeration('Browser', Object.keys(Browsers));
 

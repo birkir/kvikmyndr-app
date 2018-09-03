@@ -11,6 +11,7 @@ import MovieItem from 'components/movie-item/MovieItem';
 import { Options } from 'types/Options';
 import { pushMovieScreen } from 'screens';
 import { getInsets } from 'utils/getConstants';
+import { Navigation } from 'react-native-navigation';
 const styles = require('./ComingSoon.css');
 
 interface IProps {
@@ -39,6 +40,15 @@ export default class ComingSoon extends React.Component<IProps> {
             transparent: true,
           },
         }),
+        leftButtons: Platform.select({
+          android: [{
+            id: 'ICON_MENU',
+            icon: require('../../assets/icons/menu.png'),
+            text: 'Menu',
+            color: '#FFFFFF',
+          }],
+          ios: [],
+        }),
         buttonColor: '#FF2244',
       },
       bottomTab: {
@@ -63,6 +73,8 @@ export default class ComingSoon extends React.Component<IProps> {
     } as Options;
   }
 
+  events = Navigation.events().bindComponent(this);
+
   state = {
     insets: { top: 0, bottom: 0, calculated: false },
   };
@@ -76,6 +88,23 @@ export default class ComingSoon extends React.Component<IProps> {
 
   componentDidAppear() {
     Store.setComponentId(this.props.componentId);
+  }
+
+  componentWillUnmount() {
+    this.events.remove();
+  }
+
+  @autobind
+  navigationButtonPressed({ buttonId }: { buttonId: string }) {
+    if (buttonId === 'ICON_MENU') {
+      Navigation.mergeOptions(Store.menuComponentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
+    }
   }
 
   @autobind

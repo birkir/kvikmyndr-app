@@ -14,6 +14,8 @@ import WeekTabView from 'components/week-tab-view/WeekTabView';
 import Store from 'store';
 import CodePush from 'react-native-code-push';
 import codePushConfig from 'utils/codePushConfig';
+import { openActionSheet } from 'utils/openActionSheet';
+import { SortBys } from 'store/models/Settings';
 const styles = require('./Week.css');
 
 interface IProps {
@@ -45,6 +47,15 @@ class Week extends React.Component<IProps> {
           },
         }),
         buttonColor: '#FF2244',
+        leftButtons: Platform.select({
+          android: [{
+            id: 'ICON_MENU',
+            icon: require('../../assets/icons/menu.png'),
+            text: 'Menu',
+            color: '#FFFFFF',
+          }],
+          ios: [],
+        }),
         rightButtons: [{
           id: 'ICON_FILTER',
           icon: require('../../assets/icons/ascending-sorting.png'),
@@ -101,39 +112,43 @@ class Week extends React.Component<IProps> {
   @autobind
   navigationButtonPressed({ buttonId }: { buttonId: string }) {
     if (buttonId === 'ICON_FILTER') {
-      this.onFilterSelect(0);
+      this.onFilterSelect(null, 0);
+    }
+    if (buttonId === 'ICON_MENU') {
+      Navigation.mergeOptions(Store.menuComponentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
     }
   }
 
   onFilterPress() {
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        cancelButtonIndex: 2,
-        options: ['Sort By', 'Filter By', 'Cancel'],
-      },
-      this.onFilterSelect,
-    );
+    openActionSheet({
+      options: ['Sort By', 'Filter By'],
+      cancel: true,
+      onSelect: this.onFilterSelect,
+    });
   }
 
   @autobind
-  onFilterSelect(buttonIndex: number) {
-    if (buttonIndex === 0) {
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          cancelButtonIndex: 3,
-          options: ['Popularity', 'Title', 'Rating', 'Cancel'],
-        },
-        this.onSortByPress,
-      );
+  onFilterSelect(option: any, index: number) {
+    if (index === 0) {
+      openActionSheet({
+        options: Object.entries(SortBys),
+        type: 'radio',
+        selectedId: Store.settings.weekSortBy,
+        cancel: true,
+        onSelect: this.onSortBySelect,
+      });
     }
   }
 
   @autobind
-  onSortByPress(buttonIndex: number) {
-    const options = ['popularity', 'title', 'rating'];
-    if (options[buttonIndex]) {
-      Store.settings.setWeekSortBy(options[buttonIndex] as any);
-    }
+  onSortBySelect(option: any, index: number) {
+    Store.settings.setWeekSortBy(option[0]);
   }
 
   @autobind

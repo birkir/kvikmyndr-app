@@ -24,7 +24,7 @@ Screens.set(MENU, Menu);
 Screens.set(SETTINGS, Settings);
 Screens.set(COMING_SOON, ComingSoon);
 
-export const startApp = () => {
+export const startApp = async () => {
 
   const weekScreen = {
     stack: {
@@ -68,6 +68,7 @@ export const startApp = () => {
   if (Platform.OS === 'ios') {
     return Navigation.setRoot({
       root: {
+        id: 'ROOT',
         bottomTabs: {
           id: 'BOTTOM_TABS',
           children: [
@@ -82,6 +83,7 @@ export const startApp = () => {
 
   return Navigation.setRoot({
     root: {
+      id: 'ROOT',
       sideMenu: {
         left: {
           component: {
@@ -129,7 +131,7 @@ export const pushMovieScreen = ({
               alpha: {
                 from: 0,
                 to: 1,
-                duration: 750,
+                duration: 250,
               },
             },
           },
@@ -143,7 +145,7 @@ export const pushMovieScreen = ({
               startDelay: 0,
               springVelocity: 0.9,
               springDamping: 0.9,
-              duration: 1000 * Platform.select({ ios: 0.001, android: 1 }),
+              duration: 500 * Platform.select({ ios: 0.001, android: 1 }),
               interactivePop: true,
             },
           ],
