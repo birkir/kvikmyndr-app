@@ -6184,9 +6184,9 @@ react-native-navigation@*:
   dependencies:
     lodash "4.x.x"
 
-react-native-navigation@2.0.2501:
-  version "2.0.2501"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2501.tgz#3ddf12a74fea0b9db9749bf31b6beb2315edb25f"
+react-native-navigation@2.0.2515:
+  version "2.0.2515"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2515.tgz#fed0461a10648c27a10408ed480bf59cdad40b3a"
   dependencies:
     hoist-non-react-statics "2.x.x"
     lodash "4.x.x"
