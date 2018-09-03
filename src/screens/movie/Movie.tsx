@@ -58,6 +58,8 @@ export default class Movie extends React.Component<IProps> {
             color: 'rgba(0, 0, 0, 0)',
           },
         }),
+        // Fix for 1px black border on navbar :/
+        height: POSTER_X + POSTER_HEIGHT,
         noBorder: true,
         leftButtons: [{
           id: 'ICON_BACK',

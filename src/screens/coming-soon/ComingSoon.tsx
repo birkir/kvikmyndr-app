@@ -25,7 +25,7 @@ export default class ComingSoon extends React.Component<IProps> {
     return {
       topBar: {
         title: {
-          text: 'In Theaters',
+          text: 'Coming Soon',
           color: '#FFFFFF',
         },
         drawBehind: true,
