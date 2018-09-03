@@ -51,7 +51,7 @@ if [ ! -z "$IOS_CODEPUSH_APPID" ]; then
   else
     prepare_code_push
     echo "[Ueno RNS] Bundling and publishing code-push release..."
-    code-push release-react $IOS_CODEPUSH_APPID ios --outputDir ./build --plistFile ./ios/Hekla/Info.plist --description "$COMMIT_MESSAGE"
+    code-push release-react $IOS_CODEPUSH_APPID ios --outputDir ./build --plistFile ./ios/Biohusid/Info.plist --description "$COMMIT_MESSAGE"
     echo "[Ueno RNS] Uploading sourcemaps..."
     sentry-cli react-native codepush $IOS_CODEPUSH_APPID ios ./build/CodePush --bundle-id $IOS_BUNDLE_ID
     echo "[Ueno RNS] Shutting down build machine"
