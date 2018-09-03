@@ -21,7 +21,7 @@ if [ ! -z "$GOOGLE_SERVICES_JSON" ]; then
 fi
 
 if [ ! -z "$GOOGLE_SERVICES_PLIST" ]; then
-  echo $GOOGLE_SERVICES_PLIST | base64 --decode > "$APPCENTER_SOURCE_DIRECTORY/ios/Hekla/GoogleService-Info.plist"
+  echo $GOOGLE_SERVICES_PLIST | base64 --decode > "$APPCENTER_SOURCE_DIRECTORY/ios/Biohusid/GoogleService-Info.plist"
 fi
 
 for KEY in $(cat .env.public | egrep "^[A-Za-z]+" | sed 's/\"/\\\"/g' | sed -n 's|\(.*\)=\(.*\)|\1|p'); do

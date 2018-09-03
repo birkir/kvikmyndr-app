@@ -252,7 +252,9 @@ export default class Movie extends React.Component<IProps> {
                   {movie.genres.map((item: any) => item.name).join(', ')}
                 </Text>
               )}
-              <Text style={styles.runtime}>{movie.formatRuntime}</Text>
+              {movie.runtime && (
+                <Text style={styles.runtime}>{movie.formatRuntime}</Text>
+              )}
               <View style={styles.ratings}>
                 <ImdbRating
                   imdbId={movie.imdbId!}
