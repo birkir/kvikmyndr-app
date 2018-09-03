@@ -8,10 +8,8 @@ setVar('--hairline-width', StyleSheet.hairlineWidth);
 // Add themes here
 setTheme('default');
 setThemeVars('default', {
-  '--primary-color': '#6ea',
-  '--primary-color-ios': 'red',
-  '--primary-color-android': 'blue',
-  '--gutter': 16,
+  '--primary-color': '#ff2244',
+  '--gutter': 8,
 });
 
 export default {
