@@ -3,8 +3,6 @@
 rm -rf ./node_modules/react-native-navigation/lib/android/app/src/main/java/com/reactnativenavigation/react/NavigationReactNativeHost.java
 
 # Pod install
-if [ -z "$APPCENTER_BUILD_ID" ]; then
+if [ ! -z "$APPCENTER_BUILD_ID" ]; then
   (cd ios; pod install; cd -)
-else
-  (cd ios; pod install --repo-update; cd -)
 fi

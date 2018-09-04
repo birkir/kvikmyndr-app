@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		1C9BC405710B4376ACBA4D1F /* libPods-Biohusid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E4EB30ABEFC190EFE7436 /* libPods-Biohusid.a */; };
 		E33FD0F41FFBDBD900EB627A /* RNUeno.m in Sources */ = {isa = PBXBuildFile; fileRef = E33FD0F31FFBDBD900EB627A /* RNUeno.m */; };
@@ -193,7 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\nif [ ! -z \"$SENTRY_AUTH_TOKEN\" ]; then\n  ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\nelse\n  ../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+			shellScript = "# Setup nvm and set node\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\n\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n    . \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n    . \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\n# Set up the nodenv node version manager if present\nif [[ -x \"$HOME/.nodenv/bin/nodenv\" ]]; then\n    eval \"$(\"$HOME/.nodenv/bin/nodenv\" init -)\"\nfi\n\n[ -z \"$NODE_BINARY\" ] && export NODE_BINARY=\"node\"\n\nif [ -z \"$SENTRY_AUTH_TOKEN\" ]; then\n    echo \"Bundling without Sentry\"\n    ../node_modules/react-native/scripts/react-native-xcode.sh\nelse\n    echo \"Bundling with Sentry\"\n    $NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n    $NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
 		DE29A3C61EA94606C7B30F25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -297,7 +298,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Birkir Rafn Gudjonsson (5PD7JU2FJC)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22;
-				DEVELOPMENT_TEAM = "5PD7JU2FJC";
+				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				INFOPLIST_FILE = Biohusid/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
