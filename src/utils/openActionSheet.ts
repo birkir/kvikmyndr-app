@@ -67,10 +67,13 @@ export function openActionSheet(config: IOpenActionSheetConfig) {
     ActionSheetIOS.showActionSheetWithOptions(
       opts,
       (index: number) => {
-        if (config.options.length === index && typeof config.onCancel === 'function') {
-          return config.onCancel();
+        if (config.options.length === index) {
+          if (typeof config.onCancel === 'function') {
+            config.onCancel();
+          }
+          return;
         }
-        if (typeof config.onSelect === 'function') {
+        if (typeof config.onSelect === 'function' && config.options.length > index) {
           return config.onSelect(config.options[index], index);
         }
       },
