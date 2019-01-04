@@ -15,6 +15,7 @@ export const Store = types
     menuComponentId: types.optional(types.string, ''),
     insets: types.optional(types.model({ top: 0, bottom: 0 }), {}),
     isHydrated: types.optional(types.boolean, false),
+    date: types.Date,
   })
   .actions(self => ({
     hydrate: flow(function* () {
@@ -70,6 +71,7 @@ export const Store = types
   }))
   .create({
     settings: Settings.create(),
+    date: new Date(),
   });
 
 export default Store;

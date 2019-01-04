@@ -7,6 +7,8 @@ import * as GestureHandler from 'react-native-gesture-handler';
 import { autobind } from 'core-decorators';
 import { format, addDays } from 'date-fns';
 import { runScrollEndSpring } from 'utils/runScrollEndSpring';
+import store from 'store';
+
 const PagerExperimental = require('react-native-tab-view').PagerExperimental;
 const styles = require('./WeekTabView.css');
 
@@ -75,7 +77,9 @@ export default class WeekTabView extends React.Component<IProps> {
       return {
         date,
         key: String(i),
-        title: format(date, 'ddd'),
+        title: format(date, 'iii', {
+          locale: store.settings.dateLocale,
+        }),
       };
     });
   }
@@ -159,7 +163,7 @@ export default class WeekTabView extends React.Component<IProps> {
       hideTabsOnScroll = true,
     } = this.props;
 
-    const { top = 0, bottom = 0 } = insets;
+    const { bottom = 0 } = insets;
 
     if (useScrollView === false) {
       return this.props.render(scene.route);

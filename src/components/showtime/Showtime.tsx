@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { autobind } from 'core-decorators';
 import { IShowtime } from 'store/models/Showtime';
 import { openUrl } from 'utils/openUrl';

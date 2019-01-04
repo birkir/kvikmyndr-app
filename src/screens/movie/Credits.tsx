@@ -4,6 +4,7 @@ import { observer } from 'mobx-react/native';
 import { ICredit } from 'store/models/Credit';
 import Section from './Section';
 import PersonCard from 'components/person-card/PersonCard';
+import Store from 'store';
 const styles = require('./Credits.css');
 
 interface IProps {
@@ -32,12 +33,12 @@ export default class Credits extends React.Component<IProps, {}> {
   render() {
     const { credits } = this.props;
 
-    if (!credits || credits.length === 0) {
+    if (Store.settings.hideCast || !credits || credits.length === 0) {
       return null;
     }
 
     return (
-      <Section title="Cast">
+      <Section title={Store.settings.locale.CAST}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}

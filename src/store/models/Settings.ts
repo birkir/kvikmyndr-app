@@ -1,11 +1,13 @@
 import { types } from 'mobx-state-tree';
 import config from 'config';
 import { Platform } from 'react-native';
+import en_US from 'date-fns/locale/en-US';
+import { dateFnsLocaleIS, locales } from 'utils/locales';
 
 export const SortBys = {
-  popularity: 'Popularity',
-  title: 'Title',
-  rating: 'Rating',
+  popularity: 'SORT_POPULARITY',
+  title: 'SORT_TITLE',
+  rating: 'SORT_RATING',
 };
 
 export const Browsers = {
@@ -15,7 +17,7 @@ export const Browsers = {
 
 export const Languages = {
   en: 'English',
-  is: 'Icelandic',
+  is: 'Íslenska',
 };
 
 export const Themes = {
@@ -34,6 +36,7 @@ export const Settings = types.model('Settings', {
   promptOnExit: types.optional(types.boolean, true),
   posterAnimation: types.optional(types.boolean, true),
   hideSynopsis: types.optional(types.boolean, false),
+  hideCast: types.optional(types.boolean, false),
   hideDaysOnScroll: types.optional(types.boolean, false),
   useReaderMode: types.optional(types.boolean, false),
   browser: types.optional(Browser, 'inApp'),
@@ -42,6 +45,15 @@ export const Settings = types.model('Settings', {
 })
 .views((self) => {
   return {
+    get locale() {
+      return locales[self.language];
+    },
+    get dateLocale() {
+      if (self.language === 'is') {
+        return dateFnsLocaleIS;
+      }
+      return en_US;
+    },
     get browserDisplay() {
       return Browsers[self.browser];
     },
@@ -65,6 +77,9 @@ export const Settings = types.model('Settings', {
   },
   setHideSynopsis(value: boolean) {
     self.hideSynopsis = value;
+  },
+  setHideCast(value: boolean) {
+    self.hideCast = value;
   },
   setPosterAnimation(value: boolean) {
     self.posterAnimation = value;

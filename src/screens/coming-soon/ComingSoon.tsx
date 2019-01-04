@@ -6,7 +6,7 @@ import { Movies } from 'store/movies';
 import { IMovie } from 'store/models/Movie';
 import { autobind } from 'core-decorators';
 import { groupBy } from 'lodash';
-import { isToday, isTomorrow, format } from 'date-fns';
+import { addDays, isSameDay, format } from 'date-fns';
 import MovieItem from 'components/movie-item/MovieItem';
 import { Options } from 'types/Options';
 import { pushMovieScreen } from 'screens';
@@ -25,7 +25,7 @@ export default class ComingSoon extends React.Component<IProps> {
     return {
       topBar: {
         title: {
-          text: 'Coming Soon',
+          text: Store.settings.locale.COMING_SOON,
           color: '#FFFFFF',
         },
         drawBehind: true,
@@ -53,7 +53,7 @@ export default class ComingSoon extends React.Component<IProps> {
       },
       bottomTab: {
         testID: 'COMING_SOON_TAB',
-        text: 'Coming Soon',
+        text: Store.settings.locale.COMING_SOON,
         iconColor: '#FFFFFF',
         textColor: '#FFFFFF',
         selectedTextColor: '#FF2244',
@@ -118,6 +118,10 @@ export default class ComingSoon extends React.Component<IProps> {
     return null;
   }
 
+  sortByTime(a: IMovie, b: IMovie) {
+    return new Date(a.releaseDate || '') < new Date(b.releaseDate || '') ? -1 : 1;
+  }
+
   @autobind
   renderMovieItem({ item: movie }: { item: IMovie }) {
     return (
@@ -133,10 +137,16 @@ export default class ComingSoon extends React.Component<IProps> {
 
   @autobind
   renderSectionHeader({ section }: any) {
-    const date = section.title;
-    let title = format(date, 'MMMM, D');
-    if (isToday(date)) title = 'Today';
-    if (isTomorrow(date)) title = 'Tomorrow';
+    const date = new Date(`${section.title} 00:00:00.000Z`);
+    const today = new Date();
+    const tomorrow = addDays(today, 1);
+    let title = format(date, 'PPP', { locale: Store.settings.dateLocale })
+      .replace(String((new Date()).getFullYear()), '')
+      .trim()
+      .replace(/\,$/, '');
+
+    if (isSameDay(date, today)) title = 'Today';
+    if (isSameDay(date, tomorrow)) title = 'Tomorrow';
     return (
       <View style={styles.section}>
         <Text style={styles.section__title}>{title}</Text>
@@ -146,7 +156,7 @@ export default class ComingSoon extends React.Component<IProps> {
 
   render() {
     const { top, bottom } = this.state.insets;
-    const moviesByDate = groupBy(Movies.comingSoon, (movie: IMovie) =>
+    const moviesByDate = groupBy(Movies.comingSoon.sort(this.sortByTime), (movie: IMovie) =>
       (new Date(movie.releaseDate!)).toDateString());
 
     return (

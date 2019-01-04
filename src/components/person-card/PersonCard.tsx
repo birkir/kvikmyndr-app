@@ -56,7 +56,12 @@ export default class PersonCard extends React.Component<IProps, {}> {
         <TouchableOpacity onPress={this.onPress} style={styles.shadow}>
           <ActivityIndicator style={styles.loading} animating={this.isLoading} />
           {!this.pictureUrl
-            ? <View style={styles.picture} />
+            ? <View style={styles.picture}>
+                <Image
+                  source={require('assets/icons/cast-placeholder.png')}
+                  style={styles.picture__placeholder}
+                />
+              </View>
             : <Image
               onLoadStart={this.onLoadStart}
               onLoadEnd={this.onLoadEnd}

@@ -74,13 +74,13 @@ export default class Menu extends React.Component<IProps> {
           {/* <Text style={styles.header__subtitle}>Navigation</Text> */}
         </View>
         <TouchableOpacity style={[styles.item, selected === 0 && styles.item__active]} onPress={this.onWeekPress}>
-          <Text style={styles.item__label}>In Theaters</Text>
+          <Text style={styles.item__label}>{Store.settings.locale.IN_THEATERS}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.item, selected === 1 && styles.item__active]} onPress={this.onComingSoonPress}>
-          <Text style={styles.item__label}>Coming Soon</Text>
+          <Text style={styles.item__label}>{Store.settings.locale.COMING_SOON}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.item, selected === 2 && styles.item__active]} onPress={this.onSettingsPress}>
-          <Text style={styles.item__label}>Settings</Text>
+          <Text style={styles.item__label}>{Store.settings.locale.SETTINGS}</Text>
         </TouchableOpacity>
       </View>
     );

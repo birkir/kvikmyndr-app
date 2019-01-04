@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, Switch, Platform, Alert, ActivityIndicator } from 'react-native';
+import { ScrollView, Switch, Platform, Alert, ActivityIndicator, View } from 'react-native';
 import { observer } from 'mobx-react';
 import CellGroup from 'components/cell/CellGroup';
 import Cell from 'components/cell/Cell';
@@ -13,6 +13,7 @@ import { Update } from 'store/update';
 import { observable, computed } from 'mobx';
 import { openActionSheet } from 'utils/openActionSheet';
 import { Navigation } from 'react-native-navigation';
+import { locales } from 'utils/locales';
 const styles = require('./Settings.css');
 
 interface IProps {
@@ -39,7 +40,7 @@ export default class Settings extends React.Component<IProps> {
     return {
       topBar: {
         title: {
-          text: 'Settings',
+          text: Store.settings.locale.SETTINGS,
           color: '#FFFFFF',
         },
         background: {
@@ -58,7 +59,7 @@ export default class Settings extends React.Component<IProps> {
       },
       bottomTab: {
         testID: 'SETTINGS_TAB',
-        text: 'Settings',
+        text: Store.settings.locale.SETTINGS,
         iconColor: '#FFFFFF',
         textColor: '#FFFFFF',
         selectedTextColor: '#FF2244',
@@ -124,6 +125,7 @@ export default class Settings extends React.Component<IProps> {
       type: 'radio',
       onSelect(option: any) {
         Store.settings.setLanguage(option[0]);
+        setTimeout(CodePush.restartApp, 1200);
       },
     });
   }
@@ -171,7 +173,7 @@ export default class Settings extends React.Component<IProps> {
 
     switch (update) {
       case CodePush.SyncStatus.UP_TO_DATE:
-        Alert.alert('No update available');
+        Alert.alert(locales[Store.settings.language].NO_UPDATE_AVAILABLE);
         break;
       case CodePush.SyncStatus.UNKNOWN_ERROR:
         Alert.alert('Unknown error');
@@ -180,16 +182,20 @@ export default class Settings extends React.Component<IProps> {
   }
 
   render() {
+    const { locale } = Store.settings;
+
     return (
-      <ScrollView style={styles.host}>
-        <CellGroup header="General">
+      <ScrollView
+        style={styles.host}
+      >
+        <CellGroup header={locale.GENERAL}>
           <Cell
-            title="Language"
+            title={locale.LANGUAGE}
             value={Store.settings.languageDisplay}
             onPress={this.onLanguagePress}
           />
           <Cell
-            title="Hide Synopsis"
+            title={locale.HIDE_SYNOPSIS}
             value={(
               <Switch
                 value={Store.settings.hideSynopsis}
@@ -198,10 +204,20 @@ export default class Settings extends React.Component<IProps> {
               />
             )}
           />
-        </CellGroup>
-        <CellGroup header="Appearance">
           <Cell
-            title="Hide Bars On Scroll"
+            title={locale.HIDE_CAST}
+            value={(
+              <Switch
+                value={Store.settings.hideCast}
+                onValueChange={Store.settings.setHideCast}
+                {...switchConfig}
+              />
+            )}
+          />
+        </CellGroup>
+        <CellGroup header={locale.APPEARANCE}>
+          <Cell
+            title={locale.HIDE_BARS_ON_SCROLL}
             value={(
               <Switch
                 value={Store.settings.hideDaysOnScroll}
@@ -211,7 +227,7 @@ export default class Settings extends React.Component<IProps> {
             )}
           />
           <Cell
-            title="Enable Poster Animations"
+            title={locale.ENABLE_POSTER_ANIMATIONS}
             value={(
               <Switch
                 value={Store.settings.posterAnimation}
@@ -221,10 +237,10 @@ export default class Settings extends React.Component<IProps> {
             )}
           />
         </CellGroup>
-        <CellGroup header="Browser">
+        <CellGroup header={locale.BROWSER}>
           {Platform.OS === 'ios' && (
             <Cell
-              title="Always Use Reader Mode"
+              title={locale.ALWAYS_USE_READER_MODE}
               value={<Switch
                 value={Store.settings.useReaderMode}
                 onValueChange={Store.settings.setUseReaderMode}
@@ -233,25 +249,25 @@ export default class Settings extends React.Component<IProps> {
             />
           )}
           <Cell
-            title="Open Links In"
+            title={locale.OPEN_LINKS_IN}
             value={Store.settings.browserDisplay}
             onPress={this.onBrowserPress}
           />
         </CellGroup>
-        <CellGroup header="About">
+        <CellGroup header={locale.ABOUT}>
           <Cell
-            title="Version"
+            title={locale.VERSION}
             value={Update.appVersion}
           />
           <Cell
-            title="Check for Update"
+            title={locale.CHECK_FOR_UPDATE}
             subtitle={Update.updateDescription}
             value={this.updateDisplay}
             onPress={this.onCodePushPress}
           />
           {Platform.OS === 'android' && (
             <Cell
-              title="Opt-in to Beta"
+              title={locale.OPT_IN_TO_BETA}
               value={<Switch
                 value={Store.settings.isBeta}
                 onValueChange={this.onBetaChange}
@@ -261,11 +277,12 @@ export default class Settings extends React.Component<IProps> {
           )}
           {Platform.OS === 'ios' && Store.settings.isBeta && (
             <Cell
-              title="Beta"
-              value="Yes"
+              title={locale.BETA}
+              value={locale.YES}
             />
           )}
         </CellGroup>
+        <View style={{ height: 100 }} />
       </ScrollView>
     );
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, TouchableWithoutFeedback,
-  GestureResponderEvent, SafeAreaView } from 'react-native';
+  GestureResponderEvent, SafeAreaView, Image } from 'react-native';
 import { IMovie } from 'store/models/Movie';
 import { autobind } from 'core-decorators';
 import { Navigation } from 'react-native-navigation';
@@ -61,10 +61,13 @@ export default class MovieItem extends React.PureComponent<IProps, {}> {
           <View style={styles.host}>
             <Navigation.Element elementId={elementId} resizeMode="cover">
               <View style={styles.poster}>
-                {movie.posterUrl && <FastImage
+                {movie.posterUrl ? <FastImage
                   resizeMode="cover"
                   style={styles.poster__image}
                   source={{ uri: movie.posterUrlNormal! }}
+                /> : <Image
+                  source={require('assets/icons/poster-placeholder.png')}
+                  style={styles.poster__placeholder}
                 />}
               </View>
             </Navigation.Element>

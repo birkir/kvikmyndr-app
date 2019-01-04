@@ -4,10 +4,11 @@ import { Showtime, IShowtime } from './Showtime';
 import { Locale } from './Locale';
 import { Credit } from './Credit';
 import { Language } from './Language';
-import { toMovieDate } from 'utils/toMovieDate';
 import { mapMovie } from 'utils/mapMovie';
 import { uniqBy } from 'lodash';
 import Store from 'store';
+import { isSameDay } from 'date-fns/esm';
+import { addHours } from 'date-fns';
 
 interface IMovieLocale {
   contentRating?: string;
@@ -120,11 +121,8 @@ export const Movie = types.model('Movie', {
     if (!self.showtimes) {
       return [];
     }
-    return self.showtimes.filter(showtime =>
-      showtime.playingAt &&
-      toMovieDate(new Date(showtime.playingAt)).toISOString().substr(0, 10) ===
-      date.toISOString().substr(0, 10),
-    );
+    return self.showtimes
+      .filter(showtime => showtime.playingAt && isSameDay(addHours(showtime.playingAt, -4), date));
   },
 }));
 

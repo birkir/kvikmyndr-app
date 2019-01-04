@@ -76,7 +76,7 @@ export default class MovieDetails extends React.Component<IProps, {}> {
         />
         <SectionText
           title="First Released"
-          value={movie.releaseDate && format(movie.releaseDate, 'MMMM Do, YYYY')}
+          value={movie.releaseDate && format(movie.releaseDate, 'MMMM do, yyyy')}
         />
         <SectionLink
           title="Homepage"

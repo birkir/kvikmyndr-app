@@ -12,9 +12,13 @@
   height: 160px;
   border-radius: 3px;
 
+  justify-content: center;
+  align-items: center;
+
   aspect-ratio: 0.66;
   box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.25);
-  background-color: rgba(32, 32, 32, 0.66);
+
+  background-color: rgba(45, 45, 45, 0.66);
 }
 
 .poster__image {
@@ -23,6 +27,14 @@
 
   border-radius: 3px;
 }
+
+.poster__placeholder {
+  width: 60px;
+  height: 60px;
+
+  tint-color: #404040;
+}
+
 
 .content {
   flex: 1;

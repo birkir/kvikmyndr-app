@@ -3,10 +3,14 @@ import { CustomTabs, ANIMATIONS_SLIDE } from 'react-native-custom-tabs';
 import Store from '../store';
 
 export function openUrl(url: string) {
+  if (Store.settings.browser === 'default') {
+    return Linking.openURL(url);
+  }
+
   if (Platform.OS === 'ios') {
     return NativeModules.RNUeno.openSafari(Store.componentId, {
       url,
-      readerMode: false,
+      readerMode: Store.settings.useReaderMode,
       preferredBarTintColor: processColor('#000000'),
       preferredControlTintColor: processColor('#FF2244'),
     });

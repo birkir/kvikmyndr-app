@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Animated, View, Text, StyleSheet,
-  BackHandler, Platform, TouchableWithoutFeedback } from 'react-native';
+  BackHandler, Platform, TouchableWithoutFeedback, Linking } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Navigation } from 'react-native-navigation';
 import { autobind } from 'core-decorators';
@@ -142,7 +142,7 @@ export default class Movie extends React.Component<IProps> {
   }
 
   @autobind
-  navigationButtonPressed({ buttonId }: { buttonId: string }) {
+  async navigationButtonPressed({ buttonId }: { buttonId: string }) {
     if (buttonId === 'ICON_BACK') {
       return Navigation.pop(this.props.componentId);
     }
@@ -152,8 +152,13 @@ export default class Movie extends React.Component<IProps> {
 
       if (!trailerUrl) {
         const query = [title, 'trailer'].join(' ');
-        const youtube = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-        return openUrl(youtube);
+        const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+        const youtubeAppUrl = youtubeUrl.replace(/^https/, 'youtube');
+        if (await Linking.canOpenURL(youtubeAppUrl)) {
+          return Linking.openURL(youtubeAppUrl);
+        }
+
+        return openUrl(youtubeUrl);
       }
 
       return openUrl(trailerUrl);
@@ -171,6 +176,10 @@ export default class Movie extends React.Component<IProps> {
     this.setState({
       visible: true,
     });
+  }
+
+  sortByTime = (a: IShowtime, b: IShowtime) => {
+    return new Date(a.playingAt || '') < new Date(b.playingAt || '') ? -1 : 1;
   }
 
   @autobind
@@ -192,7 +201,7 @@ export default class Movie extends React.Component<IProps> {
           <View key={cinema}>
             <Text style={styles.cinema}>{cinema}</Text>
             <View style={styles.row}>
-              {showtimes.map((showtime: IShowtime) => (
+              {showtimes.sort(this.sortByTime).map((showtime: IShowtime) => (
                 <Showtime key={showtime.id} showtime={showtime} />
               ))}
             </View>

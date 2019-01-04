@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, LayoutAnimation, TextStyle } from 'react-
 import { observable } from 'mobx';
 import { observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
+import Store from 'store';
 const styles = require('./TextMore.css');
 
 interface IProps {
@@ -107,7 +108,7 @@ export default class TextMore extends React.Component<IProps, {}> {
           {children}
         </Text>}
         {!this.hasEqualOrLessLines && <TouchableOpacity onPress={this.onPressMore}>
-          <Text style={styles.button}>read {!this.expanded ? 'more' : 'less'}</Text>
+          <Text style={styles.button}>read {!this.expanded ? Store.settings.locale.MORE : Store.settings.locale.LESS}</Text>
         </TouchableOpacity>}
       </View>
     );

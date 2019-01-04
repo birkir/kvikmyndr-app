@@ -1,6 +1,6 @@
 import { types } from 'mobx-state-tree';
 import { CinemaReference } from '../cinemas';
-import { isBefore } from 'date-fns';
+import store from '../index';
 
 export const Showtime = types.model('Showtime', {
   id: types.identifier,
@@ -12,8 +12,10 @@ export const Showtime = types.model('Showtime', {
 })
 .views(self => ({
   get disabled() {
+    const timeInIceland = new Date(store.date.toISOString().substr(0, 23));
     if (self.playingAt) {
-      return isBefore(self.playingAt, new Date());
+      const playingAt = new Date(self.playingAt);
+      return playingAt.getTime() < timeInIceland.getTime();
     }
     return false;
   },

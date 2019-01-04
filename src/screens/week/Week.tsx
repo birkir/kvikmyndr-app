@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StatusBar, Platform, ActionSheetIOS } from 'react-native';
+import { View, StatusBar, Platform, ActivityIndicator } from 'react-native';
 import { observer, Observer } from 'mobx-react';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { Navigation } from 'react-native-navigation';
@@ -31,7 +31,7 @@ class Week extends React.Component<IProps> {
     return {
       topBar: {
         title: {
-          text: 'In Theaters',
+          text: Store.settings.locale.IN_THEATERS,
           color: '#FFFFFF',
         },
         drawBehind: true,
@@ -65,7 +65,7 @@ class Week extends React.Component<IProps> {
       },
       bottomTab: {
         testID: 'WEEK_TAB',
-        text: 'In Theaters',
+        text: Store.settings.locale.IN_THEATERS,
         iconColor: '#FFFFFF',
         textColor: '#FFFFFF',
         selectedTextColor: '#FF2244',
@@ -134,10 +134,10 @@ class Week extends React.Component<IProps> {
   }
 
   @autobind
-  onFilterSelect(option: any, index: number) {
+  onFilterSelect(_option: any, index: number) {
     if (index === 0) {
       openActionSheet({
-        options: Object.entries(SortBys),
+        options: Object.entries(SortBys).map(([key, value]) => [key, Store.settings.locale[value] || key]),
         type: 'radio',
         selectedId: Store.settings.weekSortBy,
         cancel: true,
@@ -147,7 +147,7 @@ class Week extends React.Component<IProps> {
   }
 
   @autobind
-  onSortBySelect(option: any, index: number) {
+  onSortBySelect(option: any) {
     Store.settings.setWeekSortBy(option[0]);
   }
 
@@ -199,8 +199,12 @@ class Week extends React.Component<IProps> {
   render() {
     const { insets } = this.state;
 
-    if (!insets.calculated) {
-      return null;
+    if (!insets.calculated || InTheaters.loading) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" />
+        </View>
+      );
     }
 
     return (
