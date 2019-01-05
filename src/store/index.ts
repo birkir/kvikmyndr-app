@@ -30,10 +30,8 @@ export const Store = types
 
       const storeKeys = {
         settings: self.settings,
-        movies: Movies,
         genres: Genres,
         cinemas: Cinemas,
-        week: InTheaters,
       };
 
       for (const key in storeKeys) {
