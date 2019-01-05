@@ -5,7 +5,7 @@ Bíóhúsið
 
 iOS and Android app about getting latest cinema showtimes.
 
-This was a weekend project so don't expect it to ~~work~~ or be ~~beautiful~~ (it now works most of the time and is pretty beutiful).
+This was a weekend project so don't expect it to ~~work~~ or be ~~beautiful~~ (it now works most of the time and is pretty beautiful).
 
 ![Logo](https://lh3.googleusercontent.com/O1oZfmD4Vt-8h-k35-XKOfMGA0iyguSPdlS1yyyYAuKq89_NX-7LtWq0TQwZwpANQA=w200-rw)
 
