@@ -137,7 +137,7 @@ export default class ComingSoon extends React.Component<IProps> {
 
   @autobind
   renderSectionHeader({ section }: any) {
-    const date = new Date(`${section.title} 00:00:00.000Z`);
+    const date = new Date(section.title);
     const today = new Date();
     const tomorrow = addDays(today, 1);
     let title = format(date, 'PPP', { locale: Store.settings.dateLocale })
@@ -157,7 +157,7 @@ export default class ComingSoon extends React.Component<IProps> {
   render() {
     const { top, bottom } = this.state.insets;
     const moviesByDate = groupBy(Movies.comingSoon.sort(this.sortByTime), (movie: IMovie) =>
-      (new Date(movie.releaseDate!)).toDateString());
+      (new Date(movie.releaseDate!)).toISOString());
 
     return (
       <SectionList
