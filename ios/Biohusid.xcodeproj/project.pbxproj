@@ -266,7 +266,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				INFOPLIST_FILE = Biohusid/Info.plist;
@@ -296,7 +296,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Birkir Rafn Gudjonsson (5PD7JU2FJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Birkir Rafn Gudjonsson (5PD7JU2FJC)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = "5PD7JU2FJC";
 				INFOPLIST_FILE = Biohusid/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -310,7 +310,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.solidmobile.kvikmyndr;
 				PRODUCT_NAME = Biohusid;
-				PROVISIONING_PROFILE = "8fc36568-d0cb-4450-9554-ac91a187c0ae";
+				PROVISIONING_PROFILE = "3d9594a6-76ae-408c-9bda-412cfae50bb2";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
