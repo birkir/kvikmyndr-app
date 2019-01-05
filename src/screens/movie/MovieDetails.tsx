@@ -59,7 +59,7 @@ export default class MovieDetails extends React.Component<IProps, {}> {
       <View style={styles.host}>
 
         {showSummary && (
-          <Section title="Summary">
+          <Section title={Store.settings.locale.SUMMARY}>
             <TextMore style={styles.text}>{movie.locale.summary}</TextMore>
           </Section>
         )}
@@ -67,23 +67,23 @@ export default class MovieDetails extends React.Component<IProps, {}> {
           credits={movie.credits}
         />
         <SectionCurrency
-          title="Budget"
+          title={Store.settings.locale.BUDGET}
           value={movie.budget}
         />
         <SectionCurrency
-          title="Budget"
+          title={Store.settings.locale.REVENUE}
           value={movie.revenue}
         />
         <SectionText
-          title="First Released"
+          title={Store.settings.locale.FIRST_RELEASED}
           value={movie.releaseDate && format(movie.releaseDate, 'MMMM do, yyyy')}
         />
         <SectionLink
-          title="Homepage"
+          title={Store.settings.locale.HOMEPAGE}
           value={movie.homepage}
         />
         <SectionText
-          title="Tagline"
+          title={Store.settings.locale.TAGLINE}
           value={movie.tagline}
         />
       </View>
