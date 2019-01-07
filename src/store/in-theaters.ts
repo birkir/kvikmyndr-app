@@ -5,6 +5,7 @@ import { Movies } from './movies';
 import { Movie } from './models/Movie';
 import { addDays } from 'date-fns';
 import { addHours } from 'date-fns/esm';
+import { FetchPolicy } from 'apollo-boost';
 
 interface IShowtimeFromDb {
   playingAt: string;
@@ -18,6 +19,8 @@ interface IMovieFromDb {
 export const InTheaters = types.model('InTheaters', {
   loading: false,
   loaded: false,
+  isOffline: false,
+  isCache: false,
   dates: types.map(types.model('DateOfMovies', {
     date: types.identifier,
     movies: types.map(types.model('MovieRef', {
@@ -50,15 +53,28 @@ export const InTheaters = types.model('InTheaters', {
     const start = new Date();
     const end = addDays(start, 5);
 
-    const result = yield client.query({
+    const query = (fetchPolicy: FetchPolicy = 'network-only') => client.query({
+      fetchPolicy,
       query: fetchMoviesForWeekQuery,
-      fetchPolicy: 'network-only',
       variables: {
         start: start.toISOString().substr(0, 10),
         end: end.toISOString().substr(0, 10),
       },
     });
 
+    let result = yield query();
+    const isNetworkError = result.error.message.includes('Network error');
+
+    if (isNetworkError) {
+      result = yield query('cache-only');
+    }
+
+    self.isOffline = isNetworkError;
+    self.isCache = isNetworkError && result.data;
+
+    if (!result.data) {
+      return;
+    }
     result.data.allMovies.map(Movies.addPartialMovie);
 
     result.data.allMovies.forEach((movie: IMovieFromDb) => {

@@ -5,10 +5,13 @@ import fetchMovieByIdQuery from '../queries/fetchMovieById.gql';
 import fetchNewMoviesQuery from '../queries/fetchNewMovies.gql';
 import { addDays } from 'date-fns';
 import { mapMovie } from 'utils/mapMovie';
+import { FetchPolicy } from 'apollo-boost';
 
 export const Movies = types.model('Movies', {
   movies: types.map(Movie),
   comingSoon: types.array(types.reference(Movie)),
+  isOffline: false,
+  isCache: false,
 })
 .actions(self => ({
   addPartialMovie: (obj: any) => {
@@ -40,13 +43,28 @@ export const Movies = types.model('Movies', {
     (self as any).addMovie(result.data.Movie, false);
   }),
   loadNewMovies: flow(function* loadNewMovies() {
-    const result = yield client.query({
+    const query = (fetchPolicy: FetchPolicy = 'network-only') => client.query({
+      fetchPolicy,
       query: fetchNewMoviesQuery,
-      fetchPolicy: 'network-only',
       variables: {
         from: new Date().toISOString().substr(0, 10),
       },
     });
+
+    let result = yield query();
+    const isNetworkError = result.error.message.includes('Network error');
+
+    if (isNetworkError) {
+      result = yield query('cache-only');
+    }
+
+    self.isOffline = isNetworkError;
+    self.isCache = isNetworkError && result.data;
+
+    if (!result.data) {
+      return;
+    }
+
     result.data.allMovies.map(Movies.addPartialMovie);
     self.comingSoon.clear();
     self.comingSoon.push(
