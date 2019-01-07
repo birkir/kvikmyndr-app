@@ -33,7 +33,7 @@ export const Cinemas = types.model('Cinemas', {
 
     const result = yield client.query({
       query: fetchAllCinemas,
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'cache-and-network',
     });
 
     result.data.allCinemas.map(addCinema);

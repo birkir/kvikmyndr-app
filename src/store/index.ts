@@ -28,31 +28,20 @@ export const Store = types
         makeInspectable(Genres);
       }
 
-      const storeKeys = {
-        settings: self.settings,
-        genres: Genres,
-        cinemas: Cinemas,
-      };
-
-      for (const key in storeKeys) {
-        if (storeKeys.hasOwnProperty(key)) {
-          const storageKey = `Store.${key}`;
-
-          const data = JSON.parse(yield AsyncStorage.getItem(storageKey));
-          if (data) {
-            applySnapshot(storeKeys[key], data);
-          }
-
-          onSnapshot(storeKeys[key], debounce(
-            snapshot => AsyncStorage.setItem(storageKey, JSON.stringify(snapshot)),
-            1000,
-          ));
-        }
+      const storageKey = 'Store.settings';
+      const data = JSON.parse(yield AsyncStorage.getItem(storageKey));
+      if (data) {
+        applySnapshot(self.settings, data);
       }
 
+      onSnapshot(self.settings, debounce(
+        snapshot => AsyncStorage.setItem(storageKey, JSON.stringify(snapshot)),
+        1000,
+      ));
+
       // Load all supplimental data
-      Genres.loadAllGenres();
-      Cinemas.loadAllCinemas();
+      yield Genres.loadAllGenres();
+      yield Cinemas.loadAllCinemas();
 
       self.isHydrated = true;
     }),
