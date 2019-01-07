@@ -6,7 +6,7 @@ const cache = new InMemoryCache();
 
 persistCache({
   cache,
-  storage: AsyncStorage,
+  storage: AsyncStorage as any,
   maxSize: 1024 * 1024 * 4,
 });
 
