@@ -33,7 +33,7 @@ export const Genres = types.model('Genres', {
 
     const result = yield client.query({
       query: fetchAllGenres,
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'network-only',
     });
 
     result.data.allGenres.map(addGenre);
