@@ -5,7 +5,7 @@ import { Movies } from './movies';
 import { Movie } from './models/Movie';
 import { addDays } from 'date-fns';
 import { addHours } from 'date-fns/esm';
-import { FetchPolicy } from 'apollo-boost';
+import { FetchPolicy, ApolloQueryResult } from 'apollo-boost';
 
 interface IShowtimeFromDb {
   playingAt: string;
@@ -63,7 +63,7 @@ export const InTheaters = types.model('InTheaters', {
     });
 
     let result = yield query();
-    const isNetworkError = result.error.message.includes('Network error');
+    const isNetworkError = result.error && result.error.message.includes('Network error');
 
     if (isNetworkError) {
       result = yield query('cache-only');

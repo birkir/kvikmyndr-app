@@ -52,7 +52,7 @@ export const Movies = types.model('Movies', {
     });
 
     let result = yield query();
-    const isNetworkError = result.error.message.includes('Network error');
+    const isNetworkError = result.error && result.error.message.includes('Network error');
 
     if (isNetworkError) {
       result = yield query('cache-only');
