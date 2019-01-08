@@ -40,8 +40,8 @@ export const Store = types
       ));
 
       // Load all supplimental data
-      yield Genres.loadAllGenres();
-      yield Cinemas.loadAllCinemas();
+      Genres.loadAllGenres();
+      Cinemas.loadAllCinemas();
 
       self.isHydrated = true;
     }),
