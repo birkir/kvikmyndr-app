@@ -36,7 +36,7 @@ export const Store = types
 
       onSnapshot(self.settings, debounce(
         snapshot => AsyncStorage.setItem(storageKey, JSON.stringify(snapshot)),
-        1000,
+        1200,
       ));
 
       // Load all supplimental data
