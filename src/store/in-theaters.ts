@@ -53,13 +53,19 @@ export const InTheaters = types.model('InTheaters', {
     const start = new Date();
     const end = addDays(start, 5);
 
-    const query = (fetchPolicy: FetchPolicy = 'network-only') => client.query({
-      fetchPolicy,
-      query: fetchMoviesForWeekQuery,
-      variables: {
-        start: start.toISOString().substr(0, 10),
-        end: end.toISOString().substr(0, 10),
-      },
+    const query = (fetchPolicy: FetchPolicy = 'network-only') => new Promise(resolve => {
+      client.query({
+        fetchPolicy,
+        query: fetchMoviesForWeekQuery,
+        variables: {
+          start: start.toISOString().substr(0, 10),
+          end: end.toISOString().substr(0, 10),
+        },
+      })
+      .then(resolve);
+      if (fetchPolicy === 'network-only') {
+        setTimeout(() => resolve({ error: { message: 'Network error' } }), 5000);
+      }
     });
 
     let result = yield query();
