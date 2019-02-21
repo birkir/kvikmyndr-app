@@ -1,21 +1,29 @@
 import { types } from 'mobx-state-tree';
 import { CinemaReference } from '../cinemas';
 import store from '../index';
+import { utcToZonedTime, toDate } from 'date-fns-tz';
+import { addHours } from 'date-fns';
 
 export const Showtime = types.model('Showtime', {
   id: types.identifier,
-  playingAt: types.maybe(types.string),
+  playingAt: types.Date,
   cinema: types.maybe(CinemaReference),
   room: types.maybe(types.string),
   ticketUrl: types.maybe(types.string),
   flags: types.array(types.string),
 })
+.preProcessSnapshot((snapshot) => {
+  const date = utcToZonedTime(snapshot.playingAt || 0, 'America/New_York');
+  return {
+    ...snapshot,
+    playingAt: toDate(date, { timeZone: 'GMT' }),
+  };
+})
 .views(self => ({
   get disabled() {
-    const timeInIceland = new Date(store.date.toISOString().substr(0, 23));
+    const timeInIceland = utcToZonedTime(Date.now(), 'GMT');
     if (self.playingAt) {
-      const playingAt = new Date(self.playingAt);
-      return playingAt.getTime() < timeInIceland.getTime();
+      return self.playingAt.getTime() < timeInIceland.getTime();
     }
     return false;
   },

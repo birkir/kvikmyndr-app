@@ -5,7 +5,7 @@ import { Movies } from './movies';
 import { Movie } from './models/Movie';
 import { addDays } from 'date-fns';
 import { addHours } from 'date-fns/esm';
-import { FetchPolicy, ApolloQueryResult } from 'apollo-boost';
+import { FetchPolicy } from 'apollo-boost';
 
 interface IShowtimeFromDb {
   playingAt: string;
@@ -53,7 +53,7 @@ export const InTheaters = types.model('InTheaters', {
     const start = new Date();
     const end = addDays(start, 5);
 
-    const query = (fetchPolicy: FetchPolicy = 'network-only') => new Promise(resolve => {
+    const query = (fetchPolicy: FetchPolicy = 'network-only') => new Promise((resolve) => {
       client.query({
         fetchPolicy,
         query: fetchMoviesForWeekQuery,
@@ -85,7 +85,7 @@ export const InTheaters = types.model('InTheaters', {
 
     result.data.allMovies.forEach((movie: IMovieFromDb) => {
       movie.showtimes.forEach((showtime) => {
-        const dateKey = addHours(new Date(showtime.playingAt), -4).toISOString().substr(0, 10);
+        const dateKey = addHours(showtime.playingAt, -4).toISOString().substr(0, 10);
 
         if (!self.dates.has(dateKey)) {
           self.dates.put({

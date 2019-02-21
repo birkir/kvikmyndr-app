@@ -179,7 +179,7 @@ export default class Movie extends React.Component<IProps> {
   }
 
   sortByTime = (a: IShowtime, b: IShowtime) => {
-    return new Date(a.playingAt || '') < new Date(b.playingAt || '') ? -1 : 1;
+    return a.playingAt < b.playingAt ? -1 : 1;
   }
 
   @autobind
