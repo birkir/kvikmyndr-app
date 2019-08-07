@@ -13,10 +13,10 @@ export const Showtime = types.model('Showtime', {
   flags: types.array(types.string),
 })
 .preProcessSnapshot((snapshot) => {
-  const date = utcToZonedTime(snapshot.playingAt || 0, 'America/New_York');
+  const date = utcToZonedTime(snapshot.playingAt || 0, 'UTC');
   return {
     ...snapshot,
-    playingAt: toDate(date, { timeZone: 'GMT' }),
+    playingAt: new Date(date),
   };
 })
 .views(self => ({
