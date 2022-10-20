@@ -47,7 +47,7 @@
     "react-native-gesture-handler": "1.0.7",
     "react-native-linear-gradient": "2.4.0",
     "react-native-navigation": "2.0.2515",
-    "react-native-reanimated": "1.0.0-alpha.6",
+    "react-native-reanimated": "2.10.0",
     "react-native-sentry": "0.39.0",
     "react-native-tab-view": "1.0.2",
     "react-native-version-number": "0.3.4"
